@@ -6,15 +6,5 @@
         xmlns:local="clr-namespace:UPM"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <TextBox x:Name="Number" HorizontalAlignment="Left" Margin="283,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="Number_KeyUp" />
-        <TextBox x:Name="Password" IsEnabled="False" HorizontalAlignment="Left" Margin="283,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="Password_KeyUp"/>
-        <TextBox x:Name="Code" IsEnabled="False" HorizontalAlignment="Left" Margin="283,269,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="92"/>
-        <Button Name="CanselOperation" Content="Отмена" HorizontalAlignment="Left" Margin="283,324,0,0" VerticalAlignment="Top" />
-        <Button Name="LogIn" Content="Вход" HorizontalAlignment="Left" Margin="363,324,0,0" VerticalAlignment="Top"/>
-        <Label Content="Номер" HorizontalAlignment="Left" Margin="231,179,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.475,0.543"/>
-        <Label Content="Пароль" HorizontalAlignment="Left" Margin="231,224,0,0" VerticalAlignment="Top"/>
-        <Label Content="Код" HorizontalAlignment="Left" Margin="231,264,0,0" VerticalAlignment="Top"/>
-
-    </Grid>
+    <Grid/>
 </Window>
