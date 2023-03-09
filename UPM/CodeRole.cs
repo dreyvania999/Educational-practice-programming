@@ -15,8 +15,8 @@ namespace UPM
     public partial class CodeRole
     {
         public string Code { get; set; }
-        public Nullable<int> IdRole { get; set; }
-        public Nullable<int> IdStaff { get; set; }
+        public int IdRole { get; set; }
+        public int IdStaff { get; set; }
     
         public virtual Role Role { get; set; }
         public virtual Staff Staff { get; set; }

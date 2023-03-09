@@ -5,6 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UPM"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid/>
+        Title="Телеком Нева Связь" Height="450" Width="800" Icon="/Resourses/Basic resourses/image.ico">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="Icons" Width="2*"></ColumnDefinition>
+            <ColumnDefinition x:Name="AllInform" Width="8*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+    </Grid>
 </Window>

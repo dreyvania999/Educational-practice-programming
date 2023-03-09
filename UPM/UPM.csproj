@@ -64,7 +64,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Abonent.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="CodeRole.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Equipment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model1.cs">
@@ -72,13 +78,40 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProblemType.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Request.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RequestService.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Role.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceType.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceView.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Staff.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="StaffInform.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="State.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TypeEquipment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -149,6 +182,45 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resourses\Staff\Фото для заглушки при отсутствии фото сотрудника.jpg" />
+    <Resource Include="Resourses\Staff\ID1516.jpg" />
+    <Resource Include="Resourses\Staff\ID1517.png" />
+    <Resource Include="Resourses\Staff\ID1518.png" />
+    <Resource Include="Resourses\Staff\ID1519.png" />
+    <Resource Include="Resourses\Staff\ID1520.png" />
+    <Resource Include="Resourses\Staff\ID1521.jpg" />
+    <Resource Include="Resourses\Staff\ID1522.png" />
+    <Resource Include="Resourses\Staff\ID1523.jpg" />
+    <Resource Include="Resourses\Staff\ID1524.jpg" />
+    <Resource Include="Resourses\Staff\ID1525.jpg" />
+    <Resource Include="Resourses\Staff\ID1526.jpg" />
+    <Resource Include="Resourses\CRM\CRM.png" />
+    <Resource Include="Resourses\CRM\Абоненты.png" />
+    <Resource Include="Resourses\CRM\Активы.png" />
+    <Resource Include="Resourses\CRM\Биллинг.jpg" />
+    <Resource Include="Resourses\CRM\Поддержка пользователей.jpg" />
+    <Resource Include="Resourses\CRM\Управление обрудованием.jpg" />
+    <Resource Include="Resourses\Basic resourses\Лого ТНС.jpg" />
+    <Resource Include="Resourses\Basic resourses\image.ico" />
+    <Content Include="Resourses\Staff\ID1527.jfif" />
+    <Resource Include="Resourses\Staff\ID1528.jpg" />
+    <Resource Include="Resourses\Staff\ID1529.jpg" />
+    <Resource Include="Resourses\Staff\ID1530.jpg" />
+    <Resource Include="Resourses\Staff\ID1531.jpg" />
+    <Resource Include="Resourses\Staff\ID1532.jpg" />
+    <Resource Include="Resourses\Staff\ID1533.jpg" />
+    <Resource Include="Resourses\Staff\ID1534.jpg" />
+    <Resource Include="Resourses\Staff\ID1535.png" />
+    <Resource Include="Resourses\Staff\ID1536.png" />
+    <Resource Include="Resourses\Staff\ID1537.jpg" />
+    <Resource Include="Resourses\Staff\ID1538.jpg" />
+    <Resource Include="Resourses\Staff\ID1539.png" />
+    <Resource Include="Resourses\Staff\ID1540.jpg" />
+    <Resource Include="Resourses\Staff\ID1541.jpg" />
+    <Resource Include="Resourses\Staff\ID1542.jpg" />
+    <Resource Include="Resourses\Staff\ID1543.jpg" />
+    <Resource Include="Resourses\Staff\ID1544.jpg" />
+    <Resource Include="Resourses\Staff\ID1545.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

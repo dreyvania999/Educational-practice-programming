@@ -12,21 +12,20 @@ namespace UPM
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class Equipment
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Role()
+        public Equipment()
         {
-            this.CodeRole = new HashSet<CodeRole>();
-            this.StaffInform = new HashSet<StaffInform>();
+            this.Abonent = new HashSet<Abonent>();
         }
     
-        public int ID { get; set; }
-        public string Title { get; set; }
+        public string SerialNumber { get; set; }
+        public Nullable<int> Type { get; set; }
+        public string title { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CodeRole> CodeRole { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StaffInform> StaffInform { get; set; }
+        public virtual ICollection<Abonent> Abonent { get; set; }
+        public virtual TypeEquipment TypeEquipment { get; set; }
     }
 }
