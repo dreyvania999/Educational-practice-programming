@@ -71,6 +71,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Classes\DBClass.cs" />
+    <Compile Include="Classes\PartialModules.cs" />
     <Compile Include="Classes\PartialStaff.cs" />
     <Compile Include="CodeRole.cs">
       <DependentUpon>Model1.tt</DependentUpon>

@@ -15,12 +15,13 @@ namespace UPM
         public MainWindow()
         {
             DBClass.DB = new Entities1();
-           // ListServices.ItemsSource = entities.DB.Service.ToList();
+            
             InitializeComponent();
             UserEditing.ItemsSource = DBClass.DB.Staff.ToList();
-
+            ListModuls.ItemsSource = DBClass.DB.Moduls.ToList();
             UserEditing.DisplayMemberPath = "StaffName";
             UserEditing.SelectedValuePath = "ID";
+            ListInform.ItemsSource = DBClass.DB.StaffInform.ToList();
         }
 
 

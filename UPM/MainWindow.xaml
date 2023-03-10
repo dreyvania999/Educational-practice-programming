@@ -12,7 +12,31 @@
             <ColumnDefinition x:Name="AllInform" Width="8*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
-            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="8*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                
+            </Grid>
+            <Grid Grid.Row="1">
+                <ListView x:Name="ListModuls" Grid.Row ="1">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="100" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="{Binding Title}"  />
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+            <Grid Grid.Row="2">
+
+            </Grid>
         </Grid>
         <Grid Grid.Column="1"  >
             <Grid.RowDefinitions>
@@ -38,7 +62,7 @@
                     <Button Grid.Row="0"></Button>
                     <Button Grid.Row="2"></Button>
 
-                    <ListView Grid.Row ="1">
+                    <ListView x:Name="ListInform" Grid.Row ="1">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
