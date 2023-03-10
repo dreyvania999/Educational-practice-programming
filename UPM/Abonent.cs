@@ -18,6 +18,7 @@ namespace UPM
         public Abonent()
         {
             this.Request = new HashSet<Request>();
+            this.Services1 = new HashSet<Services>();
         }
     
         public string AbonentNumber { get; set; }
@@ -46,5 +47,7 @@ namespace UPM
         public virtual Equipment Equipment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Request> Request { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Services> Services1 { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище CRM6Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище CRM6Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Abonent">
           <Key>
             <PropertyRef Name="ContractNumber" />
@@ -30,14 +30,18 @@
           <Property Name="TerminationReason" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PersonalAccount" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Services" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="EquipmentNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="EquipmentNumber" Type="nvarchar" MaxLength="25" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
-предупреждение 6013: Первичный ключ в таблице или представлении "41CRM6.dbo.ClientServices" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
+предупреждение 6002: В таблице или представлении "41CRM6.dbo.ClientServices" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="ClientServices">
-          <Property Name="IDClient" Type="nvarchar" MaxLength="50" />
-          <Property Name="IDServises" Type="int" />
-        </EntityType>-->
+          <Key>
+            <PropertyRef Name="IDClient" />
+            <PropertyRef Name="IDServises" />
+          </Key>
+          <Property Name="IDClient" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IDServises" Type="int" Nullable="false" />
+        </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "41CRM6.dbo.CodeRole" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="CodeRole">
@@ -54,9 +58,26 @@
           <Key>
             <PropertyRef Name="SerialNumber" />
           </Key>
-          <Property Name="SerialNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="25" Nullable="false" />
           <Property Name="Type" Type="int" />
-          <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="90" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Moduls">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "41CRM6.dbo.ModulsForRole" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="ModulsForRole">
+          <Key>
+            <PropertyRef Name="IDRole" />
+            <PropertyRef Name="IDModules" />
+          </Key>
+          <Property Name="IDRole" Type="int" Nullable="false" />
+          <Property Name="IDModules" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ProblemType">
           <Key>
@@ -140,7 +161,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="InformDate" Type="datetime" Nullable="false" />
+          <Property Name="InformDate" Type="datetime" />
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="State">
@@ -179,12 +200,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Ошибки, обнаруженные при создании:
-ошибка 6004: Невозможно найти таблицу "41CRM6.dbo.ClientServices", на которую ссылается связь.
-        <Association Name="FK_ClientServices_Abonent" />-->
-        <!--Ошибки, обнаруженные при создании:
-ошибка 6004: Невозможно найти таблицу "41CRM6.dbo.ClientServices", на которую ссылается связь.
-        <Association Name="FK_ClientServices_Services" />-->
+        <Association Name="FK_ClientServices_Abonent">
+          <End Role="Abonent" Type="Self.Abonent" Multiplicity="1" />
+          <End Role="ClientServices" Type="Self.ClientServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Abonent">
+              <PropertyRef Name="ContractNumber" />
+            </Principal>
+            <Dependent Role="ClientServices">
+              <PropertyRef Name="IDClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientServices_Services">
+          <End Role="Services" Type="Self.Services" Multiplicity="1" />
+          <End Role="ClientServices" Type="Self.ClientServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ClientServices">
+              <PropertyRef Name="IDServises" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CodeRole_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="1" />
           <End Role="CodeRole" Type="Self.CodeRole" Multiplicity="*" />
@@ -218,6 +257,30 @@
             </Principal>
             <Dependent Role="Equipment">
               <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModulsForRole_Moduls">
+          <End Role="Moduls" Type="Self.Moduls" Multiplicity="1" />
+          <End Role="ModulsForRole" Type="Self.ModulsForRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moduls">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ModulsForRole">
+              <PropertyRef Name="IDModules" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModulsForRole_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="ModulsForRole" Type="Self.ModulsForRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ModulsForRole">
+              <PropertyRef Name="IDRole" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -332,6 +395,7 @@
         <EntityContainer Name="Хранилище CRM6ModelContainer">
           <EntitySet Name="Abonent" EntityType="Self.Abonent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Moduls" EntityType="Self.Moduls" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProblemType" EntityType="Self.ProblemType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RequestService" EntityType="Self.RequestService" Schema="dbo" store:Type="Tables" />
@@ -344,12 +408,24 @@
           <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeEquipment" EntityType="Self.TypeEquipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientServices" EntityType="Self.ClientServices" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ClientServices].[IDClient] AS [IDClient], 
+    [ClientServices].[IDServises] AS [IDServises]
+    FROM [dbo].[ClientServices] AS [ClientServices]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="CodeRole" EntityType="Self.CodeRole" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [CodeRole].[Code] AS [Code], 
     [CodeRole].[IdRole] AS [IdRole], 
     [CodeRole].[IdStaff] AS [IdStaff]
     FROM [dbo].[CodeRole] AS [CodeRole]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ModulsForRole" EntityType="Self.ModulsForRole" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ModulsForRole].[IDRole] AS [IDRole], 
+    [ModulsForRole].[IDModules] AS [IDModules]
+    FROM [dbo].[ModulsForRole] AS [ModulsForRole]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="RoleInform" EntityType="Self.RoleInform" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -360,6 +436,14 @@
           <AssociationSet Name="FK_Abonent_Equipment" Association="Self.FK_Abonent_Equipment">
             <End Role="Equipment" EntitySet="Equipment" />
             <End Role="Abonent" EntitySet="Abonent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientServices_Abonent" Association="Self.FK_ClientServices_Abonent">
+            <End Role="Abonent" EntitySet="Abonent" />
+            <End Role="ClientServices" EntitySet="ClientServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientServices_Services" Association="Self.FK_ClientServices_Services">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="ClientServices" EntitySet="ClientServices" />
           </AssociationSet>
           <AssociationSet Name="FK_CodeRole_Role" Association="Self.FK_CodeRole_Role">
             <End Role="Role" EntitySet="Role" />
@@ -372,6 +456,14 @@
           <AssociationSet Name="FK_Equipment_TypeEquipment" Association="Self.FK_Equipment_TypeEquipment">
             <End Role="TypeEquipment" EntitySet="TypeEquipment" />
             <End Role="Equipment" EntitySet="Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModulsForRole_Moduls" Association="Self.FK_ModulsForRole_Moduls">
+            <End Role="Moduls" EntitySet="Moduls" />
+            <End Role="ModulsForRole" EntitySet="ModulsForRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModulsForRole_Role" Association="Self.FK_ModulsForRole_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="ModulsForRole" EntitySet="ModulsForRole" />
           </AssociationSet>
           <AssociationSet Name="FK_Request_Abonent" Association="Self.FK_Request_Abonent">
             <End Role="Abonent" EntitySet="Abonent" />
@@ -410,127 +502,72 @@
             <End Role="RoleInform" EntitySet="RoleInform" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CRM6Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Abonent" EntityType="CRM6Model.Abonent" />
-          <EntitySet Name="Equipment" EntityType="CRM6Model.Equipment" />
-          <EntitySet Name="ProblemType" EntityType="CRM6Model.ProblemType" />
-          <EntitySet Name="Request" EntityType="CRM6Model.Request" />
-          <EntitySet Name="RequestService" EntityType="CRM6Model.RequestService" />
-          <EntitySet Name="Role" EntityType="CRM6Model.Role" />
-          <EntitySet Name="Services" EntityType="CRM6Model.Services" />
-          <EntitySet Name="ServiceType" EntityType="CRM6Model.ServiceType" />
-          <EntitySet Name="ServiceView" EntityType="CRM6Model.ServiceView" />
-          <EntitySet Name="Staff" EntityType="CRM6Model.Staff" />
-          <EntitySet Name="StaffInform" EntityType="CRM6Model.StaffInform" />
-          <EntitySet Name="State" EntityType="CRM6Model.State" />
-          <EntitySet Name="sysdiagrams" EntityType="CRM6Model.sysdiagrams" />
-          <EntitySet Name="TypeEquipment" EntityType="CRM6Model.TypeEquipment" />
-          <EntitySet Name="CodeRole" EntityType="CRM6Model.CodeRole" />
-          <AssociationSet Name="FK_Abonent_Equipment" Association="CRM6Model.FK_Abonent_Equipment">
-            <End Role="Equipment" EntitySet="Equipment" />
-            <End Role="Abonent" EntitySet="Abonent" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Request_Abonent" Association="CRM6Model.FK_Request_Abonent">
-            <End Role="Abonent" EntitySet="Abonent" />
-            <End Role="Request" EntitySet="Request" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Equipment_TypeEquipment" Association="CRM6Model.FK_Equipment_TypeEquipment">
-            <End Role="TypeEquipment" EntitySet="TypeEquipment" />
-            <End Role="Equipment" EntitySet="Equipment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Request_ProblemType" Association="CRM6Model.FK_Request_ProblemType">
-            <End Role="ProblemType" EntitySet="ProblemType" />
-            <End Role="Request" EntitySet="Request" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Request_RequestService" Association="CRM6Model.FK_Request_RequestService">
-            <End Role="RequestService" EntitySet="RequestService" />
-            <End Role="Request" EntitySet="Request" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Request_Services" Association="CRM6Model.FK_Request_Services">
-            <End Role="Services" EntitySet="Services" />
-            <End Role="Request" EntitySet="Request" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Request_ServiceType" Association="CRM6Model.FK_Request_ServiceType">
-            <End Role="ServiceType" EntitySet="ServiceType" />
-            <End Role="Request" EntitySet="Request" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Request_ServiceView" Association="CRM6Model.FK_Request_ServiceView">
-            <End Role="ServiceView" EntitySet="ServiceView" />
-            <End Role="Request" EntitySet="Request" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Request_State" Association="CRM6Model.FK_Request_State">
-            <End Role="State" EntitySet="State" />
-            <End Role="Request" EntitySet="Request" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CodeRole_Role" Association="CRM6Model.FK_CodeRole_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="CodeRole" EntitySet="CodeRole" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CodeRole_Staff" Association="CRM6Model.FK_CodeRole_Staff">
-            <End Role="Staff" EntitySet="Staff" />
-            <End Role="CodeRole" EntitySet="CodeRole" />
-          </AssociationSet>
-          <AssociationSet Name="RoleInform" Association="CRM6Model.RoleInform">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="StaffInform" EntitySet="StaffInform" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="Abonent">
           <Key>
             <PropertyRef Name="ContractNumber" />
           </Key>
-          <Property Name="AbonentNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Patronumic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Gender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AbonentNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronumic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="BirthDay" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Mail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Adress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AdressFact" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SeriesPasport" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="NumberPaspotrNumberPaspotr" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DivisionCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IssuedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DateIssue" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ContractNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AdressFact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SeriesPasport" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumberPaspotrNumberPaspotr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DivisionCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IssuedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateIssue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContractNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ConclusionDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ContractType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TerminationReason" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PersonalAccount" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Services" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EquipmentNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Equipment" Relationship="CRM6Model.FK_Abonent_Equipment" FromRole="Abonent" ToRole="Equipment" />
-          <NavigationProperty Name="Request" Relationship="CRM6Model.FK_Request_Abonent" FromRole="Abonent" ToRole="Request" />
+          <Property Name="ContractType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TerminationReason" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PersonalAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Services" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EquipmentNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Equipment" Relationship="Self.FK_Abonent_Equipment" FromRole="Abonent" ToRole="Equipment" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Request_Abonent" FromRole="Abonent" ToRole="Request" />
+          <NavigationProperty Name="Services1" Relationship="Self.ClientServices" FromRole="Abonent" ToRole="Services" />
         </EntityType>
         <EntityType Name="Equipment">
           <Key>
             <PropertyRef Name="SerialNumber" />
           </Key>
-          <Property Name="SerialNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SerialNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Type" Type="Int32" />
-          <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Abonent" Relationship="CRM6Model.FK_Abonent_Equipment" FromRole="Equipment" ToRole="Abonent" />
-          <NavigationProperty Name="TypeEquipment" Relationship="CRM6Model.FK_Equipment_TypeEquipment" FromRole="Equipment" ToRole="TypeEquipment" />
+          <Property Name="title" Type="String" MaxLength="90" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Abonent" Relationship="Self.FK_Abonent_Equipment" FromRole="Equipment" ToRole="Abonent" />
+          <NavigationProperty Name="TypeEquipment" Relationship="Self.FK_Equipment_TypeEquipment" FromRole="Equipment" ToRole="TypeEquipment" />
+        </EntityType>
+        <EntityType Name="Moduls">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.ModulsForRole" FromRole="Moduls" ToRole="Role" />
         </EntityType>
         <EntityType Name="ProblemType">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Request" Relationship="CRM6Model.FK_Request_ProblemType" FromRole="ProblemType" ToRole="Request" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Request_ProblemType" FromRole="ProblemType" ToRole="Request" />
         </EntityType>
         <EntityType Name="Request">
           <Key>
             <PropertyRef Name="RequestNum" />
           </Key>
-          <Property Name="RequestNum" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RequestNum" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RequestDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Precision="0" />
           <Property Name="Servise" Type="Int32" Nullable="false" />
@@ -539,89 +576,91 @@
           <Property Name="State" Type="Int32" Nullable="false" />
           <Property Name="ProblemType" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ContractNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Abonent" Relationship="CRM6Model.FK_Request_Abonent" FromRole="Request" ToRole="Abonent" />
-          <NavigationProperty Name="ProblemType1" Relationship="CRM6Model.FK_Request_ProblemType" FromRole="Request" ToRole="ProblemType" />
-          <NavigationProperty Name="RequestService" Relationship="CRM6Model.FK_Request_RequestService" FromRole="Request" ToRole="RequestService" />
-          <NavigationProperty Name="Services" Relationship="CRM6Model.FK_Request_Services" FromRole="Request" ToRole="Services" />
-          <NavigationProperty Name="ServiceType" Relationship="CRM6Model.FK_Request_ServiceType" FromRole="Request" ToRole="ServiceType" />
-          <NavigationProperty Name="ServiceView" Relationship="CRM6Model.FK_Request_ServiceView" FromRole="Request" ToRole="ServiceView" />
-          <NavigationProperty Name="State1" Relationship="CRM6Model.FK_Request_State" FromRole="Request" ToRole="State" />
+          <Property Name="ContractNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Abonent" Relationship="Self.FK_Request_Abonent" FromRole="Request" ToRole="Abonent" />
+          <NavigationProperty Name="ProblemType1" Relationship="Self.FK_Request_ProblemType" FromRole="Request" ToRole="ProblemType" />
+          <NavigationProperty Name="RequestService" Relationship="Self.FK_Request_RequestService" FromRole="Request" ToRole="RequestService" />
+          <NavigationProperty Name="Services" Relationship="Self.FK_Request_Services" FromRole="Request" ToRole="Services" />
+          <NavigationProperty Name="ServiceType" Relationship="Self.FK_Request_ServiceType" FromRole="Request" ToRole="ServiceType" />
+          <NavigationProperty Name="ServiceView" Relationship="Self.FK_Request_ServiceView" FromRole="Request" ToRole="ServiceView" />
+          <NavigationProperty Name="State1" Relationship="Self.FK_Request_State" FromRole="Request" ToRole="State" />
         </EntityType>
         <EntityType Name="RequestService">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Request" Relationship="CRM6Model.FK_Request_RequestService" FromRole="RequestService" ToRole="Request" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Request_RequestService" FromRole="RequestService" ToRole="Request" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CodeRole" Relationship="CRM6Model.FK_CodeRole_Role" FromRole="Role" ToRole="CodeRole" />
-          <NavigationProperty Name="StaffInform" Relationship="CRM6Model.RoleInform" FromRole="Role" ToRole="StaffInform" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CodeRole" Relationship="Self.FK_CodeRole_Role" FromRole="Role" ToRole="CodeRole" />
+          <NavigationProperty Name="Moduls" Relationship="Self.ModulsForRole" FromRole="Role" ToRole="Moduls" />
+          <NavigationProperty Name="StaffInform" Relationship="Self.RoleInform" FromRole="Role" ToRole="StaffInform" />
         </EntityType>
         <EntityType Name="Services">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Request" Relationship="CRM6Model.FK_Request_Services" FromRole="Services" ToRole="Request" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Request_Services" FromRole="Services" ToRole="Request" />
+          <NavigationProperty Name="Abonent" Relationship="Self.ClientServices" FromRole="Services" ToRole="Abonent" />
         </EntityType>
         <EntityType Name="ServiceType">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Request" Relationship="CRM6Model.FK_Request_ServiceType" FromRole="ServiceType" ToRole="Request" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Request_ServiceType" FromRole="ServiceType" ToRole="Request" />
         </EntityType>
         <EntityType Name="ServiceView">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Request" Relationship="CRM6Model.FK_Request_ServiceView" FromRole="ServiceView" ToRole="Request" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Request_ServiceView" FromRole="ServiceView" ToRole="Request" />
         </EntityType>
         <EntityType Name="Staff">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CodeRole" Relationship="CRM6Model.FK_CodeRole_Staff" FromRole="Staff" ToRole="CodeRole" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CodeRole" Relationship="Self.FK_CodeRole_Staff" FromRole="Staff" ToRole="CodeRole" />
         </EntityType>
         <EntityType Name="StaffInform">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InformDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Role" Relationship="CRM6Model.RoleInform" FromRole="StaffInform" ToRole="Role" />
+          <Property Name="InformDate" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.RoleInform" FromRole="StaffInform" ToRole="Role" />
         </EntityType>
         <EntityType Name="State">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Request" Relationship="CRM6Model.FK_Request_State" FromRole="State" ToRole="Request" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Request_State" FromRole="State" ToRole="Request" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
@@ -632,8 +671,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Equipment" Relationship="CRM6Model.FK_Equipment_TypeEquipment" FromRole="TypeEquipment" ToRole="Equipment" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Equipment" Relationship="Self.FK_Equipment_TypeEquipment" FromRole="TypeEquipment" ToRole="Equipment" />
         </EntityType>
         <EntityType Name="CodeRole">
           <Key>
@@ -641,15 +680,15 @@
             <PropertyRef Name="IdRole" />
             <PropertyRef Name="IdStaff" />
           </Key>
-          <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdRole" Type="Int32" Nullable="false" />
           <Property Name="IdStaff" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Role" Relationship="CRM6Model.FK_CodeRole_Role" FromRole="CodeRole" ToRole="Role" />
-          <NavigationProperty Name="Staff" Relationship="CRM6Model.FK_CodeRole_Staff" FromRole="CodeRole" ToRole="Staff" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_CodeRole_Role" FromRole="CodeRole" ToRole="Role" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_CodeRole_Staff" FromRole="CodeRole" ToRole="Staff" />
         </EntityType>
         <Association Name="FK_Abonent_Equipment">
-          <End Type="CRM6Model.Equipment" Role="Equipment" Multiplicity="1" />
-          <End Type="CRM6Model.Abonent" Role="Abonent" Multiplicity="*" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+          <End Role="Abonent" Type="Self.Abonent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Equipment">
               <PropertyRef Name="SerialNumber" />
@@ -660,8 +699,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Request_Abonent">
-          <End Type="CRM6Model.Abonent" Role="Abonent" Multiplicity="1" />
-          <End Type="CRM6Model.Request" Role="Request" Multiplicity="*" />
+          <End Role="Abonent" Type="Self.Abonent" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Abonent">
               <PropertyRef Name="ContractNumber" />
@@ -672,8 +711,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Equipment_TypeEquipment">
-          <End Type="CRM6Model.TypeEquipment" Role="TypeEquipment" Multiplicity="0..1" />
-          <End Type="CRM6Model.Equipment" Role="Equipment" Multiplicity="*" />
+          <End Role="TypeEquipment" Type="Self.TypeEquipment" Multiplicity="0..1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TypeEquipment">
               <PropertyRef Name="ID" />
@@ -684,8 +723,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Request_ProblemType">
-          <End Type="CRM6Model.ProblemType" Role="ProblemType" Multiplicity="1" />
-          <End Type="CRM6Model.Request" Role="Request" Multiplicity="*" />
+          <End Role="ProblemType" Type="Self.ProblemType" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProblemType">
               <PropertyRef Name="ID" />
@@ -696,8 +735,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Request_RequestService">
-          <End Type="CRM6Model.RequestService" Role="RequestService" Multiplicity="1" />
-          <End Type="CRM6Model.Request" Role="Request" Multiplicity="*" />
+          <End Role="RequestService" Type="Self.RequestService" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RequestService">
               <PropertyRef Name="ID" />
@@ -708,8 +747,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Request_Services">
-          <End Type="CRM6Model.Services" Role="Services" Multiplicity="1" />
-          <End Type="CRM6Model.Request" Role="Request" Multiplicity="*" />
+          <End Role="Services" Type="Self.Services" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Services">
               <PropertyRef Name="ID" />
@@ -720,8 +759,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Request_ServiceType">
-          <End Type="CRM6Model.ServiceType" Role="ServiceType" Multiplicity="1" />
-          <End Type="CRM6Model.Request" Role="Request" Multiplicity="*" />
+          <End Role="ServiceType" Type="Self.ServiceType" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ServiceType">
               <PropertyRef Name="ID" />
@@ -732,8 +771,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Request_ServiceView">
-          <End Type="CRM6Model.ServiceView" Role="ServiceView" Multiplicity="1" />
-          <End Type="CRM6Model.Request" Role="Request" Multiplicity="*" />
+          <End Role="ServiceView" Type="Self.ServiceView" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ServiceView">
               <PropertyRef Name="ID" />
@@ -744,8 +783,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Request_State">
-          <End Type="CRM6Model.State" Role="State" Multiplicity="1" />
-          <End Type="CRM6Model.Request" Role="Request" Multiplicity="*" />
+          <End Role="State" Type="Self.State" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="State">
               <PropertyRef Name="ID" />
@@ -756,8 +795,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CodeRole_Role">
-          <End Type="CRM6Model.Role" Role="Role" Multiplicity="1" />
-          <End Type="CRM6Model.CodeRole" Role="CodeRole" Multiplicity="*" />
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="CodeRole" Type="Self.CodeRole" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Role">
               <PropertyRef Name="ID" />
@@ -768,8 +807,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CodeRole_Staff">
-          <End Type="CRM6Model.Staff" Role="Staff" Multiplicity="1" />
-          <End Type="CRM6Model.CodeRole" Role="CodeRole" Multiplicity="*" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="CodeRole" Type="Self.CodeRole" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Staff">
               <PropertyRef Name="ID" />
@@ -779,179 +818,285 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="RoleInform">
-          <End Type="CRM6Model.Role" Role="Role" Multiplicity="*" />
-          <End Type="CRM6Model.StaffInform" Role="StaffInform" Multiplicity="*" />
+        <Association Name="ClientServices">
+          <End Role="Abonent" Type="Self.Abonent" Multiplicity="*" />
+          <End Role="Services" Type="Self.Services" Multiplicity="*" />
         </Association>
-        </Schema>
+        <Association Name="ModulsForRole">
+          <End Role="Moduls" Type="Self.Moduls" Multiplicity="*" />
+          <End Role="Role" Type="Self.Role" Multiplicity="*" />
+        </Association>
+        <Association Name="RoleInform">
+          <End Role="Role" Type="Self.Role" Multiplicity="*" />
+          <End Role="StaffInform" Type="Self.StaffInform" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Entities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Abonent" EntityType="Self.Abonent" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" />
+          <EntitySet Name="Moduls" EntityType="Self.Moduls" />
+          <EntitySet Name="ProblemType" EntityType="Self.ProblemType" />
+          <EntitySet Name="Request" EntityType="Self.Request" />
+          <EntitySet Name="RequestService" EntityType="Self.RequestService" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Services" EntityType="Self.Services" />
+          <EntitySet Name="ServiceType" EntityType="Self.ServiceType" />
+          <EntitySet Name="ServiceView" EntityType="Self.ServiceView" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" />
+          <EntitySet Name="StaffInform" EntityType="Self.StaffInform" />
+          <EntitySet Name="State" EntityType="Self.State" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TypeEquipment" EntityType="Self.TypeEquipment" />
+          <EntitySet Name="CodeRole" EntityType="Self.CodeRole" />
+          <AssociationSet Name="FK_Abonent_Equipment" Association="Self.FK_Abonent_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="Abonent" EntitySet="Abonent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Abonent" Association="Self.FK_Request_Abonent">
+            <End Role="Abonent" EntitySet="Abonent" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equipment_TypeEquipment" Association="Self.FK_Equipment_TypeEquipment">
+            <End Role="TypeEquipment" EntitySet="TypeEquipment" />
+            <End Role="Equipment" EntitySet="Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_ProblemType" Association="Self.FK_Request_ProblemType">
+            <End Role="ProblemType" EntitySet="ProblemType" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_RequestService" Association="Self.FK_Request_RequestService">
+            <End Role="RequestService" EntitySet="RequestService" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Services" Association="Self.FK_Request_Services">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_ServiceType" Association="Self.FK_Request_ServiceType">
+            <End Role="ServiceType" EntitySet="ServiceType" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_ServiceView" Association="Self.FK_Request_ServiceView">
+            <End Role="ServiceView" EntitySet="ServiceView" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_State" Association="Self.FK_Request_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CodeRole_Role" Association="Self.FK_CodeRole_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="CodeRole" EntitySet="CodeRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CodeRole_Staff" Association="Self.FK_CodeRole_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="CodeRole" EntitySet="CodeRole" />
+          </AssociationSet>
+          <AssociationSet Name="ClientServices" Association="Self.ClientServices">
+            <End Role="Abonent" EntitySet="Abonent" />
+            <End Role="Services" EntitySet="Services" />
+          </AssociationSet>
+          <AssociationSet Name="ModulsForRole" Association="Self.ModulsForRole">
+            <End Role="Moduls" EntitySet="Moduls" />
+            <End Role="Role" EntitySet="Role" />
+          </AssociationSet>
+          <AssociationSet Name="RoleInform" Association="Self.RoleInform">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="StaffInform" EntitySet="StaffInform" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище CRM6ModelContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище CRM6ModelContainer" CdmEntityContainer="Entities1">
           <EntitySetMapping Name="Abonent">
             <EntityTypeMapping TypeName="CRM6Model.Abonent">
               <MappingFragment StoreEntitySet="Abonent">
-                <ScalarProperty Name="EquipmentNumber" ColumnName="EquipmentNumber" />
-                <ScalarProperty Name="Services" ColumnName="Services" />
-                <ScalarProperty Name="PersonalAccount" ColumnName="PersonalAccount" />
-                <ScalarProperty Name="TerminationReason" ColumnName="TerminationReason" />
-                <ScalarProperty Name="ContractType" ColumnName="ContractType" />
-                <ScalarProperty Name="ConclusionDate" ColumnName="ConclusionDate" />
-                <ScalarProperty Name="ContractNumber" ColumnName="ContractNumber" />
-                <ScalarProperty Name="DateIssue" ColumnName="DateIssue" />
-                <ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
-                <ScalarProperty Name="DivisionCode" ColumnName="DivisionCode" />
-                <ScalarProperty Name="NumberPaspotrNumberPaspotr" ColumnName="NumberPaspotrNumberPaspotr" />
-                <ScalarProperty Name="SeriesPasport" ColumnName="SeriesPasport" />
-                <ScalarProperty Name="AdressFact" ColumnName="AdressFact" />
-                <ScalarProperty Name="Adress" ColumnName="Adress" />
-                <ScalarProperty Name="Mail" ColumnName="Mail" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Patronumic" ColumnName="Patronumic" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="AbonentNumber" ColumnName="AbonentNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Patronumic" ColumnName="Patronumic" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="AdressFact" ColumnName="AdressFact" />
+                <ScalarProperty Name="SeriesPasport" ColumnName="SeriesPasport" />
+                <ScalarProperty Name="NumberPaspotrNumberPaspotr" ColumnName="NumberPaspotrNumberPaspotr" />
+                <ScalarProperty Name="DivisionCode" ColumnName="DivisionCode" />
+                <ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
+                <ScalarProperty Name="DateIssue" ColumnName="DateIssue" />
+                <ScalarProperty Name="ContractNumber" ColumnName="ContractNumber" />
+                <ScalarProperty Name="ConclusionDate" ColumnName="ConclusionDate" />
+                <ScalarProperty Name="ContractType" ColumnName="ContractType" />
+                <ScalarProperty Name="TerminationReason" ColumnName="TerminationReason" />
+                <ScalarProperty Name="PersonalAccount" ColumnName="PersonalAccount" />
+                <ScalarProperty Name="Services" ColumnName="Services" />
+                <ScalarProperty Name="EquipmentNumber" ColumnName="EquipmentNumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Equipment">
             <EntityTypeMapping TypeName="CRM6Model.Equipment">
               <MappingFragment StoreEntitySet="Equipment">
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Moduls">
+            <EntityTypeMapping TypeName="CRM6Model.Moduls">
+              <MappingFragment StoreEntitySet="Moduls">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProblemType">
             <EntityTypeMapping TypeName="CRM6Model.ProblemType">
               <MappingFragment StoreEntitySet="ProblemType">
-                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Request">
             <EntityTypeMapping TypeName="CRM6Model.Request">
               <MappingFragment StoreEntitySet="Request">
-                <ScalarProperty Name="ContractNumber" ColumnName="ContractNumber" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ProblemType" ColumnName="ProblemType" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="ServiseView" ColumnName="ServiseView" />
-                <ScalarProperty Name="ServiseType" ColumnName="ServiseType" />
-                <ScalarProperty Name="Servise" ColumnName="Servise" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
                 <ScalarProperty Name="RequestNum" ColumnName="RequestNum" />
+                <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Servise" ColumnName="Servise" />
+                <ScalarProperty Name="ServiseType" ColumnName="ServiseType" />
+                <ScalarProperty Name="ServiseView" ColumnName="ServiseView" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ProblemType" ColumnName="ProblemType" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ContractNumber" ColumnName="ContractNumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RequestService">
             <EntityTypeMapping TypeName="CRM6Model.RequestService">
               <MappingFragment StoreEntitySet="RequestService">
-                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
             <EntityTypeMapping TypeName="CRM6Model.Role">
               <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Services">
             <EntityTypeMapping TypeName="CRM6Model.Services">
               <MappingFragment StoreEntitySet="Services">
-                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ServiceType">
             <EntityTypeMapping TypeName="CRM6Model.ServiceType">
               <MappingFragment StoreEntitySet="ServiceType">
-                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ServiceView">
             <EntityTypeMapping TypeName="CRM6Model.ServiceView">
               <MappingFragment StoreEntitySet="ServiceView">
-                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Staff">
             <EntityTypeMapping TypeName="CRM6Model.Staff">
               <MappingFragment StoreEntitySet="Staff">
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="StaffInform">
             <EntityTypeMapping TypeName="CRM6Model.StaffInform">
               <MappingFragment StoreEntitySet="StaffInform">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="InformDate" ColumnName="InformDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="InformDate" ColumnName="InformDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="State">
             <EntityTypeMapping TypeName="CRM6Model.State">
               <MappingFragment StoreEntitySet="State">
-                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="CRM6Model.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TypeEquipment">
             <EntityTypeMapping TypeName="CRM6Model.TypeEquipment">
               <MappingFragment StoreEntitySet="TypeEquipment">
-                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CodeRole">
             <EntityTypeMapping TypeName="CRM6Model.CodeRole">
               <MappingFragment StoreEntitySet="CodeRole">
-                <ScalarProperty Name="IdStaff" ColumnName="IdStaff" />
-                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="IdStaff" ColumnName="IdStaff" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="RoleInform" TypeName="CRM6Model.RoleInform" StoreEntitySet="RoleInform">
-            <EndProperty Name="StaffInform">
-              <ScalarProperty Name="ID" ColumnName="IDStaffInform" />
+          <AssociationSetMapping Name="ClientServices" TypeName="CRM6Model.ClientServices" StoreEntitySet="ClientServices">
+            <EndProperty Name="Abonent">
+              <ScalarProperty Name="ContractNumber" ColumnName="IDClient" />
+            </EndProperty>
+            <EndProperty Name="Services">
+              <ScalarProperty Name="ID" ColumnName="IDServises" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ModulsForRole" TypeName="CRM6Model.ModulsForRole" StoreEntitySet="ModulsForRole">
+            <EndProperty Name="Moduls">
+              <ScalarProperty Name="ID" ColumnName="IDModules" />
             </EndProperty>
             <EndProperty Name="Role">
               <ScalarProperty Name="ID" ColumnName="IDRole" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="RoleInform" TypeName="CRM6Model.RoleInform" StoreEntitySet="RoleInform">
+            <EndProperty Name="Role">
+              <ScalarProperty Name="ID" ColumnName="IDRole" />
+            </EndProperty>
+            <EndProperty Name="StaffInform">
+              <ScalarProperty Name="ID" ColumnName="IDStaffInform" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

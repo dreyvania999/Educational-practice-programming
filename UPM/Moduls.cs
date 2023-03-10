@@ -12,21 +12,18 @@ namespace UPM
     using System;
     using System.Collections.Generic;
     
-    public partial class Services
+    public partial class Moduls
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Services()
+        public Moduls()
         {
-            this.Request = new HashSet<Request>();
-            this.Abonent = new HashSet<Abonent>();
+            this.Role = new HashSet<Role>();
         }
     
         public int ID { get; set; }
         public string Title { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Request> Request { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Abonent> Abonent { get; set; }
+        public virtual ICollection<Role> Role { get; set; }
     }
 }

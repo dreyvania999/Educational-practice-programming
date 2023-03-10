@@ -4,34 +4,37 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ac8ae81dfb554536bcd6552ef3197788" Name="Diagram1" ZoomLevel="21">
-        <EntityTypeShape EntityType="CRM6Model.Abonent" Width="1.5" PointX="5.25" PointY="1.125" />
-        <EntityTypeShape EntityType="CRM6Model.Equipment" Width="1.5" PointX="3" PointY="2.875" />
-        <EntityTypeShape EntityType="CRM6Model.ProblemType" Width="1.5" PointX="5.25" PointY="13" />
-        <EntityTypeShape EntityType="CRM6Model.Request" Width="1.5" PointX="7.5" PointY="1.75" />
-        <EntityTypeShape EntityType="CRM6Model.RequestService" Width="1.5" PointX="5.25" PointY="17.625" />
-        <EntityTypeShape EntityType="CRM6Model.Role" Width="1.5" PointX="7.75" PointY="9.375" />
-        <EntityTypeShape EntityType="CRM6Model.Services" Width="1.5" PointX="5.25" PointY="20" />
-        <EntityTypeShape EntityType="CRM6Model.ServiceType" Width="1.5" PointX="5.25" PointY="10.625" />
-        <EntityTypeShape EntityType="CRM6Model.ServiceView" Width="1.5" PointX="5.25" PointY="8.25" />
-        <EntityTypeShape EntityType="CRM6Model.Staff" Width="1.5" PointX="7.75" PointY="12.25" />
-        <EntityTypeShape EntityType="CRM6Model.StaffInform" Width="1.5" PointX="10" PointY="12.125" />
-        <EntityTypeShape EntityType="CRM6Model.State" Width="1.5" PointX="5.25" PointY="15.25" />
-        <EntityTypeShape EntityType="CRM6Model.sysdiagrams" Width="1.5" PointX="0.75" PointY="5.75" />
-        <EntityTypeShape EntityType="CRM6Model.TypeEquipment" Width="1.5" PointX="0.75" PointY="3.125" />
-        <EntityTypeShape EntityType="CRM6Model.CodeRole" Width="1.5" PointX="10" PointY="9.375" />
-        <AssociationConnector Association="CRM6Model.FK_Abonent_Equipment" />
-        <AssociationConnector Association="CRM6Model.FK_Request_Abonent" />
-        <AssociationConnector Association="CRM6Model.FK_Equipment_TypeEquipment" />
-        <AssociationConnector Association="CRM6Model.FK_Request_ProblemType" />
-        <AssociationConnector Association="CRM6Model.FK_Request_RequestService" />
-        <AssociationConnector Association="CRM6Model.FK_Request_Services" />
-        <AssociationConnector Association="CRM6Model.FK_Request_ServiceType" />
-        <AssociationConnector Association="CRM6Model.FK_Request_ServiceView" />
-        <AssociationConnector Association="CRM6Model.FK_Request_State" />
-        <AssociationConnector Association="CRM6Model.FK_CodeRole_Role" />
-        <AssociationConnector Association="CRM6Model.FK_CodeRole_Staff" />
-        <AssociationConnector Association="CRM6Model.RoleInform" />
+      <Diagram DiagramId="8cd113ad87194af2821a87fff4881173" Name="Diagram1">
+        <EntityTypeShape EntityType="CRM6Model.Abonent" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM6Model.Equipment" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM6Model.Moduls" Width="1.5" PointX="9.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM6Model.ProblemType" Width="1.5" PointX="7.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM6Model.Request" Width="1.5" PointX="9.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM6Model.RequestService" Width="1.5" PointX="7.5" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM6Model.Role" Width="1.5" PointX="12" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM6Model.Services" Width="1.5" PointX="7.5" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM6Model.ServiceType" Width="1.5" PointX="7.5" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM6Model.ServiceView" Width="1.5" PointX="7.5" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM6Model.Staff" Width="1.5" PointX="12" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM6Model.StaffInform" Width="1.5" PointX="14.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM6Model.State" Width="1.5" PointX="7.5" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM6Model.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM6Model.TypeEquipment" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM6Model.CodeRole" Width="1.5" PointX="14.25" PointY="8.375" IsExpanded="true" />
+        <AssociationConnector Association="CRM6Model.FK_Abonent_Equipment" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM6Model.FK_Request_Abonent" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM6Model.FK_Equipment_TypeEquipment" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM6Model.FK_Request_ProblemType" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM6Model.FK_Request_RequestService" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM6Model.FK_Request_Services" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM6Model.FK_Request_ServiceType" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM6Model.FK_Request_ServiceView" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM6Model.FK_Request_State" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM6Model.FK_CodeRole_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM6Model.FK_CodeRole_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM6Model.ClientServices" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM6Model.ModulsForRole" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM6Model.RoleInform" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

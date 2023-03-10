@@ -13,10 +13,10 @@ namespace UPM
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities : DbContext
+    public partial class Entities1 : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public Entities1()
+            : base("name=Entities1")
         {
         }
     
@@ -27,6 +27,7 @@ namespace UPM
     
         public virtual DbSet<Abonent> Abonent { get; set; }
         public virtual DbSet<Equipment> Equipment { get; set; }
+        public virtual DbSet<Moduls> Moduls { get; set; }
         public virtual DbSet<ProblemType> ProblemType { get; set; }
         public virtual DbSet<Request> Request { get; set; }
         public virtual DbSet<RequestService> RequestService { get; set; }

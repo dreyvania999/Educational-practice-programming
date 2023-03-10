@@ -11,7 +11,10 @@
             <ColumnDefinition x:Name="Icons" Width="2*"></ColumnDefinition>
             <ColumnDefinition x:Name="AllInform" Width="8*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="1" >
+        <Grid Grid.Column="0">
+            
+        </Grid>
+        <Grid Grid.Column="1"  >
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="8*"></RowDefinition>
@@ -22,13 +25,38 @@
                     <ColumnDefinition Width="7*"></ColumnDefinition>
                     <ColumnDefinition Width="3*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <ListView Grid.Column ="1">
-                    <ListViewItem>
-                        
-                    </ListViewItem>
-                </ListView>
+                <Grid Grid.Column="0">
+                    
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="8*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0"></Button>
+                    <Button Grid.Row="2"></Button>
+
+                    <ListView Grid.Row ="1">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="100" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="{Binding Description}" Grid.Column="0" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                </Grid>
             </Grid>
+            <ComboBox Name="UserEditing" Grid.Row="0" HorizontalAlignment="Left" Margin="359,24,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBlock  Grid.Row="0" HorizontalAlignment="Left" Margin="35,0,0,0" TextWrapping="Wrap" Text="Абоненты ТНС" VerticalAlignment="Center"/>
+            <Image x:Name="StaffFoto" Grid.Row="0" HorizontalAlignment="Left" Height="56" Margin="559,10,0,0" VerticalAlignment="Top" Width="63"/>
         </Grid>
     </Grid>
-    
+
 </Window>

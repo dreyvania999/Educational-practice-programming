@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Input;
+using System.Linq;
+
 
 namespace UPM
 {
@@ -12,13 +10,19 @@ namespace UPM
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly Entities entities = new Entities();
+       
 
         public MainWindow()
         {
+            DBClass.DB = new Entities1();
+           // ListServices.ItemsSource = entities.DB.Service.ToList();
             InitializeComponent();
+            UserEditing.ItemsSource = DBClass.DB.Staff.ToList();
+
+            UserEditing.DisplayMemberPath = "StaffName";
+            UserEditing.SelectedValuePath = "ID";
         }
-        
+
 
 
     }
