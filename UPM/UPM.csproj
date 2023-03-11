@@ -175,6 +175,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resourses\Копия DataDictionary_Template.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
