@@ -71,7 +71,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Classes\DBClass.cs" />
-    <Compile Include="Classes\PartialModules.cs" />
     <Compile Include="Classes\PartialStaff.cs" />
     <Compile Include="CodeRole.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -196,9 +195,6 @@
     <Resource Include="Resourses\CRM\CRM.png" />
     <Resource Include="Resourses\CRM\Абоненты.png" />
     <Resource Include="Resourses\CRM\Активы.png" />
-    <Resource Include="Resourses\CRM\Биллинг.jpg" />
-    <Resource Include="Resourses\CRM\Поддержка пользователей.jpg" />
-    <Resource Include="Resourses\CRM\Управление обрудованием.jpg" />
     <Resource Include="Resourses\Basic resourses\Лого ТНС.jpg" />
     <Resource Include="Resourses\Basic resourses\image.ico" />
     <Content Include="Model1.Context.tt">
@@ -211,6 +207,9 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resourses\CRM\Биллинг.png" />
+    <Resource Include="Resourses\CRM\Поддержка пользователей.png" />
+    <Resource Include="Resourses\CRM\Управление обрудованием.png" />
     <Content Include="Resourses\Staff\ID1527.jfif" />
     <Resource Include="Resourses\Staff\ID1528.jpg" />
     <Resource Include="Resourses\Staff\ID1529.jpg" />

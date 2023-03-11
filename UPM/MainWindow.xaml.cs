@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Linq;
-
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace UPM
 {
@@ -18,13 +19,16 @@ namespace UPM
             
             InitializeComponent();
             UserEditing.ItemsSource = DBClass.DB.Staff.ToList();
-            ListModuls.ItemsSource = DBClass.DB.Moduls.ToList();
+           
             UserEditing.DisplayMemberPath = "StaffName";
             UserEditing.SelectedValuePath = "ID";
             ListInform.ItemsSource = DBClass.DB.StaffInform.ToList();
         }
+       
+        private void Grid_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Icons.MaxWidth = Icons.ActualWidth / 2;
 
-
-
+        }
     }
 }

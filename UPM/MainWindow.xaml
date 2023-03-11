@@ -18,27 +18,22 @@
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                
+
             </Grid>
-            <Grid Grid.Row="1">
-                <ListView x:Name="ListModuls" Grid.Row ="1">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="100" />
-                                </Grid.RowDefinitions>
-                                <TextBlock Text="{Binding Title}"  />
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+            <Grid Grid.Row="1"  >
+                <Image Source="Resourses\\CRM\\CRM.png" HorizontalAlignment="Center" Height="51" Margin="0,10,0,0" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.533,0.514"/>
+                <Image Source="Resourses\\CRM\\Абоненты.png" HorizontalAlignment="Center" Height="51" Margin="0,66,0,0" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.533,0.514"/>
+                <Image Source="Resourses\\CRM\\Активы.png" HorizontalAlignment="Left" Height="51" Margin="16,107,0,0" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.533,0.514"/>
+                <Image Source="Resourses\\CRM\\Биллинг.png" HorizontalAlignment="Left" Height="51" Margin="12,163,0,0" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.533,0.514"/>
+                <Image Source="Resourses\\CRM\\Поддержка пользователей.png" HorizontalAlignment="Left" Height="51" Margin="12,214,0,0" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.533,0.514"/>
+                <Image Source="Resourses\\CRM\\Управление обрудованием.png" HorizontalAlignment="Left" Height="51" Margin="16,268,0,0" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.533,0.514"/>
+
             </Grid>
             <Grid Grid.Row="2">
 
             </Grid>
         </Grid>
-        <Grid Grid.Column="1"  >
+        <Grid Grid.Column="1"   >
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="8*"></RowDefinition>
@@ -50,7 +45,7 @@
                     <ColumnDefinition Width="3*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    
+
 
                 </Grid>
                 <Grid Grid.Column="1">
