@@ -12,13 +12,15 @@ namespace UPM
     using System;
     using System.Collections.Generic;
     
-    public partial class CodeRole
+    public partial class EquipmentInPoint
     {
-        public string Code { get; set; }
-        public int IdRole { get; set; }
-        public int IdStaff { get; set; }
+        public int ID { get; set; }
+        public int IDequipment { get; set; }
+        public System.DateTime DateSetting { get; set; }
+        public int Position { get; set; }
+        public string AdditionalInfo { get; set; }
     
-        public virtual Role Role { get; set; }
-        public virtual Staff Staff { get; set; }
+        public virtual Equipment Equipment { get; set; }
+        public virtual PositionInform PositionInform { get; set; }
     }
 }

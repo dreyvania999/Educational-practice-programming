@@ -12,13 +12,14 @@ namespace UPM
     using System;
     using System.Collections.Generic;
     
-    public partial class CodeRole
+    public partial class MacAndIP
     {
-        public string Code { get; set; }
-        public int IdRole { get; set; }
-        public int IdStaff { get; set; }
+        public int IDequipment { get; set; }
+        public int IDMac { get; set; }
+        public int iP { get; set; }
     
-        public virtual Role Role { get; set; }
-        public virtual Staff Staff { get; set; }
+        public virtual Equipment Equipment { get; set; }
+        public virtual IP IP1 { get; set; }
+        public virtual Mac Mac { get; set; }
     }
 }

@@ -4,17 +4,45 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UPM"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        mc:Ignorable="d" Icon="/Resources/image.ico" FontSize="24" 
+        Title="ООО «Телеком Нева Связь»" Height="500" Width="800" MinHeight="500" MinWidth="800">
     <Grid>
-        <TextBox x:Name="Number" HorizontalAlignment="Left" Margin="283,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="Number_KeyUp" />
-        <TextBox x:Name="Password" IsEnabled="False" HorizontalAlignment="Left" Margin="283,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="Password_KeyUp"/>
-        <TextBox x:Name="Code" IsEnabled="False" HorizontalAlignment="Left" Margin="283,269,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="92"/>
-        <Button Name="CanselOperation" Content="Отмена" HorizontalAlignment="Left" Margin="283,324,0,0" VerticalAlignment="Top" />
-        <Button Name="LogIn" Content="Вход" HorizontalAlignment="Left" Margin="363,324,0,0" VerticalAlignment="Top"/>
-        <Label Content="Номер" HorizontalAlignment="Left" Margin="231,179,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.475,0.543"/>
-        <Label Content="Пароль" HorizontalAlignment="Left" Margin="231,224,0,0" VerticalAlignment="Top"/>
-        <Label Content="Код" HorizontalAlignment="Left" Margin="231,264,0,0" VerticalAlignment="Top"/>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Телеком Нева Связь" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32"/>
+            <Image Source="/resources/Лого ТНС.jpg" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel HorizontalAlignment="Right" Grid.Column="0">
+                <TextBlock Text="Номер" Margin="10"/>
+                <TextBlock Text="Пароль" Margin="10"/>
+                <TextBlock Text="Код" Margin="10"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Left" Grid.Column="1">
+                <TextBox x:Name="tbNomer" Margin="10" KeyDown="tbNomer_KeyDown"/>
+                <PasswordBox x:Name="pbPassword" Margin="10" KeyDown="pbPassword_KeyDown"/>
+                <StackPanel Margin="10" MinWidth="200" Orientation="Horizontal">
+                    <TextBox x:Name="tbCode" MinWidth="190" Margin="0, 0, 10, 0" KeyDown="tbCode_KeyDown"/>
+                    <Image Source="/resources/update.png" Width="30" MouseDown="Image_MouseDown"/>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10">
+                    <Button x:Name="btnCancellation" Content="Отмена" Click="btnCancellation_Click" Style="{StaticResource BtnMain}"/>
+                    <Button x:Name="btnLogin" Content="Вход" Margin="10" Width="100" Click="btnLogin_Click" Style="{StaticResource BtnMain}"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <TextBlock x:Name="tbRemainingTime" HorizontalAlignment="Center" Grid.Row="2"/>
     </Grid>
 </Window>

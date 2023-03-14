@@ -1,114 +1,205 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace UPM
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : Window
     {
-        private readonly Entities entities = new Entities();
-        private static string keyCode;
-        private static readonly int SizeKeyCod = 8;
+        private readonly Entities DB = new Entities();
+        private string code; 
+        private int countTime; 
+        private readonly DispatcherTimer disTimer = new DispatcherTimer();
         public MainWindow()
         {
             InitializeComponent();
+            DB = new Entities();
+            pbPassword.IsEnabled = false;
+            tbCode.IsEnabled = false;
+            btnLogin.IsEnabled = false;
+            disTimer.Interval = new TimeSpan(0, 0, 1);
+            disTimer.Tick += new EventHandler(DisTimer_Tick);
         }
-        private void Number_KeyUp(object sender, KeyEventArgs e)
+
+        private void btnCancellation_Click(object sender, RoutedEventArgs e)
+        {
+            tbNomer.Text = "";
+            pbPassword.Password = "";
+            tbCode.Text = "";
+            disTimer.Stop();
+            code = "";
+            tbRemainingTime.Text = "";
+            pbPassword.IsEnabled = false;
+            tbCode.IsEnabled = false;
+            btnLogin.IsEnabled = false;
+        }
+
+        private void tbNomer_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                if (Number.Text != "")
+                Staff employee = DB.Staff.FirstOrDefault(x => x.Code == tbNomer.Text);
+                if (employee != null)
                 {
-                    try
-                    {
-                        List<CodeRole> codeRole = entities.CodeRole.Where(x => x.Code == Number.Text).ToList();
-                        if (codeRole.Count != 0)
-                        {
-                            Password.IsEnabled = true;
-                            Password.Focus();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Код не найден");
-                            return;
-                        }
-                    }
-                    catch (System.Exception)
-                    {
-                        MessageBox.Show("Что-то пошло не по плану");
-                        return;
-                    }
-
+                    pbPassword.IsEnabled = true;
+                    pbPassword.Focus();
                 }
                 else
                 {
-                    MessageBox.Show("Введите номер");
-                    return;
+                    pbPassword.IsEnabled = false;
+                    pbPassword.Password = "";
+                    MessageBox.Show("Произошла ошибка! Сотрудник  с таким номером не найден!");
                 }
             }
         }
 
-        private void Password_KeyUp(object sender, KeyEventArgs e)
+        private void pbPassword_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                if (Password.Text != "")
+                GetNewCode();
+            }
+        }
+        private void DisTimer_Tick(object sender, EventArgs e)
+        {
+            if (countTime == 0) 
+            {
+                disTimer.Stop();
+                code = "";
+                tbRemainingTime.Text = "Код не действителен. Запросите повторную отправку кода";
+
+            }
+            else
+            {
+                tbRemainingTime.Text = "Код перестанет быть действительным через " + countTime;
+            }
+            countTime--;
+        }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            Login();
+        }
+
+        private void tbCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Login();
+            }
+        }
+        
+        private void Login()
+        {
+            if (code != "")
+            {
+                if (tbCode.Text == code)
                 {
-                    try
-                    {
-                        List<CodeRole> codeRole = entities.CodeRole.Where(x => x.Code == Number.Text && x.Staff.Password == Password.Text).ToList();
-
-                        if (codeRole.Count != 0)
-                        {
-                            Regex regex = new Regex("");
-                            while (!(regex.IsMatch(keyCode)&& regex.IsMatch(keyCode)))
-                            {
-                                GetNewCode();
-                            }
-
-                            MessageBox.Show(keyCode);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Пароль не найден");
-                            return;
-                        }
-                    }
-                    catch (System.Exception)
-                    {
-                        MessageBox.Show("Что-то пошло не по плану");
-                        return;
-                    }
-
+                    disTimer.Stop();
+                    tbRemainingTime.Text = "";
+                    code = "";
+                    Staff employee = DB.Staff.FirstOrDefault(x => x.Code == tbNomer.Text && x.Password == pbPassword.Password);
+                    _ = employee != null
+                        ? MessageBox.Show("Вы успешно авторизовались с ролью " + employee.Role.Title)
+                        : MessageBox.Show("Сотрудник с таким номером и паролем не найден!");
                 }
                 else
                 {
-                    MessageBox.Show("Введите пароль");
-                    return;
+                    MessageBox.Show("Код введён не верно!");
                 }
+            }
+            else
+            {
+                MessageBox.Show("Код утратил свою действительность!");
             }
         }
 
-
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            GetNewCode();
+        }
+        
         private void GetNewCode()
         {
-            keyCode = "";
-            Random random = new Random();
-            for (int i = 0; i <= SizeKeyCod; i++)
+            Staff employee = DB.Staff.FirstOrDefault(x => x.Code == tbNomer.Text && x.Password == pbPassword.Password);
+            if (employee != null)
             {
-                keyCode += (char)random.Next(33 + (15 * i), 33 + 15 + (15 * i));
+                Random rand = new Random();
+                Regex regex = new Regex($"^[0-9a-zA-Z`~!@#$%^&*()_\\-+={{}}\\[\\]\\|:;\"'<>,.?\\/]{{8}}$");
+                while (true)
+                {
+                    code = "";
+                    for (int i = 0; i < 8; i++)
+                    {
+                        int j = rand.Next(4); 
+                        if (j == 0)
+                        {
+                            code += rand.Next(9).ToString();
+                        }
+                        else if (j == 1 || j == 2)
+                        {
+                            int l = rand.Next(2); 
+                            if (l == 0)
+                            {
+                                code += (char)rand.Next('A', 'Z' + 1);
+                            }
+                            else
+                            {
+                                code += (char)rand.Next('a', 'z' + 1);
+                            }
+                        }
+                        else
+                        {
+                            int l = rand.Next(4); 
+                            if (l == 0)
+                            {
+                                code += (char)rand.Next(33, 48);
+                            }
+                            else if (l == 1)
+                            {
+                                code += (char)rand.Next(58, 65);
+                            }
+                            else if (l == 2)
+                            {
+                                code += (char)rand.Next(91, 97);
+                            }
+                            else if (l == 3)
+                            {
+                                code += (char)rand.Next(123, 127);
+                            }
+                        }
+                    }
 
+                    if (regex.IsMatch(code))
+                    {
+                        ;
+                    }
+
+                    {
+                        break;
+                    }
+                }
+                MessageBox.Show("Код для доступа " + code + "\nУ вас будет дано 10 секунд, чтобы ввести код");
+                tbCode.IsEnabled = true;
+                tbCode.Text = "";
+                btnLogin.IsEnabled = true;
+                tbCode.Focus();
+                countTime = 10;
+                disTimer.Start();
             }
-
-
+            else
+            {
+                MessageBox.Show("Сотрудник с таким номером и паролем не найден!");
+                disTimer.Stop();
+                code = "";
+                tbRemainingTime.Text = "";
+                tbCode.IsEnabled = false;
+                tbCode.Text = "";
+            }
         }
-
-
     }
 }

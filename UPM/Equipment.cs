@@ -12,30 +12,33 @@ namespace UPM
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class Equipment
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Role()
+        public Equipment()
         {
-            this.CodeRole = new HashSet<CodeRole>();
-            this.Staff = new HashSet<Staff>();
-            this.StaffInform = new HashSet<StaffInform>();
-            this.Moduls = new HashSet<Moduls>();
-            this.StaffInform1 = new HashSet<StaffInform>();
+            this.Abonent = new HashSet<Abonent>();
+            this.EquipmentInPoint = new HashSet<EquipmentInPoint>();
+            this.MacAndIP = new HashSet<MacAndIP>();
+            this.PhoneNumbers = new HashSet<PhoneNumbers>();
         }
     
-        public int ID { get; set; }
+        public string SerialNumber { get; set; }
+        public Nullable<int> Type { get; set; }
         public string Title { get; set; }
+        public int IDequipment { get; set; }
+        public Nullable<int> ListPhone { get; set; }
+        public Nullable<int> PortInform { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CodeRole> CodeRole { get; set; }
+        public virtual ICollection<Abonent> Abonent { get; set; }
+        public virtual PortType PortType { get; set; }
+        public virtual TypeEquipment TypeEquipment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Staff> Staff { get; set; }
+        public virtual ICollection<EquipmentInPoint> EquipmentInPoint { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StaffInform> StaffInform { get; set; }
+        public virtual ICollection<MacAndIP> MacAndIP { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Moduls> Moduls { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StaffInform> StaffInform1 { get; set; }
+        public virtual ICollection<PhoneNumbers> PhoneNumbers { get; set; }
     }
 }

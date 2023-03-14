@@ -12,30 +12,21 @@ namespace UPM
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class Services
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Role()
+        public Services()
         {
-            this.CodeRole = new HashSet<CodeRole>();
-            this.Staff = new HashSet<Staff>();
-            this.StaffInform = new HashSet<StaffInform>();
-            this.Moduls = new HashSet<Moduls>();
-            this.StaffInform1 = new HashSet<StaffInform>();
+            this.Request = new HashSet<Request>();
+            this.Abonent = new HashSet<Abonent>();
         }
     
         public int ID { get; set; }
         public string Title { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CodeRole> CodeRole { get; set; }
+        public virtual ICollection<Request> Request { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Staff> Staff { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StaffInform> StaffInform { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Moduls> Moduls { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StaffInform> StaffInform1 { get; set; }
+        public virtual ICollection<Abonent> Abonent { get; set; }
     }
 }

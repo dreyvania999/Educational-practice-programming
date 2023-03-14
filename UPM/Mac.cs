@@ -12,24 +12,18 @@ namespace UPM
     using System;
     using System.Collections.Generic;
     
-    public partial class Staff
+    public partial class Mac
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Staff()
+        public Mac()
         {
-            this.CodeRole = new HashSet<CodeRole>();
+            this.MacAndIP = new HashSet<MacAndIP>();
         }
     
         public int ID { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string LastName { get; set; }
-        public string Password { get; set; }
-        public string Code { get; set; }
-        public Nullable<int> IDRole { get; set; }
+        public string Adress { get; set; }
     
-        public virtual Role Role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CodeRole> CodeRole { get; set; }
+        public virtual ICollection<MacAndIP> MacAndIP { get; set; }
     }
 }
