@@ -183,7 +183,8 @@ namespace UPM
                         break;
                     }
                 }
-                MessageBox.Show("Код для доступа " + code + "\nУ вас будет дано 10 секунд, чтобы ввести код");
+                Clipboard.SetText(code);
+                MessageBox.Show("Код для доступа " + code + "\nУ вас будет дано 10 секунд, чтобы ввести код(Код скопирован в буфер обмена)");
                 tbCode.IsEnabled = true;
                 tbCode.Text = "";
                 btnLogin.IsEnabled = true;
