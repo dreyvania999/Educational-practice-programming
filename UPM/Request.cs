@@ -23,9 +23,9 @@ namespace UPM
         public int State { get; set; }
         public int ProblemType { get; set; }
         public string Description { get; set; }
-        public string ContractNumber { get; set; }
+        public int Abonent { get; set; }
     
-        public virtual Abonent Abonent { get; set; }
+        public virtual Abonent Abonent1 { get; set; }
         public virtual ProblemType ProblemType1 { get; set; }
         public virtual RequestService RequestService { get; set; }
         public virtual Services Services { get; set; }

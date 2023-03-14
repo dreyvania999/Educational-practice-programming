@@ -17,14 +17,16 @@ namespace UPM
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public StaffInform()
         {
-            this.Role = new HashSet<Role>();
+            this.Role1 = new HashSet<Role>();
         }
     
         public int ID { get; set; }
         public Nullable<System.DateTime> InformDate { get; set; }
         public string Description { get; set; }
+        public Nullable<int> IDRole { get; set; }
     
+        public virtual Role Role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Role> Role { get; set; }
+        public virtual ICollection<Role> Role1 { get; set; }
     }
 }

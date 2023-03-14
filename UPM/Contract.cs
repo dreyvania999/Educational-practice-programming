@@ -12,18 +12,26 @@ namespace UPM
     using System;
     using System.Collections.Generic;
     
-    public partial class Moduls
+    public partial class Contract
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Moduls()
+        public Contract()
         {
-            this.ModulsForRole = new HashSet<ModulsForRole>();
+            this.ConectService = new HashSet<ConectService>();
         }
     
-        public int ID { get; set; }
-        public string Title { get; set; }
+        public int AbonentID { get; set; }
+        public string ContractNumber { get; set; }
+        public System.DateTime DateOfCinclusion { get; set; }
+        public int TypeContractID { get; set; }
+        public int PersonalAccount { get; set; }
+        public Nullable<int> ReasonForTerminationID { get; set; }
+        public Nullable<System.DateTime> TermibationDate { get; set; }
     
+        public virtual Abonent Abonent { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ModulsForRole> ModulsForRole { get; set; }
+        public virtual ICollection<ConectService> ConectService { get; set; }
+        public virtual ResonTerminate ResonTerminate { get; set; }
+        public virtual TypeContract TypeContract { get; set; }
     }
 }

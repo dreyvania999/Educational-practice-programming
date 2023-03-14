@@ -12,18 +12,14 @@ namespace UPM
     using System;
     using System.Collections.Generic;
     
-    public partial class Moduls
+    public partial class ConectService
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Moduls()
-        {
-            this.ModulsForRole = new HashSet<ModulsForRole>();
-        }
+        public int ConnectedServiceID { get; set; }
+        public int AbonentID { get; set; }
+        public int ServicesID { get; set; }
+        public Nullable<System.DateTime> ConnectionDate { get; set; }
     
-        public int ID { get; set; }
-        public string Title { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ModulsForRole> ModulsForRole { get; set; }
+        public virtual Contract Contract { get; set; }
+        public virtual Services Services { get; set; }
     }
 }

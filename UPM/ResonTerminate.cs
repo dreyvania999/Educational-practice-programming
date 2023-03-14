@@ -12,18 +12,18 @@ namespace UPM
     using System;
     using System.Collections.Generic;
     
-    public partial class Moduls
+    public partial class ResonTerminate
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Moduls()
+        public ResonTerminate()
         {
-            this.ModulsForRole = new HashSet<ModulsForRole>();
+            this.Contract = new HashSet<Contract>();
         }
     
-        public int ID { get; set; }
+        public int ReasonForTerminationID { get; set; }
         public string Title { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ModulsForRole> ModulsForRole { get; set; }
+        public virtual ICollection<Contract> Contract { get; set; }
     }
 }

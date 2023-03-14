@@ -12,33 +12,23 @@ namespace UPM
     using System;
     using System.Collections.Generic;
     
-    public partial class Equipment
+    public partial class PositionInform
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Equipment()
+        public PositionInform()
         {
             this.EquipmentInPoint = new HashSet<EquipmentInPoint>();
-            this.MacAndIP = new HashSet<MacAndIP>();
-            this.PhoneNumbers = new HashSet<PhoneNumbers>();
         }
     
-        public string SerialNumber { get; set; }
-        public Nullable<int> Type { get; set; }
-        public string Title { get; set; }
-        public int IDequipment { get; set; }
-        public Nullable<int> ListPhone { get; set; }
-        public Nullable<int> PortInform { get; set; }
-        public Nullable<int> AbonentID { get; set; }
-        public bool Rental { get; set; }
+        public int ID { get; set; }
+        public string Adress { get; set; }
+        public string Position { get; set; }
+        public string ConectionPoint { get; set; }
+        public string GeoPosition { get; set; }
+        public int District { get; set; }
     
-        public virtual Abonent Abonent { get; set; }
-        public virtual PortType PortType { get; set; }
-        public virtual TypeEquipment TypeEquipment { get; set; }
+        public virtual District District1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EquipmentInPoint> EquipmentInPoint { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MacAndIP> MacAndIP { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PhoneNumbers> PhoneNumbers { get; set; }
     }
 }

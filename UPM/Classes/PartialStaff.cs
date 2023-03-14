@@ -1,19 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace UPM
+﻿namespace UPM
 {
-    partial class Staff
+    public partial class Staff
     {
-        public string StaffName
-        {
-            get 
-            { 
-                return Name+" "+LastName + " " + Surname ;
-            }
-        }
+        public string FIO => "" + Surname + " " + Name + " " + LastName;
     }
 }

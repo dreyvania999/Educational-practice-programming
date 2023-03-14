@@ -17,37 +17,34 @@ namespace UPM
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Abonent()
         {
+            this.Equipment = new HashSet<Equipment>();
             this.Request = new HashSet<Request>();
-            this.Services1 = new HashSet<Services>();
         }
     
-        public string AbonentNumber { get; set; }
+        public int AbonentID { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Patronumic { get; set; }
-        public string Gender { get; set; }
+        public int Gender { get; set; }
         public System.DateTime BirthDay { get; set; }
         public string PhoneNumber { get; set; }
         public string Mail { get; set; }
         public string Adress { get; set; }
         public string AdressFact { get; set; }
+        public int District { get; set; }
         public string SeriesPasport { get; set; }
-        public string NumberPaspotrNumberPaspotr { get; set; }
+        public string NumberPaspotr { get; set; }
         public string DivisionCode { get; set; }
         public string IssuedBy { get; set; }
-        public string DateIssue { get; set; }
-        public string ContractNumber { get; set; }
-        public System.DateTime ConclusionDate { get; set; }
-        public string ContractType { get; set; }
-        public string TerminationReason { get; set; }
-        public string PersonalAccount { get; set; }
-        public string Services { get; set; }
-        public string EquipmentNumber { get; set; }
+        public System.DateTime DateIssue { get; set; }
+        public string AbonentNomer { get; set; }
     
-        public virtual Equipment Equipment { get; set; }
+        public virtual District District1 { get; set; }
+        public virtual Gender Gender1 { get; set; }
+        public virtual Contract Contract { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Equipment> Equipment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Request> Request { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Services> Services1 { get; set; }
     }
 }

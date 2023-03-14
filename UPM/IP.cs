@@ -12,18 +12,23 @@ namespace UPM
     using System;
     using System.Collections.Generic;
     
-    public partial class Moduls
+    public partial class IP
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Moduls()
+        public IP()
         {
-            this.ModulsForRole = new HashSet<ModulsForRole>();
+            this.MacAndIP = new HashSet<MacAndIP>();
         }
     
         public int ID { get; set; }
-        public string Title { get; set; }
+        public string Ipv4 { get; set; }
+        public Nullable<System.DateTime> StartV4 { get; set; }
+        public Nullable<System.DateTime> EndV4 { get; set; }
+        public string Ipv6 { get; set; }
+        public Nullable<System.DateTime> StartV6 { get; set; }
+        public Nullable<System.DateTime> EndV6 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ModulsForRole> ModulsForRole { get; set; }
+        public virtual ICollection<MacAndIP> MacAndIP { get; set; }
     }
 }

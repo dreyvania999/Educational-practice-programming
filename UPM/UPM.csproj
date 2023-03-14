@@ -60,7 +60,9 @@
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\PresentationFramework.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -70,12 +72,42 @@
     <Compile Include="Abonent.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Classes\DBClass.cs" />
+    <Compile Include="BildingTypes.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Classes\PartialStaff.cs" />
+    <Compile Include="Classes\PartialUser.cs" />
+    <Compile Include="ClientServices.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="CodeRole.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ConectService.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Contract.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="District.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Equipment.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentInPoint.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Gender.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IP.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mac.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MacAndIP.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model1.cs">
@@ -86,6 +118,27 @@
     <Compile Include="Moduls.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModulsForRole.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CRMPage.xaml.cs">
+      <DependentUpon>CRMPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Subscribe.xaml.cs">
+      <DependentUpon>Subscribe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SubscribersList.xaml.cs">
+      <DependentUpon>SubscribersList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PhoneNumbers.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PortType.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PositionInform.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProblemType.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -93,6 +146,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="RequestService.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ResonTerminate.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Role.cs">
@@ -119,6 +175,9 @@
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="TypeContract.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="TypeEquipment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -134,6 +193,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\CRMPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Subscribe.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SubscribersList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model1.Context.cs">
@@ -175,29 +246,28 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Resourses\Копия DataDictionary_Template.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resourses\Staff\Фото для заглушки при отсутствии фото сотрудника.jpg" />
-    <Resource Include="Resourses\Staff\ID1516.jpg" />
-    <Resource Include="Resourses\Staff\ID1517.png" />
-    <Resource Include="Resourses\Staff\ID1518.png" />
-    <Resource Include="Resourses\Staff\ID1519.png" />
-    <Resource Include="Resourses\Staff\ID1520.png" />
-    <Resource Include="Resourses\Staff\ID1521.jpg" />
-    <Resource Include="Resourses\Staff\ID1522.png" />
-    <Resource Include="Resourses\Staff\ID1523.jpg" />
-    <Resource Include="Resourses\Staff\ID1524.jpg" />
-    <Resource Include="Resourses\Staff\ID1525.jpg" />
-    <Resource Include="Resourses\Staff\ID1526.jpg" />
-    <Resource Include="Resourses\CRM\CRM.png" />
-    <Resource Include="Resourses\CRM\Абоненты.png" />
-    <Resource Include="Resourses\CRM\Активы.png" />
-    <Resource Include="Resourses\Basic resourses\Лого ТНС.jpg" />
-    <Resource Include="Resourses\Basic resourses\image.ico" />
+    <Resource Include="Resources\Staff\Фото для заглушки при отсутствии фото сотрудника.jpg" />
+    <Resource Include="Resources\Staff\ID1516.jpg" />
+    <Resource Include="Resources\Staff\ID1517.png" />
+    <Resource Include="Resources\Staff\ID1518.png" />
+    <Resource Include="Resources\Staff\ID1519.png" />
+    <Resource Include="Resources\Staff\ID1520.png" />
+    <Resource Include="Resources\Staff\ID1521.jpg" />
+    <Resource Include="Resources\Staff\ID1522.png" />
+    <Resource Include="Resources\Staff\ID1523.jpg" />
+    <Resource Include="Resources\Staff\ID1524.jpg" />
+    <Resource Include="Resources\Staff\ID1525.jpg" />
+    <Resource Include="Resources\Staff\ID1526.jpg" />
+    <Resource Include="Resources\CRM\CRM.png" />
+    <Resource Include="Resources\CRM\Абоненты.png" />
+    <Resource Include="Resources\CRM\Активы.png" />
+    <Resource Include="Resources\Basic resourses\Лого ТНС.jpg" />
+    <Resource Include="Resources\Basic resourses\image.ico" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
@@ -208,28 +278,28 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <Resource Include="Resourses\CRM\Биллинг.png" />
-    <Resource Include="Resourses\CRM\Поддержка пользователей.png" />
-    <Resource Include="Resourses\CRM\Управление обрудованием.png" />
-    <Content Include="Resourses\Staff\ID1527.jfif" />
-    <Resource Include="Resourses\Staff\ID1528.jpg" />
-    <Resource Include="Resourses\Staff\ID1529.jpg" />
-    <Resource Include="Resourses\Staff\ID1530.jpg" />
-    <Resource Include="Resourses\Staff\ID1531.jpg" />
-    <Resource Include="Resourses\Staff\ID1532.jpg" />
-    <Resource Include="Resourses\Staff\ID1533.jpg" />
-    <Resource Include="Resourses\Staff\ID1534.jpg" />
-    <Resource Include="Resourses\Staff\ID1535.png" />
-    <Resource Include="Resourses\Staff\ID1536.png" />
-    <Resource Include="Resourses\Staff\ID1537.jpg" />
-    <Resource Include="Resourses\Staff\ID1538.jpg" />
-    <Resource Include="Resourses\Staff\ID1539.png" />
-    <Resource Include="Resourses\Staff\ID1540.jpg" />
-    <Resource Include="Resourses\Staff\ID1541.jpg" />
-    <Resource Include="Resourses\Staff\ID1542.jpg" />
-    <Resource Include="Resourses\Staff\ID1543.jpg" />
-    <Resource Include="Resourses\Staff\ID1544.jpg" />
-    <Resource Include="Resourses\Staff\ID1545.jpg" />
+    <Resource Include="Resources\CRM\Биллинг.png" />
+    <Resource Include="Resources\CRM\Поддержка пользователей.png" />
+    <Resource Include="Resources\CRM\Управление обрудованием.png" />
+    <Content Include="Resources\Staff\ID1527.jfif" />
+    <Resource Include="Resources\Staff\ID1528.jpg" />
+    <Resource Include="Resources\Staff\ID1529.jpg" />
+    <Resource Include="Resources\Staff\ID1530.jpg" />
+    <Resource Include="Resources\Staff\ID1531.jpg" />
+    <Resource Include="Resources\Staff\ID1532.jpg" />
+    <Resource Include="Resources\Staff\ID1533.jpg" />
+    <Resource Include="Resources\Staff\ID1534.jpg" />
+    <Resource Include="Resources\Staff\ID1535.png" />
+    <Resource Include="Resources\Staff\ID1536.png" />
+    <Resource Include="Resources\Staff\ID1537.jpg" />
+    <Resource Include="Resources\Staff\ID1538.jpg" />
+    <Resource Include="Resources\Staff\ID1539.png" />
+    <Resource Include="Resources\Staff\ID1540.jpg" />
+    <Resource Include="Resources\Staff\ID1541.jpg" />
+    <Resource Include="Resources\Staff\ID1542.jpg" />
+    <Resource Include="Resources\Staff\ID1543.jpg" />
+    <Resource Include="Resources\Staff\ID1544.jpg" />
+    <Resource Include="Resources\Staff\ID1545.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

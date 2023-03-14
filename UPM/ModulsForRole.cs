@@ -12,18 +12,13 @@ namespace UPM
     using System;
     using System.Collections.Generic;
     
-    public partial class Moduls
+    public partial class ModulsForRole
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Moduls()
-        {
-            this.ModulsForRole = new HashSet<ModulsForRole>();
-        }
+        public int IDRole { get; set; }
+        public int IDMFR { get; set; }
+        public int IDModules { get; set; }
     
-        public int ID { get; set; }
-        public string Title { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ModulsForRole> ModulsForRole { get; set; }
+        public virtual Moduls Moduls { get; set; }
+        public virtual Role Role { get; set; }
     }
 }
