@@ -1,0 +1,36 @@
+﻿<Page x:Class="UPM.RequestPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:UPM"
+      mc:Ignorable="d" Style="{StaticResource PageMain}"
+      d:DesignHeight="450" d:DesignWidth="900" Margin="10"
+      Title="Request">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Номер телефона" Margin="10"/>
+                <TextBox x:Name="tbPhone" PreviewTextInput="tbPhone_PreviewTextInput" TextChanged="tbPhone_TextChanged"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Фамилия абонента" Margin="10"/>
+                <TextBox x:Name="tbSurname" TextChanged="tbSurname_TextChanged"/>
+            </StackPanel>
+        </Grid>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Пользователь: "/>
+            <ComboBox Name="cmbSubscriber" MinWidth="400"/>
+        </StackPanel>
+        <Button x:Name="btnAddRequest" Content="Сформировать заявку" Height="50" Width="300" Template="{StaticResource ResourceKey=CTButonMainPage}" Style="{StaticResource ResourceKey=BtnStyle}" HorizontalAlignment="Center" Grid.Row="2" Click="btnAddRequest_Click" Cursor="Hand"/>
+    </Grid>
+</Page>

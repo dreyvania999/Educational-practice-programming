@@ -17,6 +17,7 @@ namespace UPM
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Equipment()
         {
+            this.EquIpInstall = new HashSet<EquIpInstall>();
             this.EquipmentInPoint = new HashSet<EquipmentInPoint>();
             this.MacAndIP = new HashSet<MacAndIP>();
             this.PhoneNumbers = new HashSet<PhoneNumbers>();
@@ -28,10 +29,10 @@ namespace UPM
         public int IDequipment { get; set; }
         public Nullable<int> ListPhone { get; set; }
         public Nullable<int> PortInform { get; set; }
-        public Nullable<int> AbonentID { get; set; }
-        public bool Rental { get; set; }
     
-        public virtual Abonent Abonent { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EquIpInstall> EquIpInstall { get; set; }
+        public virtual ListPhone ListPhone1 { get; set; }
         public virtual PortType PortType { get; set; }
         public virtual TypeEquipment TypeEquipment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

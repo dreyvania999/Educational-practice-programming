@@ -27,7 +27,6 @@ namespace UPM
     
         public virtual Abonent Abonent1 { get; set; }
         public virtual ProblemType ProblemType1 { get; set; }
-        public virtual RequestService RequestService { get; set; }
         public virtual Services Services { get; set; }
         public virtual ServiceType ServiceType { get; set; }
         public virtual ServiceView ServiceView { get; set; }

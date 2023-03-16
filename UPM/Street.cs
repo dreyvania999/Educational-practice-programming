@@ -12,11 +12,18 @@ namespace UPM
     using System;
     using System.Collections.Generic;
     
-    public partial class ClientServices
+    public partial class Street
     {
-        public string IDClient { get; set; }
-        public int IDServises { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Street()
+        {
+            this.FactAdress = new HashSet<FactAdress>();
+        }
     
-        public virtual Services Services { get; set; }
+        public int ID { get; set; }
+        public string Title { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FactAdress> FactAdress { get; set; }
     }
 }

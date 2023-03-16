@@ -12,21 +12,25 @@ namespace UPM
     using System;
     using System.Collections.Generic;
     
-    public partial class Services
+    public partial class FactAdress
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Services()
+        public FactAdress()
         {
-            this.ConectService = new HashSet<ConectService>();
-            this.Request = new HashSet<Request>();
+            this.Abonent = new HashSet<Abonent>();
         }
     
         public int ID { get; set; }
-        public string Title { get; set; }
+        public string Prefix_code { get; set; }
+        public int City { get; set; }
+        public Nullable<int> Street { get; set; }
+        public string House { get; set; }
+        public int District { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ConectService> ConectService { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Request> Request { get; set; }
+        public virtual ICollection<Abonent> Abonent { get; set; }
+        public virtual Citys Citys { get; set; }
+        public virtual District District1 { get; set; }
+        public virtual Street Street1 { get; set; }
     }
 }

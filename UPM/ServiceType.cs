@@ -18,6 +18,7 @@ namespace UPM
         public ServiceType()
         {
             this.Request = new HashSet<Request>();
+            this.ViewTypeService = new HashSet<ViewTypeService>();
         }
     
         public int ID { get; set; }
@@ -25,5 +26,7 @@ namespace UPM
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Request> Request { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ViewTypeService> ViewTypeService { get; set; }
     }
 }

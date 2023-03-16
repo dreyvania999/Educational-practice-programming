@@ -27,13 +27,17 @@ namespace UPM
     
         public virtual DbSet<Abonent> Abonent { get; set; }
         public virtual DbSet<BildingTypes> BildingTypes { get; set; }
+        public virtual DbSet<Citys> Citys { get; set; }
         public virtual DbSet<ConectService> ConectService { get; set; }
         public virtual DbSet<Contract> Contract { get; set; }
         public virtual DbSet<District> District { get; set; }
+        public virtual DbSet<EquIpInstall> EquIpInstall { get; set; }
         public virtual DbSet<Equipment> Equipment { get; set; }
         public virtual DbSet<EquipmentInPoint> EquipmentInPoint { get; set; }
+        public virtual DbSet<FactAdress> FactAdress { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
         public virtual DbSet<IP> IP { get; set; }
+        public virtual DbSet<ListPhone> ListPhone { get; set; }
         public virtual DbSet<Mac> Mac { get; set; }
         public virtual DbSet<Moduls> Moduls { get; set; }
         public virtual DbSet<ModulsForRole> ModulsForRole { get; set; }
@@ -42,7 +46,6 @@ namespace UPM
         public virtual DbSet<PositionInform> PositionInform { get; set; }
         public virtual DbSet<ProblemType> ProblemType { get; set; }
         public virtual DbSet<Request> Request { get; set; }
-        public virtual DbSet<RequestService> RequestService { get; set; }
         public virtual DbSet<ResonTerminate> ResonTerminate { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Services> Services { get; set; }
@@ -51,11 +54,11 @@ namespace UPM
         public virtual DbSet<Staff> Staff { get; set; }
         public virtual DbSet<StaffInform> StaffInform { get; set; }
         public virtual DbSet<State> State { get; set; }
+        public virtual DbSet<Street> Street { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TypeContract> TypeContract { get; set; }
         public virtual DbSet<TypeEquipment> TypeEquipment { get; set; }
-        public virtual DbSet<ClientServices> ClientServices { get; set; }
-        public virtual DbSet<CodeRole> CodeRole { get; set; }
+        public virtual DbSet<ViewTypeService> ViewTypeService { get; set; }
         public virtual DbSet<MacAndIP> MacAndIP { get; set; }
     }
 }

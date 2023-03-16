@@ -75,14 +75,11 @@
     <Compile Include="BildingTypes.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Citys.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Classes\PartialStaff.cs" />
     <Compile Include="Classes\PartialUser.cs" />
-    <Compile Include="ClientServices.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CodeRole.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="ConectService.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -92,16 +89,25 @@
     <Compile Include="District.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="EquIpInstall.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Equipment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="EquipmentInPoint.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="FactAdress.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Gender.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="IP.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ListPhone.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Mac.cs">
@@ -121,14 +127,14 @@
     <Compile Include="ModulsForRole.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pages\CRMPage.xaml.cs">
-      <DependentUpon>CRMPage.xaml</DependentUpon>
+    <Compile Include="Pages\RequestPage.xaml.cs">
+      <DependentUpon>RequestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Subscribe.xaml.cs">
-      <DependentUpon>Subscribe.xaml</DependentUpon>
+    <Compile Include="Pages\Abonent.xaml.cs">
+      <DependentUpon>Abonent.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\SubscribersList.xaml.cs">
-      <DependentUpon>SubscribersList.xaml</DependentUpon>
+    <Compile Include="Pages\AbonentList.xaml.cs">
+      <DependentUpon>AbonentList.xaml</DependentUpon>
     </Compile>
     <Compile Include="PhoneNumbers.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -143,9 +149,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Request.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RequestService.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ResonTerminate.cs">
@@ -172,6 +175,9 @@
     <Compile Include="State.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Street.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -181,27 +187,36 @@
     <Compile Include="TypeEquipment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewTypeService.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Window\NewRequest.xaml.cs">
+      <DependentUpon>NewRequest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\CRMPage.xaml">
+    <Page Include="Pages\RequestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\Subscribe.xaml">
+    <Page Include="Pages\Abonent.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\SubscribersList.xaml">
+    <Page Include="Pages\AbonentList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Window\NewRequest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

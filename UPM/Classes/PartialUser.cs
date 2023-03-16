@@ -5,11 +5,7 @@ namespace UPM
 {
     public partial class Abonent
     {
-        public string FIO
-        {
-            get => Surname + " " + Name[0] + "." + Patronumic[0] + ".";
-            
-        }
+        public string FIO => Surname + " " + Name[0] + "." + Patronumic[0] + ".";
         public string ListServices
         {
             get
@@ -29,7 +25,7 @@ namespace UPM
                 }
                 return strServices;
             }
-            
+
         }
     }
 }

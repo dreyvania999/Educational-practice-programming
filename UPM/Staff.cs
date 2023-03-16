@@ -17,7 +17,7 @@ namespace UPM
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Staff()
         {
-            this.CodeRole = new HashSet<CodeRole>();
+            this.EquIpInstall = new HashSet<EquIpInstall>();
         }
     
         public int ID { get; set; }
@@ -29,8 +29,8 @@ namespace UPM
         public Nullable<int> IDRole { get; set; }
         public string Image { get; set; }
     
-        public virtual Role Role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CodeRole> CodeRole { get; set; }
+        public virtual ICollection<EquIpInstall> EquIpInstall { get; set; }
+        public virtual Role Role { get; set; }
     }
 }

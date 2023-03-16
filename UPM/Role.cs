@@ -18,10 +18,8 @@ namespace UPM
         public Role()
         {
             this.ModulsForRole = new HashSet<ModulsForRole>();
-            this.CodeRole = new HashSet<CodeRole>();
             this.Staff = new HashSet<Staff>();
             this.StaffInform = new HashSet<StaffInform>();
-            this.StaffInform1 = new HashSet<StaffInform>();
         }
     
         public int ID { get; set; }
@@ -30,12 +28,8 @@ namespace UPM
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ModulsForRole> ModulsForRole { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CodeRole> CodeRole { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Staff> Staff { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StaffInform> StaffInform { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StaffInform> StaffInform1 { get; set; }
     }
 }

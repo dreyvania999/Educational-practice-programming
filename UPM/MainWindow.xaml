@@ -13,36 +13,36 @@
                 <ColumnDefinition Width="5"/>
             </Grid.ColumnDefinitions>
             <StackPanel x:Name="spClose" Grid.Column="0">
-                <Image Source="/Resources/CRM/Лого ТНС.jpg" Width="80" Margin="5"/>
-                <Image Name="imSubscriber" Source="/Resources/CRM/Абоненты.png" Width="80" Height="60" Margin="5"/>
-                <Image Name="imEquipmentManagement" Source="/Resources/CRM/Управление обрудованием.jpg" Width="80" Height="60" Margin="5"/>
-                <Image Name="imAssets" Source="/Resources/CRM/Активы.png" Width="80" Height="60" Margin="5"/>
-                <Image Name="imBilling" Source="/Resources/CRM/Биллинг.jpg" Width="80" Height="60" Margin="5"/>
-                <Image Name="imUserSupport" Source="/Resources/CRM/Поддержка пользователей.jpg" Width="80" Height="60" Margin="5"/>
-                <Image Name="imCRM" Source="/Resources/CRM/CRM.png" Width="80" Height="60" Margin="5"/>
+                <Image  Source="/Resources/Basic resourses/Лого ТНС.jpg" Width="80" Margin="5"/>
+                <Image Visibility="Collapsed" Name="imSubscriber" Source="/Resources/CRM/Абоненты.png" Width="80" Height="60" Margin="5"/>
+                <Image Visibility="Collapsed" Name="imEquipmentManagement" Source="/Resources/CRM/Управление обрудованием.png" Width="80" Height="60" Margin="5"/>
+                <Image Visibility="Collapsed" Name="imAssets" Source="/Resources/CRM/Активы.png" Width="80" Height="60" Margin="5"/>
+                <Image Visibility="Collapsed" Name="imBilling" Source="/Resources/CRM/Биллинг.png" Width="80" Height="60" Margin="5"/>
+                <Image Visibility="Collapsed" Name="imUserSupport" Source="/Resources/CRM/Поддержка пользователей.png" Width="80" Height="60" Margin="5"/>
+                <Image Visibility="Collapsed" Name="imRequest" Source="/Resources/CRM/Request.png" Width="80" Height="60" Margin="5"/>
             </StackPanel>
             <StackPanel x:Name="spOpen" Grid.Column="0" Visibility="Collapsed">
-                <Image Source="/Resources/Basic resourses//Лого ТНС.jpg" Width="150" Margin="10"/>
-                <Label Name="lbSubscriber" Content="Абоненты" Background="LightGray" Margin="5" Padding="5" Height="60" Width="160" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="lbSubscriber_MouseDown" Cursor="Hand"/>
-                <Label Name="lbEquipmentManagement" Background="LightGray" Margin="5" Padding="5" Height="60" Width="160" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Hand">
+                <Image Source="/Resources/CRM/Лого ТНС.jpg" Width="150" Margin="10"/>
+                <Label  Name="lbSubscriber" Visibility="Collapsed" Content="Абоненты" Background="LightGray" Margin="5" Padding="5" Height="60" Width="160" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="lbSubscriber_MouseDown" Cursor="Hand"/>
+                <Label Visibility="Collapsed" Name="lbEquipmentManagement" Background="LightGray" Margin="5" Padding="5" Height="60" Width="160" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Hand">
                     <StackPanel>
                         <TextBlock Text="Управление" HorizontalAlignment="Center"/>
                         <TextBlock Text="оборудованием" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Label>
-                <Label Name="lbAssets" Content="Активы" Background="LightGray" Margin="5" Padding="5" Height="60" Width="160" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Hand"/>
-                <Label Name="lbBilling" Content="Биллинг" Background="LightGray" Margin="5" Padding="5" Height="60" Width="160" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Hand"/>
-                <Label Name="lbUserSupport" Background="LightGray" Margin="5" Padding="5" Height="60" Width="160" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Hand">
+                <Label Visibility="Collapsed" Name="lbAssets" Content="Активы" Background="LightGray" Margin="5" Padding="5" Height="60" Width="160" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Hand"/>
+                <Label Visibility="Collapsed" Name="lbBilling" Content="Биллинг" Background="LightGray" Margin="5" Padding="5" Height="60" Width="160" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Hand"/>
+                <Label Visibility="Collapsed" Name="lbUserSupport" Background="LightGray" Margin="5" Padding="5" Height="60" Width="160" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Hand">
                     <StackPanel>
                         <TextBlock Text="Поддержка" HorizontalAlignment="Center"/>
                         <TextBlock Text="пользователей" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Label>
-                <Label Name="lbCRM" Content="CRM" Background="LightGray" Margin="5" Padding="5" Height="60" Width="160" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="lbCRM_MouseDown" Cursor="Hand"/>
+                <Label Visibility="Collapsed" Name="lbRequest" Content="Request" Background="LightGray" Margin="5" Padding="5" Height="60" Width="160" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="lbRequest_MouseDown" Cursor="Hand"/>
             </StackPanel>
             <StackPanel VerticalAlignment="Bottom">
-                <Button Content="проф." FontSize="18" Margin="5"  HorizontalAlignment="Center" Width="60" Height="60"/>
-                <Button Content="?" Margin="5" FontWeight="Bold"  HorizontalAlignment="Center" Width="60" Height="60"/>
+                <Button Content="проф." FontSize="18" Margin="5" Template="{StaticResource CTButon}" HorizontalAlignment="Center" Width="60" Height="60"/>
+                <Button Content="?" Margin="5" FontWeight="Bold" Template="{StaticResource CTButon}" HorizontalAlignment="Center" Width="60" Height="60"/>
             </StackPanel>
             <Rectangle VerticalAlignment="Stretch" Fill="Black" Width="1" Grid.Column="1" HorizontalAlignment="Left" Margin="0"/>
         </Grid>
@@ -58,7 +58,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Name="tbHeader" VerticalAlignment="Center" FontSize="36" Margin="20"/>
                 <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <ComboBox Name="cbFIOEmployee" Width="420" VerticalAlignment="Center" SelectionChanged="cbFIOEmployee_SelectionChanged"/>
+                    <ComboBox Name="cbFIOStaff" Width="420" VerticalAlignment="Center" SelectionChanged="cbFIOStaff_SelectionChanged"/>
                     <Rectangle RadiusX="100" RadiusY="100" Height="60" Width="60" Margin="5, 0, 0, 0">
                         <Rectangle.Fill>
                             <ImageBrush x:Name="imUser" Stretch="UniformToFill"/>
@@ -81,7 +81,7 @@
                     <ColumnDefinition Width="240"/>
                 </Grid.ColumnDefinitions>
                 <Frame x:Name="mainFrame" Grid.Column="0" NavigationUIVisibility="Hidden">
-
+                    
                 </Frame>
                 <Grid Grid.Column="1" Background="#FFEAEAEA">
                     <Grid.RowDefinitions>
@@ -92,7 +92,7 @@
                     <StackPanel x:Name="btnUp" Grid.Row="0" MouseUp="btnUp_MouseDown" Background="#FFEAEAEA">
                         <Polyline Stroke="Black" Points="0, 15, 15, 5, 30, 15" HorizontalAlignment="Center"/>
                     </StackPanel>
-                    <ListView x:Name="lvEvents" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="#FFEAEAEA">
+                    <ListView x:Name="lvStaffInform" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="#FFEAEAEA">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />

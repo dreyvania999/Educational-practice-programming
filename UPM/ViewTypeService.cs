@@ -12,13 +12,13 @@ namespace UPM
     using System;
     using System.Collections.Generic;
     
-    public partial class CodeRole
+    public partial class ViewTypeService
     {
-        public string Code { get; set; }
-        public int IdRole { get; set; }
-        public int IdStaff { get; set; }
+        public int ID { get; set; }
+        public int TypeService { get; set; }
+        public int ServiceView { get; set; }
     
-        public virtual Role Role { get; set; }
-        public virtual Staff Staff { get; set; }
+        public virtual ServiceType ServiceType { get; set; }
+        public virtual ServiceView ServiceView1 { get; set; }
     }
 }
