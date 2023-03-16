@@ -12,13 +12,18 @@ namespace UPM
     using System;
     using System.Collections.Generic;
     
-    public partial class StaffInform
+    public partial class EquIpInstall
     {
         public int ID { get; set; }
-        public Nullable<System.DateTime> InformDate { get; set; }
-        public string Description { get; set; }
-        public Nullable<int> IDRole { get; set; }
+        public Nullable<System.DateTime> InstallDate { get; set; }
+        public Nullable<int> StaffID { get; set; }
+        public int Equip { get; set; }
+        public int AbonentID { get; set; }
+        public string Discription { get; set; }
+        public bool Rental { get; set; }
     
-        public virtual Role Role { get; set; }
+        public virtual Abonent Abonent { get; set; }
+        public virtual Equipment Equipment { get; set; }
+        public virtual Staff Staff { get; set; }
     }
 }

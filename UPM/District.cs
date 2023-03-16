@@ -17,15 +17,20 @@ namespace UPM
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public District()
         {
-            this.Abonent = new HashSet<Abonent>();
+            this.FactAdress = new HashSet<FactAdress>();
             this.PositionInform = new HashSet<PositionInform>();
         }
     
         public int ID { get; set; }
         public string Title { get; set; }
+        public int BuildingType { get; set; }
+        public double Square { get; set; }
+        public int Population { get; set; }
+        public int CountMetroStations { get; set; }
     
+        public virtual BildingTypes BildingTypes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Abonent> Abonent { get; set; }
+        public virtual ICollection<FactAdress> FactAdress { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PositionInform> PositionInform { get; set; }
     }

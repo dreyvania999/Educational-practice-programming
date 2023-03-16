@@ -7,53 +7,59 @@
     <Schema Namespace="Хранилище CRM6Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Abonent">
           <Key>
-            <PropertyRef Name="ContractNumber" />
+            <PropertyRef Name="AbonentID" />
           </Key>
-          <Property Name="AbonentNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AbonentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Patronumic" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Gender" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Gender" Type="int" Nullable="false" />
           <Property Name="BirthDay" Type="date" Nullable="false" />
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Mail" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Adress" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="AdressFact" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="District" Type="int" Nullable="false" />
+          <Property Name="Mail" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Adress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AdressFact" Type="int" Nullable="false" />
           <Property Name="SeriesPasport" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="NumberPaspotrNumberPaspotr" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="DivisionCode" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="IssuedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="DateIssue" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumberPaspotr" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DivisionCode" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IssuedBy" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateIssue" Type="date" Nullable="false" />
+          <Property Name="AbonentNomer" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BildingTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Citys">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ConectService">
+          <Key>
+            <PropertyRef Name="ConnectedServiceID" />
+          </Key>
+          <Property Name="ConnectedServiceID" Type="int" Nullable="false" />
+          <Property Name="AbonentID" Type="int" Nullable="false" />
+          <Property Name="ServicesID" Type="int" Nullable="false" />
+          <Property Name="ConnectionDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="AbonentID" />
+          </Key>
+          <Property Name="AbonentID" Type="int" Nullable="false" />
           <Property Name="ContractNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ConclusionDate" Type="date" Nullable="false" />
-          <Property Name="ContractType" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="TerminationReason" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="PersonalAccount" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Services" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="EquipmentID" Type="int" Nullable="false" />
-        </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "41CRM6.dbo.ClientServices" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
-        <EntityType Name="ClientServices">
-          <Key>
-            <PropertyRef Name="IDClient" />
-            <PropertyRef Name="IDServises" />
-          </Key>
-          <Property Name="IDClient" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="IDServises" Type="int" Nullable="false" />
-        </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "41CRM6.dbo.CodeRole" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
-        <EntityType Name="CodeRole">
-          <Key>
-            <PropertyRef Name="Code" />
-            <PropertyRef Name="IdRole" />
-            <PropertyRef Name="IdStaff" />
-          </Key>
-          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="IdRole" Type="int" Nullable="false" />
-          <Property Name="IdStaff" Type="int" Nullable="false" />
+          <Property Name="DateOfCinclusion" Type="date" Nullable="false" />
+          <Property Name="TypeContractID" Type="int" Nullable="false" />
+          <Property Name="PersonalAccount" Type="int" Nullable="false" />
+          <Property Name="ReasonForTerminationID" Type="int" />
+          <Property Name="TermibationDate" Type="date" />
         </EntityType>
         <EntityType Name="District">
           <Key>
@@ -61,6 +67,22 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BuildingType" Type="int" Nullable="false" />
+          <Property Name="Square" Type="float" Nullable="false" />
+          <Property Name="Population" Type="int" Nullable="false" />
+          <Property Name="CountMetroStations" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EquIpInstall">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InstallDate" Type="date" />
+          <Property Name="StaffID" Type="int" />
+          <Property Name="Equip" Type="int" Nullable="false" />
+          <Property Name="AbonentID" Type="int" Nullable="false" />
+          <Property Name="Discription" Type="nvarchar" MaxLength="400" />
+          <Property Name="Rental" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Equipment">
           <Key>
@@ -83,6 +105,24 @@
           <Property Name="Position" Type="int" Nullable="false" />
           <Property Name="AdditionalInfo" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
+        <EntityType Name="FactAdress">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Prefix_code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="City" Type="int" Nullable="false" />
+          <Property Name="Street" Type="int" />
+          <Property Name="House" Type="nvarchar" MaxLength="50" />
+          <Property Name="District" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityType Name="IP">
           <Key>
             <PropertyRef Name="ID" />
@@ -94,6 +134,13 @@
           <Property Name="Ipv6" Type="nvarchar" MaxLength="50" />
           <Property Name="StartV6" Type="datetime" />
           <Property Name="EndV6" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ListPhone">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Phones" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Mac">
           <Key>
@@ -121,14 +168,12 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "41CRM6.dbo.ModulsForRole" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="ModulsForRole">
           <Key>
-            <PropertyRef Name="IDRole" />
-            <PropertyRef Name="IDModules" />
+            <PropertyRef Name="IDMFR" />
           </Key>
           <Property Name="IDRole" Type="int" Nullable="false" />
+          <Property Name="IDMFR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDModules" Type="int" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
@@ -186,13 +231,13 @@
           <Property Name="State" Type="int" Nullable="false" />
           <Property Name="ProblemType" Type="int" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
-          <Property Name="ContractNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Abonent" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="RequestService">
+        <EntityType Name="ResonTerminate">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="ReasonForTerminationID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReasonForTerminationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
@@ -201,16 +246,6 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "41CRM6.dbo.RoleInform" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
-        <EntityType Name="RoleInform">
-          <Key>
-            <PropertyRef Name="IDRole" />
-            <PropertyRef Name="IDStaffInform" />
-          </Key>
-          <Property Name="IDRole" Type="int" Nullable="false" />
-          <Property Name="IDStaffInform" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Services">
           <Key>
@@ -224,7 +259,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="ServiceView">
           <Key>
@@ -244,6 +279,7 @@
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Code" Type="nvarchar" MaxLength="50" />
           <Property Name="IDRole" Type="int" />
+          <Property Name="Image" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="StaffInform">
           <Key>
@@ -261,6 +297,13 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Street">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="90" Nullable="false" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -271,6 +314,13 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="TypeContract">
+          <Key>
+            <PropertyRef Name="TypeContractID" />
+          </Key>
+          <Property Name="TypeContractID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="TypeEquipment">
           <Key>
             <PropertyRef Name="ID" />
@@ -278,75 +328,155 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Abonent_District">
-          <End Role="District" Type="Self.District" Multiplicity="1" />
+        <EntityType Name="ViewTypeService">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeService" Type="int" Nullable="false" />
+          <Property Name="ServiceView" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Abonent_FactAdress2">
+          <End Role="FactAdress" Type="Self.FactAdress" Multiplicity="1" />
           <End Role="Abonent" Type="Self.Abonent" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="District">
+            <Principal Role="FactAdress">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Abonent">
-              <PropertyRef Name="District" />
+              <PropertyRef Name="AdressFact" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Abonent_Equipment1">
-          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+        <Association Name="FK_Abonent_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
           <End Role="Abonent" Type="Self.Abonent" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Equipment">
-              <PropertyRef Name="IDequipment" />
+            <Principal Role="Gender">
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Abonent">
-              <PropertyRef Name="EquipmentID" />
+              <PropertyRef Name="Gender" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ClientServices_Abonent">
-          <End Role="Abonent" Type="Self.Abonent" Multiplicity="1" />
-          <End Role="ClientServices" Type="Self.ClientServices" Multiplicity="*" />
+        <Association Name="FK_ConectService_Contract">
+          <End Role="Contract" Type="Self.Contract" Multiplicity="1" />
+          <End Role="ConectService" Type="Self.ConectService" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Abonent">
-              <PropertyRef Name="ContractNumber" />
+            <Principal Role="Contract">
+              <PropertyRef Name="AbonentID" />
             </Principal>
-            <Dependent Role="ClientServices">
-              <PropertyRef Name="IDClient" />
+            <Dependent Role="ConectService">
+              <PropertyRef Name="AbonentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ClientServices_Services">
+        <Association Name="FK_ConectService_Services">
           <End Role="Services" Type="Self.Services" Multiplicity="1" />
-          <End Role="ClientServices" Type="Self.ClientServices" Multiplicity="*" />
+          <End Role="ConectService" Type="Self.ConectService" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Services">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="ClientServices">
-              <PropertyRef Name="IDServises" />
+            <Dependent Role="ConectService">
+              <PropertyRef Name="ServicesID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CodeRole_Role">
-          <End Role="Role" Type="Self.Role" Multiplicity="1" />
-          <End Role="CodeRole" Type="Self.CodeRole" Multiplicity="*" />
+        <Association Name="FK_Contract_Abonent">
+          <End Role="Abonent" Type="Self.Abonent" Multiplicity="1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="Role">
+            <Principal Role="Abonent">
+              <PropertyRef Name="AbonentID" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="AbonentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_ResonTerminate">
+          <End Role="ResonTerminate" Type="Self.ResonTerminate" Multiplicity="0..1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResonTerminate">
+              <PropertyRef Name="ReasonForTerminationID" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="ReasonForTerminationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_TypeContract">
+          <End Role="TypeContract" Type="Self.TypeContract" Multiplicity="1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeContract">
+              <PropertyRef Name="TypeContractID" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="TypeContractID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_District_BildingTypes">
+          <End Role="BildingTypes" Type="Self.BildingTypes" Multiplicity="1" />
+          <End Role="District" Type="Self.District" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BildingTypes">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="CodeRole">
-              <PropertyRef Name="IdRole" />
+            <Dependent Role="District">
+              <PropertyRef Name="BuildingType" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CodeRole_Staff">
-          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
-          <End Role="CodeRole" Type="Self.CodeRole" Multiplicity="*" />
+        <Association Name="FK_EquIpInstall_Abonent">
+          <End Role="Abonent" Type="Self.Abonent" Multiplicity="1" />
+          <End Role="EquIpInstall" Type="Self.EquIpInstall" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Abonent">
+              <PropertyRef Name="AbonentID" />
+            </Principal>
+            <Dependent Role="EquIpInstall">
+              <PropertyRef Name="AbonentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EquIpInstall_Equipment">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+          <End Role="EquIpInstall" Type="Self.EquIpInstall" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="IDequipment" />
+            </Principal>
+            <Dependent Role="EquIpInstall">
+              <PropertyRef Name="Equip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EquIpInstall_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+          <End Role="EquIpInstall" Type="Self.EquIpInstall" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Staff">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="CodeRole">
-              <PropertyRef Name="IdStaff" />
+            <Dependent Role="EquIpInstall">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equipment_ListPhone">
+          <End Role="ListPhone" Type="Self.ListPhone" Multiplicity="0..1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListPhone">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="ListPhone" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -395,6 +525,42 @@
             </Principal>
             <Dependent Role="EquipmentInPoint">
               <PropertyRef Name="Position" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FactAdress_Citys">
+          <End Role="Citys" Type="Self.Citys" Multiplicity="1" />
+          <End Role="FactAdress" Type="Self.FactAdress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Citys">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FactAdress">
+              <PropertyRef Name="City" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FactAdress_District">
+          <End Role="District" Type="Self.District" Multiplicity="1" />
+          <End Role="FactAdress" Type="Self.FactAdress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FactAdress">
+              <PropertyRef Name="District" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FactAdress_Street">
+          <End Role="Street" Type="Self.Street" Multiplicity="0..1" />
+          <End Role="FactAdress" Type="Self.FactAdress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Street">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FactAdress">
+              <PropertyRef Name="Street" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -499,10 +665,10 @@
           <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Abonent">
-              <PropertyRef Name="ContractNumber" />
+              <PropertyRef Name="AbonentID" />
             </Principal>
             <Dependent Role="Request">
-              <PropertyRef Name="ContractNumber" />
+              <PropertyRef Name="Abonent" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -515,18 +681,6 @@
             </Principal>
             <Dependent Role="Request">
               <PropertyRef Name="ProblemType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Request_RequestService">
-          <End Role="RequestService" Type="Self.RequestService" Multiplicity="1" />
-          <End Role="Request" Type="Self.Request" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RequestService">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Request">
-              <PropertyRef Name="Servise" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -578,30 +732,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RoleInform_Role">
-          <End Role="Role" Type="Self.Role" Multiplicity="1" />
-          <End Role="RoleInform" Type="Self.RoleInform" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="RoleInform">
-              <PropertyRef Name="IDRole" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RoleInform_StaffInform">
-          <End Role="StaffInform" Type="Self.StaffInform" Multiplicity="1" />
-          <End Role="RoleInform" Type="Self.RoleInform" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StaffInform">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="RoleInform">
-              <PropertyRef Name="IDStaffInform" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Staff_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
           <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
@@ -626,20 +756,53 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ViewTypeService_ServiceType">
+          <End Role="ServiceType" Type="Self.ServiceType" Multiplicity="1" />
+          <End Role="ViewTypeService" Type="Self.ViewTypeService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ViewTypeService">
+              <PropertyRef Name="ServiceView" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ViewTypeService_ServiceView">
+          <End Role="ServiceView" Type="Self.ServiceView" Multiplicity="1" />
+          <End Role="ViewTypeService" Type="Self.ViewTypeService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceView">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ViewTypeService">
+              <PropertyRef Name="ServiceView" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище CRM6ModelContainer">
           <EntitySet Name="Abonent" EntityType="Self.Abonent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BildingTypes" EntityType="Self.BildingTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Citys" EntityType="Self.Citys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConectService" EntityType="Self.ConectService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contract" EntityType="Self.Contract" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="District" EntityType="Self.District" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EquIpInstall" EntityType="Self.EquIpInstall" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EquipmentInPoint" EntityType="Self.EquipmentInPoint" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FactAdress" EntityType="Self.FactAdress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IP" EntityType="Self.IP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ListPhone" EntityType="Self.ListPhone" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mac" EntityType="Self.Mac" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Moduls" EntityType="Self.Moduls" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ModulsForRole" EntityType="Self.ModulsForRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhoneNumbers" EntityType="Self.PhoneNumbers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PortType" EntityType="Self.PortType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PositionInform" EntityType="Self.PositionInform" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProblemType" EntityType="Self.ProblemType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RequestService" EntityType="Self.RequestService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResonTerminate" EntityType="Self.ResonTerminate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServiceType" EntityType="Self.ServiceType" Schema="dbo" store:Type="Tables" />
@@ -647,21 +810,11 @@
           <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StaffInform" EntityType="Self.StaffInform" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Street" EntityType="Self.Street" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeContract" EntityType="Self.TypeContract" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeEquipment" EntityType="Self.TypeEquipment" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ClientServices" EntityType="Self.ClientServices" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ClientServices].[IDClient] AS [IDClient], 
-    [ClientServices].[IDServises] AS [IDServises]
-    FROM [dbo].[ClientServices] AS [ClientServices]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="CodeRole" EntityType="Self.CodeRole" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [CodeRole].[Code] AS [Code], 
-    [CodeRole].[IdRole] AS [IdRole], 
-    [CodeRole].[IdStaff] AS [IdStaff]
-    FROM [dbo].[CodeRole] AS [CodeRole]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="ViewTypeService" EntityType="Self.ViewTypeService" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MacAndIP" EntityType="Self.MacAndIP" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [MacAndIP].[IDequipment] AS [IDequipment], 
@@ -669,47 +822,59 @@
     [MacAndIP].[iP] AS [iP]
     FROM [dbo].[MacAndIP] AS [MacAndIP]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="ModulsForRole" EntityType="Self.ModulsForRole" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ModulsForRole].[IDRole] AS [IDRole], 
-    [ModulsForRole].[IDModules] AS [IDModules]
-    FROM [dbo].[ModulsForRole] AS [ModulsForRole]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="PhoneINEquipment" EntityType="Self.PhoneINEquipment" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [PhoneINEquipment].[IDEquipment] AS [IDEquipment], 
     [PhoneINEquipment].[IDPhones] AS [IDPhones]
     FROM [dbo].[PhoneINEquipment] AS [PhoneINEquipment]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="RoleInform" EntityType="Self.RoleInform" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [RoleInform].[IDRole] AS [IDRole], 
-    [RoleInform].[IDStaffInform] AS [IDStaffInform]
-    FROM [dbo].[RoleInform] AS [RoleInform]</DefiningQuery>
-          </EntitySet>
-          <AssociationSet Name="FK_Abonent_District" Association="Self.FK_Abonent_District">
-            <End Role="District" EntitySet="District" />
+          <AssociationSet Name="FK_Abonent_FactAdress2" Association="Self.FK_Abonent_FactAdress2">
+            <End Role="FactAdress" EntitySet="FactAdress" />
             <End Role="Abonent" EntitySet="Abonent" />
           </AssociationSet>
-          <AssociationSet Name="FK_Abonent_Equipment1" Association="Self.FK_Abonent_Equipment1">
-            <End Role="Equipment" EntitySet="Equipment" />
+          <AssociationSet Name="FK_Abonent_Gender" Association="Self.FK_Abonent_Gender">
+            <End Role="Gender" EntitySet="Gender" />
             <End Role="Abonent" EntitySet="Abonent" />
           </AssociationSet>
-          <AssociationSet Name="FK_ClientServices_Abonent" Association="Self.FK_ClientServices_Abonent">
-            <End Role="Abonent" EntitySet="Abonent" />
-            <End Role="ClientServices" EntitySet="ClientServices" />
+          <AssociationSet Name="FK_ConectService_Contract" Association="Self.FK_ConectService_Contract">
+            <End Role="Contract" EntitySet="Contract" />
+            <End Role="ConectService" EntitySet="ConectService" />
           </AssociationSet>
-          <AssociationSet Name="FK_ClientServices_Services" Association="Self.FK_ClientServices_Services">
+          <AssociationSet Name="FK_ConectService_Services" Association="Self.FK_ConectService_Services">
             <End Role="Services" EntitySet="Services" />
-            <End Role="ClientServices" EntitySet="ClientServices" />
+            <End Role="ConectService" EntitySet="ConectService" />
           </AssociationSet>
-          <AssociationSet Name="FK_CodeRole_Role" Association="Self.FK_CodeRole_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="CodeRole" EntitySet="CodeRole" />
+          <AssociationSet Name="FK_Contract_Abonent" Association="Self.FK_Contract_Abonent">
+            <End Role="Abonent" EntitySet="Abonent" />
+            <End Role="Contract" EntitySet="Contract" />
           </AssociationSet>
-          <AssociationSet Name="FK_CodeRole_Staff" Association="Self.FK_CodeRole_Staff">
+          <AssociationSet Name="FK_Contract_ResonTerminate" Association="Self.FK_Contract_ResonTerminate">
+            <End Role="ResonTerminate" EntitySet="ResonTerminate" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_TypeContract" Association="Self.FK_Contract_TypeContract">
+            <End Role="TypeContract" EntitySet="TypeContract" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_District_BildingTypes" Association="Self.FK_District_BildingTypes">
+            <End Role="BildingTypes" EntitySet="BildingTypes" />
+            <End Role="District" EntitySet="District" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EquIpInstall_Abonent" Association="Self.FK_EquIpInstall_Abonent">
+            <End Role="Abonent" EntitySet="Abonent" />
+            <End Role="EquIpInstall" EntitySet="EquIpInstall" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EquIpInstall_Equipment" Association="Self.FK_EquIpInstall_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="EquIpInstall" EntitySet="EquIpInstall" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EquIpInstall_Staff" Association="Self.FK_EquIpInstall_Staff">
             <End Role="Staff" EntitySet="Staff" />
-            <End Role="CodeRole" EntitySet="CodeRole" />
+            <End Role="EquIpInstall" EntitySet="EquIpInstall" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equipment_ListPhone" Association="Self.FK_Equipment_ListPhone">
+            <End Role="ListPhone" EntitySet="ListPhone" />
+            <End Role="Equipment" EntitySet="Equipment" />
           </AssociationSet>
           <AssociationSet Name="FK_Equipment_PortType" Association="Self.FK_Equipment_PortType">
             <End Role="PortType" EntitySet="PortType" />
@@ -726,6 +891,18 @@
           <AssociationSet Name="FK_EquipmentInPoint_PositionInform" Association="Self.FK_EquipmentInPoint_PositionInform">
             <End Role="PositionInform" EntitySet="PositionInform" />
             <End Role="EquipmentInPoint" EntitySet="EquipmentInPoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FactAdress_Citys" Association="Self.FK_FactAdress_Citys">
+            <End Role="Citys" EntitySet="Citys" />
+            <End Role="FactAdress" EntitySet="FactAdress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FactAdress_District" Association="Self.FK_FactAdress_District">
+            <End Role="District" EntitySet="District" />
+            <End Role="FactAdress" EntitySet="FactAdress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FactAdress_Street" Association="Self.FK_FactAdress_Street">
+            <End Role="Street" EntitySet="Street" />
+            <End Role="FactAdress" EntitySet="FactAdress" />
           </AssociationSet>
           <AssociationSet Name="FK_MacAndIP_Equipment" Association="Self.FK_MacAndIP_Equipment">
             <End Role="Equipment" EntitySet="Equipment" />
@@ -767,10 +944,6 @@
             <End Role="ProblemType" EntitySet="ProblemType" />
             <End Role="Request" EntitySet="Request" />
           </AssociationSet>
-          <AssociationSet Name="FK_Request_RequestService" Association="Self.FK_Request_RequestService">
-            <End Role="RequestService" EntitySet="RequestService" />
-            <End Role="Request" EntitySet="Request" />
-          </AssociationSet>
           <AssociationSet Name="FK_Request_Services" Association="Self.FK_Request_Services">
             <End Role="Services" EntitySet="Services" />
             <End Role="Request" EntitySet="Request" />
@@ -787,14 +960,6 @@
             <End Role="State" EntitySet="State" />
             <End Role="Request" EntitySet="Request" />
           </AssociationSet>
-          <AssociationSet Name="FK_RoleInform_Role" Association="Self.FK_RoleInform_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="RoleInform" EntitySet="RoleInform" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RoleInform_StaffInform" Association="Self.FK_RoleInform_StaffInform">
-            <End Role="StaffInform" EntitySet="StaffInform" />
-            <End Role="RoleInform" EntitySet="RoleInform" />
-          </AssociationSet>
           <AssociationSet Name="FK_Staff_Role" Association="Self.FK_Staff_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="Staff" EntitySet="Staff" />
@@ -803,6 +968,14 @@
             <End Role="Role" EntitySet="Role" />
             <End Role="StaffInform" EntitySet="StaffInform" />
           </AssociationSet>
+          <AssociationSet Name="FK_ViewTypeService_ServiceType" Association="Self.FK_ViewTypeService_ServiceType">
+            <End Role="ServiceType" EntitySet="ServiceType" />
+            <End Role="ViewTypeService" EntitySet="ViewTypeService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ViewTypeService_ServiceView" Association="Self.FK_ViewTypeService_ServiceView">
+            <End Role="ServiceView" EntitySet="ServiceView" />
+            <End Role="ViewTypeService" EntitySet="ViewTypeService" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -810,18 +983,27 @@
       <Schema Namespace="CRM6Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Abonent" EntityType="CRM6Model.Abonent" />
+          <EntitySet Name="BildingTypes" EntityType="CRM6Model.BildingTypes" />
+          <EntitySet Name="Citys" EntityType="CRM6Model.Citys" />
+          <EntitySet Name="ConectService" EntityType="CRM6Model.ConectService" />
+          <EntitySet Name="Contract" EntityType="CRM6Model.Contract" />
           <EntitySet Name="District" EntityType="CRM6Model.District" />
+          <EntitySet Name="EquIpInstall" EntityType="CRM6Model.EquIpInstall" />
           <EntitySet Name="Equipment" EntityType="CRM6Model.Equipment" />
           <EntitySet Name="EquipmentInPoint" EntityType="CRM6Model.EquipmentInPoint" />
+          <EntitySet Name="FactAdress" EntityType="CRM6Model.FactAdress" />
+          <EntitySet Name="Gender" EntityType="CRM6Model.Gender" />
           <EntitySet Name="IP" EntityType="CRM6Model.IP" />
+          <EntitySet Name="ListPhone" EntityType="CRM6Model.ListPhone" />
           <EntitySet Name="Mac" EntityType="CRM6Model.Mac" />
           <EntitySet Name="Moduls" EntityType="CRM6Model.Moduls" />
+          <EntitySet Name="ModulsForRole" EntityType="CRM6Model.ModulsForRole" />
           <EntitySet Name="PhoneNumbers" EntityType="CRM6Model.PhoneNumbers" />
           <EntitySet Name="PortType" EntityType="CRM6Model.PortType" />
           <EntitySet Name="PositionInform" EntityType="CRM6Model.PositionInform" />
           <EntitySet Name="ProblemType" EntityType="CRM6Model.ProblemType" />
           <EntitySet Name="Request" EntityType="CRM6Model.Request" />
-          <EntitySet Name="RequestService" EntityType="CRM6Model.RequestService" />
+          <EntitySet Name="ResonTerminate" EntityType="CRM6Model.ResonTerminate" />
           <EntitySet Name="Role" EntityType="CRM6Model.Role" />
           <EntitySet Name="Services" EntityType="CRM6Model.Services" />
           <EntitySet Name="ServiceType" EntityType="CRM6Model.ServiceType" />
@@ -829,25 +1011,75 @@
           <EntitySet Name="Staff" EntityType="CRM6Model.Staff" />
           <EntitySet Name="StaffInform" EntityType="CRM6Model.StaffInform" />
           <EntitySet Name="State" EntityType="CRM6Model.State" />
+          <EntitySet Name="Street" EntityType="CRM6Model.Street" />
           <EntitySet Name="sysdiagrams" EntityType="CRM6Model.sysdiagrams" />
+          <EntitySet Name="TypeContract" EntityType="CRM6Model.TypeContract" />
           <EntitySet Name="TypeEquipment" EntityType="CRM6Model.TypeEquipment" />
-          <EntitySet Name="CodeRole" EntityType="CRM6Model.CodeRole" />
+          <EntitySet Name="ViewTypeService" EntityType="CRM6Model.ViewTypeService" />
           <EntitySet Name="MacAndIP" EntityType="CRM6Model.MacAndIP" />
-          <AssociationSet Name="FK_Abonent_District" Association="CRM6Model.FK_Abonent_District">
-            <End Role="District" EntitySet="District" />
+          <AssociationSet Name="FK_Abonent_FactAdress2" Association="CRM6Model.FK_Abonent_FactAdress2">
+            <End Role="FactAdress" EntitySet="FactAdress" />
             <End Role="Abonent" EntitySet="Abonent" />
           </AssociationSet>
-          <AssociationSet Name="FK_Abonent_Equipment1" Association="CRM6Model.FK_Abonent_Equipment1">
-            <End Role="Equipment" EntitySet="Equipment" />
+          <AssociationSet Name="FK_Abonent_Gender" Association="CRM6Model.FK_Abonent_Gender">
+            <End Role="Gender" EntitySet="Gender" />
             <End Role="Abonent" EntitySet="Abonent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Abonent" Association="CRM6Model.FK_Contract_Abonent">
+            <End Role="Abonent" EntitySet="Abonent" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EquIpInstall_Abonent" Association="CRM6Model.FK_EquIpInstall_Abonent">
+            <End Role="Abonent" EntitySet="Abonent" />
+            <End Role="EquIpInstall" EntitySet="EquIpInstall" />
           </AssociationSet>
           <AssociationSet Name="FK_Request_Abonent" Association="CRM6Model.FK_Request_Abonent">
             <End Role="Abonent" EntitySet="Abonent" />
             <End Role="Request" EntitySet="Request" />
           </AssociationSet>
+          <AssociationSet Name="FK_District_BildingTypes" Association="CRM6Model.FK_District_BildingTypes">
+            <End Role="BildingTypes" EntitySet="BildingTypes" />
+            <End Role="District" EntitySet="District" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FactAdress_Citys" Association="CRM6Model.FK_FactAdress_Citys">
+            <End Role="Citys" EntitySet="Citys" />
+            <End Role="FactAdress" EntitySet="FactAdress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConectService_Contract" Association="CRM6Model.FK_ConectService_Contract">
+            <End Role="Contract" EntitySet="Contract" />
+            <End Role="ConectService" EntitySet="ConectService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConectService_Services" Association="CRM6Model.FK_ConectService_Services">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="ConectService" EntitySet="ConectService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_ResonTerminate" Association="CRM6Model.FK_Contract_ResonTerminate">
+            <End Role="ResonTerminate" EntitySet="ResonTerminate" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_TypeContract" Association="CRM6Model.FK_Contract_TypeContract">
+            <End Role="TypeContract" EntitySet="TypeContract" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FactAdress_District" Association="CRM6Model.FK_FactAdress_District">
+            <End Role="District" EntitySet="District" />
+            <End Role="FactAdress" EntitySet="FactAdress" />
+          </AssociationSet>
           <AssociationSet Name="FK_PositionInform_District" Association="CRM6Model.FK_PositionInform_District">
             <End Role="District" EntitySet="District" />
             <End Role="PositionInform" EntitySet="PositionInform" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EquIpInstall_Equipment" Association="CRM6Model.FK_EquIpInstall_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="EquIpInstall" EntitySet="EquIpInstall" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EquIpInstall_Staff" Association="CRM6Model.FK_EquIpInstall_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="EquIpInstall" EntitySet="EquIpInstall" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equipment_ListPhone" Association="CRM6Model.FK_Equipment_ListPhone">
+            <End Role="ListPhone" EntitySet="ListPhone" />
+            <End Role="Equipment" EntitySet="Equipment" />
           </AssociationSet>
           <AssociationSet Name="FK_Equipment_PortType" Association="CRM6Model.FK_Equipment_PortType">
             <End Role="PortType" EntitySet="PortType" />
@@ -869,6 +1101,10 @@
             <End Role="PositionInform" EntitySet="PositionInform" />
             <End Role="EquipmentInPoint" EntitySet="EquipmentInPoint" />
           </AssociationSet>
+          <AssociationSet Name="FK_FactAdress_Street" Association="CRM6Model.FK_FactAdress_Street">
+            <End Role="Street" EntitySet="Street" />
+            <End Role="FactAdress" EntitySet="FactAdress" />
+          </AssociationSet>
           <AssociationSet Name="FK_MacAndIP_IP" Association="CRM6Model.FK_MacAndIP_IP">
             <End Role="IP" EntitySet="IP" />
             <End Role="MacAndIP" EntitySet="MacAndIP" />
@@ -877,12 +1113,16 @@
             <End Role="Mac" EntitySet="Mac" />
             <End Role="MacAndIP" EntitySet="MacAndIP" />
           </AssociationSet>
+          <AssociationSet Name="FK_ModulsForRole_Moduls" Association="CRM6Model.FK_ModulsForRole_Moduls">
+            <End Role="Moduls" EntitySet="Moduls" />
+            <End Role="ModulsForRole" EntitySet="ModulsForRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModulsForRole_Role" Association="CRM6Model.FK_ModulsForRole_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="ModulsForRole" EntitySet="ModulsForRole" />
+          </AssociationSet>
           <AssociationSet Name="FK_Request_ProblemType" Association="CRM6Model.FK_Request_ProblemType">
             <End Role="ProblemType" EntitySet="ProblemType" />
-            <End Role="Request" EntitySet="Request" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Request_RequestService" Association="CRM6Model.FK_Request_RequestService">
-            <End Role="RequestService" EntitySet="RequestService" />
             <End Role="Request" EntitySet="Request" />
           </AssociationSet>
           <AssociationSet Name="FK_Request_Services" Association="CRM6Model.FK_Request_Services">
@@ -901,10 +1141,6 @@
             <End Role="State" EntitySet="State" />
             <End Role="Request" EntitySet="Request" />
           </AssociationSet>
-          <AssociationSet Name="FK_CodeRole_Role" Association="CRM6Model.FK_CodeRole_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="CodeRole" EntitySet="CodeRole" />
-          </AssociationSet>
           <AssociationSet Name="FK_Staff_Role" Association="CRM6Model.FK_Staff_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="Staff" EntitySet="Staff" />
@@ -913,58 +1149,87 @@
             <End Role="Role" EntitySet="Role" />
             <End Role="StaffInform" EntitySet="StaffInform" />
           </AssociationSet>
-          <AssociationSet Name="FK_CodeRole_Staff" Association="CRM6Model.FK_CodeRole_Staff">
-            <End Role="Staff" EntitySet="Staff" />
-            <End Role="CodeRole" EntitySet="CodeRole" />
+          <AssociationSet Name="FK_ViewTypeService_ServiceType" Association="CRM6Model.FK_ViewTypeService_ServiceType">
+            <End Role="ServiceType" EntitySet="ServiceType" />
+            <End Role="ViewTypeService" EntitySet="ViewTypeService" />
           </AssociationSet>
-          <AssociationSet Name="ClientServices" Association="CRM6Model.ClientServices">
-            <End Role="Abonent" EntitySet="Abonent" />
-            <End Role="Services" EntitySet="Services" />
-          </AssociationSet>
-          <AssociationSet Name="ModulsForRole" Association="CRM6Model.ModulsForRole">
-            <End Role="Moduls" EntitySet="Moduls" />
-            <End Role="Role" EntitySet="Role" />
+          <AssociationSet Name="FK_ViewTypeService_ServiceView" Association="CRM6Model.FK_ViewTypeService_ServiceView">
+            <End Role="ServiceView" EntitySet="ServiceView" />
+            <End Role="ViewTypeService" EntitySet="ViewTypeService" />
           </AssociationSet>
           <AssociationSet Name="PhoneINEquipment" Association="CRM6Model.PhoneINEquipment">
             <End Role="Equipment" EntitySet="Equipment" />
             <End Role="PhoneNumbers" EntitySet="PhoneNumbers" />
           </AssociationSet>
-          <AssociationSet Name="RoleInform" Association="CRM6Model.RoleInform">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="StaffInform" EntitySet="StaffInform" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Abonent">
           <Key>
-            <PropertyRef Name="ContractNumber" />
+            <PropertyRef Name="AbonentID" />
           </Key>
-          <Property Name="AbonentNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AbonentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Patronumic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Gender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="Int32" Nullable="false" />
           <Property Name="BirthDay" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Mail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Adress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AdressFact" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="District" Type="Int32" Nullable="false" />
+          <Property Name="Mail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Adress" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AdressFact" Type="Int32" Nullable="false" />
           <Property Name="SeriesPasport" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="NumberPaspotrNumberPaspotr" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DivisionCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IssuedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DateIssue" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ContractNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ConclusionDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ContractType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TerminationReason" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PersonalAccount" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Services" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EquipmentID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="District1" Relationship="CRM6Model.FK_Abonent_District" FromRole="Abonent" ToRole="District" />
-          <NavigationProperty Name="Equipment" Relationship="CRM6Model.FK_Abonent_Equipment1" FromRole="Abonent" ToRole="Equipment" />
+          <Property Name="NumberPaspotr" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DivisionCode" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IssuedBy" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateIssue" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AbonentNomer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FactAdress" Relationship="CRM6Model.FK_Abonent_FactAdress2" FromRole="Abonent" ToRole="FactAdress" />
+          <NavigationProperty Name="Gender1" Relationship="CRM6Model.FK_Abonent_Gender" FromRole="Abonent" ToRole="Gender" />
+          <NavigationProperty Name="Contract" Relationship="CRM6Model.FK_Contract_Abonent" FromRole="Abonent" ToRole="Contract" />
+          <NavigationProperty Name="EquIpInstall" Relationship="CRM6Model.FK_EquIpInstall_Abonent" FromRole="Abonent" ToRole="EquIpInstall" />
           <NavigationProperty Name="Request" Relationship="CRM6Model.FK_Request_Abonent" FromRole="Abonent" ToRole="Request" />
-          <NavigationProperty Name="Services1" Relationship="CRM6Model.ClientServices" FromRole="Abonent" ToRole="Services" />
+        </EntityType>
+        <EntityType Name="BildingTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="District" Relationship="CRM6Model.FK_District_BildingTypes" FromRole="BildingTypes" ToRole="District" />
+        </EntityType>
+        <EntityType Name="Citys">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FactAdress" Relationship="CRM6Model.FK_FactAdress_Citys" FromRole="Citys" ToRole="FactAdress" />
+        </EntityType>
+        <EntityType Name="ConectService">
+          <Key>
+            <PropertyRef Name="ConnectedServiceID" />
+          </Key>
+          <Property Name="ConnectedServiceID" Type="Int32" Nullable="false" />
+          <Property Name="AbonentID" Type="Int32" Nullable="false" />
+          <Property Name="ServicesID" Type="Int32" Nullable="false" />
+          <Property Name="ConnectionDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Contract" Relationship="CRM6Model.FK_ConectService_Contract" FromRole="ConectService" ToRole="Contract" />
+          <NavigationProperty Name="Services" Relationship="CRM6Model.FK_ConectService_Services" FromRole="ConectService" ToRole="Services" />
+        </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="AbonentID" />
+          </Key>
+          <Property Name="AbonentID" Type="Int32" Nullable="false" />
+          <Property Name="ContractNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfCinclusion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TypeContractID" Type="Int32" Nullable="false" />
+          <Property Name="PersonalAccount" Type="Int32" Nullable="false" />
+          <Property Name="ReasonForTerminationID" Type="Int32" />
+          <Property Name="TermibationDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Abonent" Relationship="CRM6Model.FK_Contract_Abonent" FromRole="Contract" ToRole="Abonent" />
+          <NavigationProperty Name="ConectService" Relationship="CRM6Model.FK_ConectService_Contract" FromRole="Contract" ToRole="ConectService" />
+          <NavigationProperty Name="ResonTerminate" Relationship="CRM6Model.FK_Contract_ResonTerminate" FromRole="Contract" ToRole="ResonTerminate" />
+          <NavigationProperty Name="TypeContract" Relationship="CRM6Model.FK_Contract_TypeContract" FromRole="Contract" ToRole="TypeContract" />
         </EntityType>
         <EntityType Name="District">
           <Key>
@@ -972,8 +1237,28 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Abonent" Relationship="CRM6Model.FK_Abonent_District" FromRole="District" ToRole="Abonent" />
+          <Property Name="BuildingType" Type="Int32" Nullable="false" />
+          <Property Name="Square" Type="Double" Nullable="false" />
+          <Property Name="Population" Type="Int32" Nullable="false" />
+          <Property Name="CountMetroStations" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BildingTypes" Relationship="CRM6Model.FK_District_BildingTypes" FromRole="District" ToRole="BildingTypes" />
+          <NavigationProperty Name="FactAdress" Relationship="CRM6Model.FK_FactAdress_District" FromRole="District" ToRole="FactAdress" />
           <NavigationProperty Name="PositionInform" Relationship="CRM6Model.FK_PositionInform_District" FromRole="District" ToRole="PositionInform" />
+        </EntityType>
+        <EntityType Name="EquIpInstall">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InstallDate" Type="DateTime" Precision="0" />
+          <Property Name="StaffID" Type="Int32" />
+          <Property Name="Equip" Type="Int32" Nullable="false" />
+          <Property Name="AbonentID" Type="Int32" Nullable="false" />
+          <Property Name="Discription" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Rental" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Abonent" Relationship="CRM6Model.FK_EquIpInstall_Abonent" FromRole="EquIpInstall" ToRole="Abonent" />
+          <NavigationProperty Name="Equipment" Relationship="CRM6Model.FK_EquIpInstall_Equipment" FromRole="EquIpInstall" ToRole="Equipment" />
+          <NavigationProperty Name="Staff" Relationship="CRM6Model.FK_EquIpInstall_Staff" FromRole="EquIpInstall" ToRole="Staff" />
         </EntityType>
         <EntityType Name="Equipment">
           <Key>
@@ -985,7 +1270,8 @@
           <Property Name="IDequipment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ListPhone" Type="Int32" />
           <Property Name="PortInform" Type="Int32" />
-          <NavigationProperty Name="Abonent" Relationship="CRM6Model.FK_Abonent_Equipment1" FromRole="Equipment" ToRole="Abonent" />
+          <NavigationProperty Name="EquIpInstall" Relationship="CRM6Model.FK_EquIpInstall_Equipment" FromRole="Equipment" ToRole="EquIpInstall" />
+          <NavigationProperty Name="ListPhone1" Relationship="CRM6Model.FK_Equipment_ListPhone" FromRole="Equipment" ToRole="ListPhone" />
           <NavigationProperty Name="PortType" Relationship="CRM6Model.FK_Equipment_PortType" FromRole="Equipment" ToRole="PortType" />
           <NavigationProperty Name="TypeEquipment" Relationship="CRM6Model.FK_Equipment_TypeEquipment" FromRole="Equipment" ToRole="TypeEquipment" />
           <NavigationProperty Name="EquipmentInPoint" Relationship="CRM6Model.FK_EquipmentInPoint_Equipment" FromRole="Equipment" ToRole="EquipmentInPoint" />
@@ -1004,6 +1290,29 @@
           <NavigationProperty Name="Equipment" Relationship="CRM6Model.FK_EquipmentInPoint_Equipment" FromRole="EquipmentInPoint" ToRole="Equipment" />
           <NavigationProperty Name="PositionInform" Relationship="CRM6Model.FK_EquipmentInPoint_PositionInform" FromRole="EquipmentInPoint" ToRole="PositionInform" />
         </EntityType>
+        <EntityType Name="FactAdress">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Prefix_code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="Int32" Nullable="false" />
+          <Property Name="Street" Type="Int32" />
+          <Property Name="House" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="District" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Abonent" Relationship="CRM6Model.FK_Abonent_FactAdress2" FromRole="FactAdress" ToRole="Abonent" />
+          <NavigationProperty Name="Citys" Relationship="CRM6Model.FK_FactAdress_Citys" FromRole="FactAdress" ToRole="Citys" />
+          <NavigationProperty Name="District1" Relationship="CRM6Model.FK_FactAdress_District" FromRole="FactAdress" ToRole="District" />
+          <NavigationProperty Name="Street1" Relationship="CRM6Model.FK_FactAdress_Street" FromRole="FactAdress" ToRole="Street" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Abonent" Relationship="CRM6Model.FK_Abonent_Gender" FromRole="Gender" ToRole="Abonent" />
+        </EntityType>
         <EntityType Name="IP">
           <Key>
             <PropertyRef Name="ID" />
@@ -1016,6 +1325,14 @@
           <Property Name="StartV6" Type="DateTime" Precision="3" />
           <Property Name="EndV6" Type="DateTime" Precision="3" />
           <NavigationProperty Name="MacAndIP" Relationship="CRM6Model.FK_MacAndIP_IP" FromRole="IP" ToRole="MacAndIP" />
+        </EntityType>
+        <EntityType Name="ListPhone">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Phones" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Equipment" Relationship="CRM6Model.FK_Equipment_ListPhone" FromRole="ListPhone" ToRole="Equipment" />
         </EntityType>
         <EntityType Name="Mac">
           <Key>
@@ -1031,7 +1348,17 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Role" Relationship="CRM6Model.ModulsForRole" FromRole="Moduls" ToRole="Role" />
+          <NavigationProperty Name="ModulsForRole" Relationship="CRM6Model.FK_ModulsForRole_Moduls" FromRole="Moduls" ToRole="ModulsForRole" />
+        </EntityType>
+        <EntityType Name="ModulsForRole">
+          <Key>
+            <PropertyRef Name="IDMFR" />
+          </Key>
+          <Property Name="IDRole" Type="Int32" Nullable="false" />
+          <Property Name="IDMFR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDModules" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Moduls" Relationship="CRM6Model.FK_ModulsForRole_Moduls" FromRole="ModulsForRole" ToRole="Moduls" />
+          <NavigationProperty Name="Role" Relationship="CRM6Model.FK_ModulsForRole_Role" FromRole="ModulsForRole" ToRole="Role" />
         </EntityType>
         <EntityType Name="PhoneNumbers">
           <Key>
@@ -1083,22 +1410,21 @@
           <Property Name="State" Type="Int32" Nullable="false" />
           <Property Name="ProblemType" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ContractNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Abonent" Relationship="CRM6Model.FK_Request_Abonent" FromRole="Request" ToRole="Abonent" />
+          <Property Name="Abonent" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Abonent1" Relationship="CRM6Model.FK_Request_Abonent" FromRole="Request" ToRole="Abonent" />
           <NavigationProperty Name="ProblemType1" Relationship="CRM6Model.FK_Request_ProblemType" FromRole="Request" ToRole="ProblemType" />
-          <NavigationProperty Name="RequestService" Relationship="CRM6Model.FK_Request_RequestService" FromRole="Request" ToRole="RequestService" />
           <NavigationProperty Name="Services" Relationship="CRM6Model.FK_Request_Services" FromRole="Request" ToRole="Services" />
           <NavigationProperty Name="ServiceType" Relationship="CRM6Model.FK_Request_ServiceType" FromRole="Request" ToRole="ServiceType" />
           <NavigationProperty Name="ServiceView" Relationship="CRM6Model.FK_Request_ServiceView" FromRole="Request" ToRole="ServiceView" />
           <NavigationProperty Name="State1" Relationship="CRM6Model.FK_Request_State" FromRole="Request" ToRole="State" />
         </EntityType>
-        <EntityType Name="RequestService">
+        <EntityType Name="ResonTerminate">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="ReasonForTerminationID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReasonForTerminationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Request" Relationship="CRM6Model.FK_Request_RequestService" FromRole="RequestService" ToRole="Request" />
+          <NavigationProperty Name="Contract" Relationship="CRM6Model.FK_Contract_ResonTerminate" FromRole="ResonTerminate" ToRole="Contract" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -1106,11 +1432,9 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CodeRole" Relationship="CRM6Model.FK_CodeRole_Role" FromRole="Role" ToRole="CodeRole" />
+          <NavigationProperty Name="ModulsForRole" Relationship="CRM6Model.FK_ModulsForRole_Role" FromRole="Role" ToRole="ModulsForRole" />
           <NavigationProperty Name="Staff" Relationship="CRM6Model.FK_Staff_Role" FromRole="Role" ToRole="Staff" />
           <NavigationProperty Name="StaffInform" Relationship="CRM6Model.FK_StaffInform_Role" FromRole="Role" ToRole="StaffInform" />
-          <NavigationProperty Name="Moduls" Relationship="CRM6Model.ModulsForRole" FromRole="Role" ToRole="Moduls" />
-          <NavigationProperty Name="StaffInform1" Relationship="CRM6Model.RoleInform" FromRole="Role" ToRole="StaffInform" />
         </EntityType>
         <EntityType Name="Services">
           <Key>
@@ -1118,16 +1442,17 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ConectService" Relationship="CRM6Model.FK_ConectService_Services" FromRole="Services" ToRole="ConectService" />
           <NavigationProperty Name="Request" Relationship="CRM6Model.FK_Request_Services" FromRole="Services" ToRole="Request" />
-          <NavigationProperty Name="Abonent" Relationship="CRM6Model.ClientServices" FromRole="Services" ToRole="Abonent" />
         </EntityType>
         <EntityType Name="ServiceType">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Request" Relationship="CRM6Model.FK_Request_ServiceType" FromRole="ServiceType" ToRole="Request" />
+          <NavigationProperty Name="ViewTypeService" Relationship="CRM6Model.FK_ViewTypeService_ServiceType" FromRole="ServiceType" ToRole="ViewTypeService" />
         </EntityType>
         <EntityType Name="ServiceView">
           <Key>
@@ -1136,6 +1461,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Request" Relationship="CRM6Model.FK_Request_ServiceView" FromRole="ServiceView" ToRole="Request" />
+          <NavigationProperty Name="ViewTypeService" Relationship="CRM6Model.FK_ViewTypeService_ServiceView" FromRole="ServiceView" ToRole="ViewTypeService" />
         </EntityType>
         <EntityType Name="Staff">
           <Key>
@@ -1148,8 +1474,9 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IDRole" Type="Int32" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EquIpInstall" Relationship="CRM6Model.FK_EquIpInstall_Staff" FromRole="Staff" ToRole="EquIpInstall" />
           <NavigationProperty Name="Role" Relationship="CRM6Model.FK_Staff_Role" FromRole="Staff" ToRole="Role" />
-          <NavigationProperty Name="CodeRole" Relationship="CRM6Model.FK_CodeRole_Staff" FromRole="Staff" ToRole="CodeRole" />
         </EntityType>
         <EntityType Name="StaffInform">
           <Key>
@@ -1160,7 +1487,6 @@
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IDRole" Type="Int32" />
           <NavigationProperty Name="Role" Relationship="CRM6Model.FK_StaffInform_Role" FromRole="StaffInform" ToRole="Role" />
-          <NavigationProperty Name="Role1" Relationship="CRM6Model.RoleInform" FromRole="StaffInform" ToRole="Role" />
         </EntityType>
         <EntityType Name="State">
           <Key>
@@ -1169,6 +1495,14 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Request" Relationship="CRM6Model.FK_Request_State" FromRole="State" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Street">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="90" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FactAdress" Relationship="CRM6Model.FK_FactAdress_Street" FromRole="Street" ToRole="FactAdress" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -1180,6 +1514,14 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="TypeContract">
+          <Key>
+            <PropertyRef Name="TypeContractID" />
+          </Key>
+          <Property Name="TypeContractID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Contract" Relationship="CRM6Model.FK_Contract_TypeContract" FromRole="TypeContract" ToRole="Contract" />
+        </EntityType>
         <EntityType Name="TypeEquipment">
           <Key>
             <PropertyRef Name="ID" />
@@ -1188,17 +1530,15 @@
           <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Equipment" Relationship="CRM6Model.FK_Equipment_TypeEquipment" FromRole="TypeEquipment" ToRole="Equipment" />
         </EntityType>
-        <EntityType Name="CodeRole">
+        <EntityType Name="ViewTypeService">
           <Key>
-            <PropertyRef Name="Code" />
-            <PropertyRef Name="IdRole" />
-            <PropertyRef Name="IdStaff" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IdRole" Type="Int32" Nullable="false" />
-          <Property Name="IdStaff" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Role" Relationship="CRM6Model.FK_CodeRole_Role" FromRole="CodeRole" ToRole="Role" />
-          <NavigationProperty Name="Staff" Relationship="CRM6Model.FK_CodeRole_Staff" FromRole="CodeRole" ToRole="Staff" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeService" Type="Int32" Nullable="false" />
+          <Property Name="ServiceView" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ServiceType" Relationship="CRM6Model.FK_ViewTypeService_ServiceType" FromRole="ViewTypeService" ToRole="ServiceType" />
+          <NavigationProperty Name="ServiceView1" Relationship="CRM6Model.FK_ViewTypeService_ServiceView" FromRole="ViewTypeService" ToRole="ServiceView" />
         </EntityType>
         <EntityType Name="MacAndIP">
           <Key>
@@ -1213,27 +1553,51 @@
           <NavigationProperty Name="IP1" Relationship="CRM6Model.FK_MacAndIP_IP" FromRole="MacAndIP" ToRole="IP" />
           <NavigationProperty Name="Mac" Relationship="CRM6Model.FK_MacAndIP_Mac" FromRole="MacAndIP" ToRole="Mac" />
         </EntityType>
-        <Association Name="FK_Abonent_District">
-          <End Type="CRM6Model.District" Role="District" Multiplicity="1" />
+        <Association Name="FK_Abonent_FactAdress2">
+          <End Type="CRM6Model.FactAdress" Role="FactAdress" Multiplicity="1" />
           <End Type="CRM6Model.Abonent" Role="Abonent" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="District">
+            <Principal Role="FactAdress">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Abonent">
-              <PropertyRef Name="District" />
+              <PropertyRef Name="AdressFact" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Abonent_Equipment1">
-          <End Type="CRM6Model.Equipment" Role="Equipment" Multiplicity="1" />
+        <Association Name="FK_Abonent_Gender">
+          <End Type="CRM6Model.Gender" Role="Gender" Multiplicity="1" />
           <End Type="CRM6Model.Abonent" Role="Abonent" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Equipment">
-              <PropertyRef Name="IDequipment" />
+            <Principal Role="Gender">
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Abonent">
-              <PropertyRef Name="EquipmentID" />
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Abonent">
+          <End Type="CRM6Model.Abonent" Role="Abonent" Multiplicity="1" />
+          <End Type="CRM6Model.Contract" Role="Contract" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Abonent">
+              <PropertyRef Name="AbonentID" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="AbonentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EquIpInstall_Abonent">
+          <End Type="CRM6Model.Abonent" Role="Abonent" Multiplicity="1" />
+          <End Type="CRM6Model.EquIpInstall" Role="EquIpInstall" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Abonent">
+              <PropertyRef Name="AbonentID" />
+            </Principal>
+            <Dependent Role="EquIpInstall">
+              <PropertyRef Name="AbonentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1242,10 +1606,94 @@
           <End Type="CRM6Model.Request" Role="Request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Abonent">
-              <PropertyRef Name="ContractNumber" />
+              <PropertyRef Name="AbonentID" />
             </Principal>
             <Dependent Role="Request">
-              <PropertyRef Name="ContractNumber" />
+              <PropertyRef Name="Abonent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_District_BildingTypes">
+          <End Type="CRM6Model.BildingTypes" Role="BildingTypes" Multiplicity="1" />
+          <End Type="CRM6Model.District" Role="District" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BildingTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="District">
+              <PropertyRef Name="BuildingType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FactAdress_Citys">
+          <End Type="CRM6Model.Citys" Role="Citys" Multiplicity="1" />
+          <End Type="CRM6Model.FactAdress" Role="FactAdress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Citys">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FactAdress">
+              <PropertyRef Name="City" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConectService_Contract">
+          <End Type="CRM6Model.Contract" Role="Contract" Multiplicity="1" />
+          <End Type="CRM6Model.ConectService" Role="ConectService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contract">
+              <PropertyRef Name="AbonentID" />
+            </Principal>
+            <Dependent Role="ConectService">
+              <PropertyRef Name="AbonentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConectService_Services">
+          <End Type="CRM6Model.Services" Role="Services" Multiplicity="1" />
+          <End Type="CRM6Model.ConectService" Role="ConectService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ConectService">
+              <PropertyRef Name="ServicesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_ResonTerminate">
+          <End Type="CRM6Model.ResonTerminate" Role="ResonTerminate" Multiplicity="0..1" />
+          <End Type="CRM6Model.Contract" Role="Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResonTerminate">
+              <PropertyRef Name="ReasonForTerminationID" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="ReasonForTerminationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_TypeContract">
+          <End Type="CRM6Model.TypeContract" Role="TypeContract" Multiplicity="1" />
+          <End Type="CRM6Model.Contract" Role="Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeContract">
+              <PropertyRef Name="TypeContractID" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="TypeContractID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FactAdress_District">
+          <End Type="CRM6Model.District" Role="District" Multiplicity="1" />
+          <End Type="CRM6Model.FactAdress" Role="FactAdress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FactAdress">
+              <PropertyRef Name="District" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1258,6 +1706,42 @@
             </Principal>
             <Dependent Role="PositionInform">
               <PropertyRef Name="District" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EquIpInstall_Equipment">
+          <End Type="CRM6Model.Equipment" Role="Equipment" Multiplicity="1" />
+          <End Type="CRM6Model.EquIpInstall" Role="EquIpInstall" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="IDequipment" />
+            </Principal>
+            <Dependent Role="EquIpInstall">
+              <PropertyRef Name="Equip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EquIpInstall_Staff">
+          <End Type="CRM6Model.Staff" Role="Staff" Multiplicity="0..1" />
+          <End Type="CRM6Model.EquIpInstall" Role="EquIpInstall" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EquIpInstall">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equipment_ListPhone">
+          <End Type="CRM6Model.ListPhone" Role="ListPhone" Multiplicity="0..1" />
+          <End Type="CRM6Model.Equipment" Role="Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListPhone">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="ListPhone" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1321,6 +1805,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FactAdress_Street">
+          <End Type="CRM6Model.Street" Role="Street" Multiplicity="0..1" />
+          <End Type="CRM6Model.FactAdress" Role="FactAdress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Street">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FactAdress">
+              <PropertyRef Name="Street" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MacAndIP_IP">
           <End Type="CRM6Model.IP" Role="IP" Multiplicity="1" />
           <End Type="CRM6Model.MacAndIP" Role="MacAndIP" Multiplicity="*" />
@@ -1345,6 +1841,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ModulsForRole_Moduls">
+          <End Type="CRM6Model.Moduls" Role="Moduls" Multiplicity="1" />
+          <End Type="CRM6Model.ModulsForRole" Role="ModulsForRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moduls">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ModulsForRole">
+              <PropertyRef Name="IDModules" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModulsForRole_Role">
+          <End Type="CRM6Model.Role" Role="Role" Multiplicity="1" />
+          <End Type="CRM6Model.ModulsForRole" Role="ModulsForRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ModulsForRole">
+              <PropertyRef Name="IDRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Request_ProblemType">
           <End Type="CRM6Model.ProblemType" Role="ProblemType" Multiplicity="1" />
           <End Type="CRM6Model.Request" Role="Request" Multiplicity="*" />
@@ -1354,18 +1874,6 @@
             </Principal>
             <Dependent Role="Request">
               <PropertyRef Name="ProblemType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Request_RequestService">
-          <End Type="CRM6Model.RequestService" Role="RequestService" Multiplicity="1" />
-          <End Type="CRM6Model.Request" Role="Request" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RequestService">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Request">
-              <PropertyRef Name="Servise" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1417,18 +1925,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CodeRole_Role">
-          <End Type="CRM6Model.Role" Role="Role" Multiplicity="1" />
-          <End Type="CRM6Model.CodeRole" Role="CodeRole" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CodeRole">
-              <PropertyRef Name="IdRole" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Staff_Role">
           <End Type="CRM6Model.Role" Role="Role" Multiplicity="0..1" />
           <End Type="CRM6Model.Staff" Role="Staff" Multiplicity="*" />
@@ -1453,35 +1949,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CodeRole_Staff">
-          <End Type="CRM6Model.Staff" Role="Staff" Multiplicity="1" />
-          <End Type="CRM6Model.CodeRole" Role="CodeRole" Multiplicity="*" />
+        <Association Name="FK_ViewTypeService_ServiceType">
+          <End Type="CRM6Model.ServiceType" Role="ServiceType" Multiplicity="1" />
+          <End Type="CRM6Model.ViewTypeService" Role="ViewTypeService" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Staff">
+            <Principal Role="ServiceType">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="CodeRole">
-              <PropertyRef Name="IdStaff" />
+            <Dependent Role="ViewTypeService">
+              <PropertyRef Name="ServiceView" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ClientServices">
-          <End Type="CRM6Model.Abonent" Role="Abonent" Multiplicity="*" />
-          <End Type="CRM6Model.Services" Role="Services" Multiplicity="*" />
-        </Association>
-        <Association Name="ModulsForRole">
-          <End Type="CRM6Model.Moduls" Role="Moduls" Multiplicity="*" />
-          <End Type="CRM6Model.Role" Role="Role" Multiplicity="*" />
+        <Association Name="FK_ViewTypeService_ServiceView">
+          <End Type="CRM6Model.ServiceView" Role="ServiceView" Multiplicity="1" />
+          <End Type="CRM6Model.ViewTypeService" Role="ViewTypeService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceView">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ViewTypeService">
+              <PropertyRef Name="ServiceView" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="PhoneINEquipment">
           <End Type="CRM6Model.Equipment" Role="Equipment" Multiplicity="*" />
           <End Type="CRM6Model.PhoneNumbers" Role="PhoneNumbers" Multiplicity="*" />
         </Association>
-        <Association Name="RoleInform">
-          <End Type="CRM6Model.Role" Role="Role" Multiplicity="*" />
-          <End Type="CRM6Model.StaffInform" Role="StaffInform" Multiplicity="*" />
-        </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1490,19 +1986,12 @@
           <EntitySetMapping Name="Abonent">
             <EntityTypeMapping TypeName="CRM6Model.Abonent">
               <MappingFragment StoreEntitySet="Abonent">
-                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
-                <ScalarProperty Name="Services" ColumnName="Services" />
-                <ScalarProperty Name="PersonalAccount" ColumnName="PersonalAccount" />
-                <ScalarProperty Name="TerminationReason" ColumnName="TerminationReason" />
-                <ScalarProperty Name="ContractType" ColumnName="ContractType" />
-                <ScalarProperty Name="ConclusionDate" ColumnName="ConclusionDate" />
-                <ScalarProperty Name="ContractNumber" ColumnName="ContractNumber" />
+                <ScalarProperty Name="AbonentNomer" ColumnName="AbonentNomer" />
                 <ScalarProperty Name="DateIssue" ColumnName="DateIssue" />
                 <ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
                 <ScalarProperty Name="DivisionCode" ColumnName="DivisionCode" />
-                <ScalarProperty Name="NumberPaspotrNumberPaspotr" ColumnName="NumberPaspotrNumberPaspotr" />
+                <ScalarProperty Name="NumberPaspotr" ColumnName="NumberPaspotr" />
                 <ScalarProperty Name="SeriesPasport" ColumnName="SeriesPasport" />
-                <ScalarProperty Name="District" ColumnName="District" />
                 <ScalarProperty Name="AdressFact" ColumnName="AdressFact" />
                 <ScalarProperty Name="Adress" ColumnName="Adress" />
                 <ScalarProperty Name="Mail" ColumnName="Mail" />
@@ -1512,14 +2001,70 @@
                 <ScalarProperty Name="Patronumic" ColumnName="Patronumic" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="AbonentNumber" ColumnName="AbonentNumber" />
+                <ScalarProperty Name="AbonentID" ColumnName="AbonentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BildingTypes">
+            <EntityTypeMapping TypeName="CRM6Model.BildingTypes">
+              <MappingFragment StoreEntitySet="BildingTypes">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Citys">
+            <EntityTypeMapping TypeName="CRM6Model.Citys">
+              <MappingFragment StoreEntitySet="Citys">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConectService">
+            <EntityTypeMapping TypeName="CRM6Model.ConectService">
+              <MappingFragment StoreEntitySet="ConectService">
+                <ScalarProperty Name="ConnectionDate" ColumnName="ConnectionDate" />
+                <ScalarProperty Name="ServicesID" ColumnName="ServicesID" />
+                <ScalarProperty Name="AbonentID" ColumnName="AbonentID" />
+                <ScalarProperty Name="ConnectedServiceID" ColumnName="ConnectedServiceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contract">
+            <EntityTypeMapping TypeName="CRM6Model.Contract">
+              <MappingFragment StoreEntitySet="Contract">
+                <ScalarProperty Name="TermibationDate" ColumnName="TermibationDate" />
+                <ScalarProperty Name="ReasonForTerminationID" ColumnName="ReasonForTerminationID" />
+                <ScalarProperty Name="PersonalAccount" ColumnName="PersonalAccount" />
+                <ScalarProperty Name="TypeContractID" ColumnName="TypeContractID" />
+                <ScalarProperty Name="DateOfCinclusion" ColumnName="DateOfCinclusion" />
+                <ScalarProperty Name="ContractNumber" ColumnName="ContractNumber" />
+                <ScalarProperty Name="AbonentID" ColumnName="AbonentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="District">
             <EntityTypeMapping TypeName="CRM6Model.District">
               <MappingFragment StoreEntitySet="District">
+                <ScalarProperty Name="CountMetroStations" ColumnName="CountMetroStations" />
+                <ScalarProperty Name="Population" ColumnName="Population" />
+                <ScalarProperty Name="Square" ColumnName="Square" />
+                <ScalarProperty Name="BuildingType" ColumnName="BuildingType" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EquIpInstall">
+            <EntityTypeMapping TypeName="CRM6Model.EquIpInstall">
+              <MappingFragment StoreEntitySet="EquIpInstall">
+                <ScalarProperty Name="Rental" ColumnName="Rental" />
+                <ScalarProperty Name="Discription" ColumnName="Discription" />
+                <ScalarProperty Name="AbonentID" ColumnName="AbonentID" />
+                <ScalarProperty Name="Equip" ColumnName="Equip" />
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="InstallDate" ColumnName="InstallDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1547,6 +2092,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="FactAdress">
+            <EntityTypeMapping TypeName="CRM6Model.FactAdress">
+              <MappingFragment StoreEntitySet="FactAdress">
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="House" ColumnName="House" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Prefix_code" ColumnName="Prefix_code" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="CRM6Model.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="IP">
             <EntityTypeMapping TypeName="CRM6Model.IP">
               <MappingFragment StoreEntitySet="IP">
@@ -1556,6 +2121,14 @@
                 <ScalarProperty Name="EndV4" ColumnName="EndV4" />
                 <ScalarProperty Name="StartV4" ColumnName="StartV4" />
                 <ScalarProperty Name="Ipv4" ColumnName="Ipv4" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ListPhone">
+            <EntityTypeMapping TypeName="CRM6Model.ListPhone">
+              <MappingFragment StoreEntitySet="ListPhone">
+                <ScalarProperty Name="Phones" ColumnName="Phones" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1573,6 +2146,15 @@
               <MappingFragment StoreEntitySet="Moduls">
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModulsForRole">
+            <EntityTypeMapping TypeName="CRM6Model.ModulsForRole">
+              <MappingFragment StoreEntitySet="ModulsForRole">
+                <ScalarProperty Name="IDModules" ColumnName="IDModules" />
+                <ScalarProperty Name="IDMFR" ColumnName="IDMFR" />
+                <ScalarProperty Name="IDRole" ColumnName="IDRole" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1615,7 +2197,7 @@
           <EntitySetMapping Name="Request">
             <EntityTypeMapping TypeName="CRM6Model.Request">
               <MappingFragment StoreEntitySet="Request">
-                <ScalarProperty Name="ContractNumber" ColumnName="ContractNumber" />
+                <ScalarProperty Name="Abonent" ColumnName="Abonent" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ProblemType" ColumnName="ProblemType" />
                 <ScalarProperty Name="State" ColumnName="State" />
@@ -1628,11 +2210,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="RequestService">
-            <EntityTypeMapping TypeName="CRM6Model.RequestService">
-              <MappingFragment StoreEntitySet="RequestService">
+          <EntitySetMapping Name="ResonTerminate">
+            <EntityTypeMapping TypeName="CRM6Model.ResonTerminate">
+              <MappingFragment StoreEntitySet="ResonTerminate">
                 <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ReasonForTerminationID" ColumnName="ReasonForTerminationID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1671,6 +2253,7 @@
           <EntitySetMapping Name="Staff">
             <EntityTypeMapping TypeName="CRM6Model.Staff">
               <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="IDRole" ColumnName="IDRole" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -1699,6 +2282,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Street">
+            <EntityTypeMapping TypeName="CRM6Model.Street">
+              <MappingFragment StoreEntitySet="Street">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="CRM6Model.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -1710,6 +2301,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TypeContract">
+            <EntityTypeMapping TypeName="CRM6Model.TypeContract">
+              <MappingFragment StoreEntitySet="TypeContract">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="TypeContractID" ColumnName="TypeContractID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TypeEquipment">
             <EntityTypeMapping TypeName="CRM6Model.TypeEquipment">
               <MappingFragment StoreEntitySet="TypeEquipment">
@@ -1718,12 +2317,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CodeRole">
-            <EntityTypeMapping TypeName="CRM6Model.CodeRole">
-              <MappingFragment StoreEntitySet="CodeRole">
-                <ScalarProperty Name="IdStaff" ColumnName="IdStaff" />
-                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
+          <EntitySetMapping Name="ViewTypeService">
+            <EntityTypeMapping TypeName="CRM6Model.ViewTypeService">
+              <MappingFragment StoreEntitySet="ViewTypeService">
+                <ScalarProperty Name="ServiceView" ColumnName="ServiceView" />
+                <ScalarProperty Name="TypeService" ColumnName="TypeService" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1736,36 +2335,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="ClientServices" TypeName="CRM6Model.ClientServices" StoreEntitySet="ClientServices">
-            <EndProperty Name="Services">
-              <ScalarProperty Name="ID" ColumnName="IDServises" />
-            </EndProperty>
-            <EndProperty Name="Abonent">
-              <ScalarProperty Name="ContractNumber" ColumnName="IDClient" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="ModulsForRole" TypeName="CRM6Model.ModulsForRole" StoreEntitySet="ModulsForRole">
-            <EndProperty Name="Role">
-              <ScalarProperty Name="ID" ColumnName="IDRole" />
-            </EndProperty>
-            <EndProperty Name="Moduls">
-              <ScalarProperty Name="ID" ColumnName="IDModules" />
-            </EndProperty>
-          </AssociationSetMapping>
           <AssociationSetMapping Name="PhoneINEquipment" TypeName="CRM6Model.PhoneINEquipment" StoreEntitySet="PhoneINEquipment">
             <EndProperty Name="PhoneNumbers">
               <ScalarProperty Name="ID" ColumnName="IDPhones" />
             </EndProperty>
             <EndProperty Name="Equipment">
               <ScalarProperty Name="IDequipment" ColumnName="IDEquipment" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="RoleInform" TypeName="CRM6Model.RoleInform" StoreEntitySet="RoleInform">
-            <EndProperty Name="StaffInform">
-              <ScalarProperty Name="ID" ColumnName="IDStaffInform" />
-            </EndProperty>
-            <EndProperty Name="Role">
-              <ScalarProperty Name="ID" ColumnName="IDRole" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

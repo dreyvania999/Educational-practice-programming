@@ -12,13 +12,18 @@ namespace UPM
     using System;
     using System.Collections.Generic;
     
-    public partial class StaffInform
+    public partial class ListPhone
     {
-        public int ID { get; set; }
-        public Nullable<System.DateTime> InformDate { get; set; }
-        public string Description { get; set; }
-        public Nullable<int> IDRole { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ListPhone()
+        {
+            this.Equipment = new HashSet<Equipment>();
+        }
     
-        public virtual Role Role { get; set; }
+        public int ID { get; set; }
+        public string Phones { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Equipment> Equipment { get; set; }
     }
 }

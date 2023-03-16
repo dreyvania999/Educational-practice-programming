@@ -12,13 +12,18 @@ namespace UPM
     using System;
     using System.Collections.Generic;
     
-    public partial class StaffInform
+    public partial class BildingTypes
     {
-        public int ID { get; set; }
-        public Nullable<System.DateTime> InformDate { get; set; }
-        public string Description { get; set; }
-        public Nullable<int> IDRole { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public BildingTypes()
+        {
+            this.District = new HashSet<District>();
+        }
     
-        public virtual Role Role { get; set; }
+        public int ID { get; set; }
+        public string Title { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<District> District { get; set; }
     }
 }

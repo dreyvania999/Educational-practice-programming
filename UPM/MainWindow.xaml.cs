@@ -11,8 +11,8 @@ namespace UPM
     public partial class MainWindow : Window
     {
         private readonly Entities DB = new Entities();
-        private string code; 
-        private int countTime; 
+        private string code;
+        private int countTime;
         private readonly DispatcherTimer disTimer = new DispatcherTimer();
         public MainWindow()
         {
@@ -46,13 +46,13 @@ namespace UPM
                 if (employee != null)
                 {
                     pbPassword.IsEnabled = true;
-                    pbPassword.Focus();
+                    _ = pbPassword.Focus();
                 }
                 else
                 {
                     pbPassword.IsEnabled = false;
                     pbPassword.Password = "";
-                    MessageBox.Show("Произошла ошибка! Сотрудник  с таким номером не найден!");
+                    _ = MessageBox.Show("Произошла ошибка! Сотрудник  с таким номером не найден!");
                 }
             }
         }
@@ -66,7 +66,7 @@ namespace UPM
         }
         private void DisTimer_Tick(object sender, EventArgs e)
         {
-            if (countTime == 0) 
+            if (countTime == 0)
             {
                 disTimer.Stop();
                 code = "";
@@ -92,7 +92,7 @@ namespace UPM
                 Login();
             }
         }
-        
+
         private void Login()
         {
             if (code != "")
@@ -109,12 +109,12 @@ namespace UPM
                 }
                 else
                 {
-                    MessageBox.Show("Код введён не верно!");
+                    _ = MessageBox.Show("Код введён не верно!");
                 }
             }
             else
             {
-                MessageBox.Show("Код утратил свою действительность!");
+                _ = MessageBox.Show("Код утратил свою действительность!");
             }
         }
 
@@ -122,7 +122,7 @@ namespace UPM
         {
             GetNewCode();
         }
-        
+
         private void GetNewCode()
         {
             Staff employee = DB.Staff.FirstOrDefault(x => x.Code == tbNomer.Text && x.Password == pbPassword.Password);
@@ -135,14 +135,14 @@ namespace UPM
                     code = "";
                     for (int i = 0; i < 8; i++)
                     {
-                        int j = rand.Next(4); 
+                        int j = rand.Next(4);
                         if (j == 0)
                         {
                             code += rand.Next(9).ToString();
                         }
                         else if (j == 1 || j == 2)
                         {
-                            int l = rand.Next(2); 
+                            int l = rand.Next(2);
                             if (l == 0)
                             {
                                 code += (char)rand.Next('A', 'Z' + 1);
@@ -154,7 +154,7 @@ namespace UPM
                         }
                         else
                         {
-                            int l = rand.Next(4); 
+                            int l = rand.Next(4);
                             if (l == 0)
                             {
                                 code += (char)rand.Next(33, 48);
@@ -184,17 +184,17 @@ namespace UPM
                     }
                 }
                 Clipboard.SetText(code);
-                MessageBox.Show("Код для доступа " + code + "\nУ вас будет дано 10 секунд, чтобы ввести код(Код скопирован в буфер обмена)");
+                _ = MessageBox.Show("Код для доступа " + code + "\nУ вас будет дано 10 секунд, чтобы ввести код(Код скопирован в буфер обмена)");
                 tbCode.IsEnabled = true;
                 tbCode.Text = "";
                 btnLogin.IsEnabled = true;
-                tbCode.Focus();
+                _ = tbCode.Focus();
                 countTime = 10;
                 disTimer.Start();
             }
             else
             {
-                MessageBox.Show("Сотрудник с таким номером и паролем не найден!");
+                _ = MessageBox.Show("Сотрудник с таким номером и паролем не найден!");
                 disTimer.Stop();
                 code = "";
                 tbRemainingTime.Text = "";

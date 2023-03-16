@@ -12,13 +12,14 @@ namespace UPM
     using System;
     using System.Collections.Generic;
     
-    public partial class CodeRole
+    public partial class ConectService
     {
-        public string Code { get; set; }
-        public int IdRole { get; set; }
-        public int IdStaff { get; set; }
+        public int ConnectedServiceID { get; set; }
+        public int AbonentID { get; set; }
+        public int ServicesID { get; set; }
+        public Nullable<System.DateTime> ConnectionDate { get; set; }
     
-        public virtual Role Role { get; set; }
-        public virtual Staff Staff { get; set; }
+        public virtual Contract Contract { get; set; }
+        public virtual Services Services { get; set; }
     }
 }

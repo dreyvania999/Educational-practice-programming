@@ -12,13 +12,13 @@ namespace UPM
     using System;
     using System.Collections.Generic;
     
-    public partial class StaffInform
+    public partial class ViewTypeService
     {
         public int ID { get; set; }
-        public Nullable<System.DateTime> InformDate { get; set; }
-        public string Description { get; set; }
-        public Nullable<int> IDRole { get; set; }
+        public int TypeService { get; set; }
+        public int ServiceView { get; set; }
     
-        public virtual Role Role { get; set; }
+        public virtual ServiceType ServiceType { get; set; }
+        public virtual ServiceView ServiceView1 { get; set; }
     }
 }

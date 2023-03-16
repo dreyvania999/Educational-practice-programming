@@ -12,13 +12,13 @@ namespace UPM
     using System;
     using System.Collections.Generic;
     
-    public partial class StaffInform
+    public partial class ModulsForRole
     {
-        public int ID { get; set; }
-        public Nullable<System.DateTime> InformDate { get; set; }
-        public string Description { get; set; }
-        public Nullable<int> IDRole { get; set; }
+        public int IDRole { get; set; }
+        public int IDMFR { get; set; }
+        public int IDModules { get; set; }
     
+        public virtual Moduls Moduls { get; set; }
         public virtual Role Role { get; set; }
     }
 }
