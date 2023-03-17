@@ -58,7 +58,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Name="tbTypeContract" Text="Тип договора: " HorizontalAlignment="Left" Grid.Column="0"/>
-                            <TextBlock Name="tbPersonalAccount" Text="ЛС: " HorizontalAlignment="Left" Grid.Column="1"/>
+                            <TextBlock Name="tbPersonalAccount" Text="Лицевой счет: " HorizontalAlignment="Left" Grid.Column="1"/>
                         </Grid>
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -76,7 +76,7 @@
                 <GroupBox Header="Оборудование" Margin="0, 10, 0, 10">
                     <TextBlock Name="listEquipments" TextWrapping="Wrap"/>
                 </GroupBox>
-                <GroupBox Header="История обращения в техническую поддержку за 12 месяцев" Margin="0, 10, 0, 10">
+                <GroupBox Header="История обращения в техническую поддержку за последний год" Margin="0, 10, 0, 10">
                     <TextBlock Name="listRequest" TextWrapping="Wrap"/>
                 </GroupBox>
             </StackPanel>
