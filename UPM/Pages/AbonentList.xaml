@@ -9,10 +9,12 @@
       Title="Абоненты ТНС">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition  Height="4*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
+        <GroupBox Header="Поиск и фильтрация">
+        <StackPanel>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -21,19 +23,19 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Vertical" Grid.Column="0" Margin="10">
+            <StackPanel Orientation="Vertical" Grid.Column="3" Margin="10">
                 <TextBlock Text="Фамилия" HorizontalAlignment="Center"/>
                 <TextBox x:Name="tbSearchSurname" SelectionChanged="tbSearchSurname_SelectionChanged"/>
             </StackPanel>
-            <StackPanel Orientation="Vertical" Grid.Column="1" Margin="10">
+            <StackPanel Orientation="Vertical" Grid.Column="0" Margin="10">
                 <TextBlock Text="Район" HorizontalAlignment="Center"/>
                 <ComboBox x:Name="cbFilterDistrict" SelectionChanged="cbFilterDistrict_SelectionChanged"/>
             </StackPanel>
-            <StackPanel Orientation="Vertical" Grid.Column="2" Margin="10">
+            <StackPanel Orientation="Vertical" Grid.Column="1" Margin="10">
                 <TextBlock Text="Улица" HorizontalAlignment="Center"/>
                 <ComboBox x:Name="cbFilterStreet" SelectionChanged="cbFilterStreet_SelectionChanged"/>
             </StackPanel>
-            <StackPanel Orientation="Vertical" Grid.Column="3" Margin="10">
+            <StackPanel Orientation="Vertical" Grid.Column="2" Margin="10">
                 <TextBlock Text="Номер дома" HorizontalAlignment="Center"/>
                 <ComboBox x:Name="cbFiltNomerHouse" SelectionChanged="cbFiltNomerHouse_SelectionChanged"/>
             </StackPanel>
@@ -42,6 +44,8 @@
                 <TextBox x:Name="tbSearchPersonalAccount" SelectionChanged="tbSearchSurname_SelectionChanged" PreviewTextInput="tbSearchPersonalAccount_PreviewTextInput"/>
             </StackPanel>
         </Grid>
+        </StackPanel>
+        </GroupBox>
         <DataGrid Name="dgAbonent" Grid.Row="1" Margin="10" FontSize="18" AutoGenerateColumns="False" CanUserAddRows="False" MouseDoubleClick="dgAbonent_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Header="Номер" Binding="{Binding AbonentNomer}" Width="1*"></DataGridTextColumn>

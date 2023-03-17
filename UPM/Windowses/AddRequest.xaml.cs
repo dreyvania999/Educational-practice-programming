@@ -69,22 +69,22 @@ namespace UPM
             {
                 if (cmbService.SelectedIndex < 0)
                 {
-                    _ = MessageBox.Show("Поле \"услуга\" не заполнено!");
+                    MessageBox.Show("Поле \"услуга\" не заполнено!");
                     return;
                 }
                 if (cmbTypeOfService.SelectedIndex < 0)
                 {
-                    _ = MessageBox.Show("Поле \"вид услуги\" не заполнено!");
+                    MessageBox.Show("Поле \"вид услуги\" не заполнено!");
                     return;
                 }
                 if (cmbServiceType.SelectedIndex < 0)
                 {
-                    _ = MessageBox.Show("Поле \"тип услуги\" не заполнено!");
+                    MessageBox.Show("Поле \"тип услуги\" не заполнено!");
                     return;
                 }
                 if (cmbProblemType.SelectedIndex < 0)
                 {
-                    _ = MessageBox.Show("Поле \"тип проблемы\" не заполнено!");
+                    MessageBox.Show("Поле \"тип проблемы\" не заполнено!");
                     return;
                 }
                 request.Servise = (int)cmbService.SelectedValue;
@@ -100,14 +100,14 @@ namespace UPM
                 {
                     request.EndDate = dpEndDate.SelectedDate;
                 }
-                _ = MainWindow.DB.Request.Add(request);
-                _ = MainWindow.DB.SaveChanges();
-                _ = MessageBox.Show("Заявка успешно создана");
+                MainWindow.DB.Request.Add(request);
+                MainWindow.DB.SaveChanges();
+                MessageBox.Show("Заявка успешно создана");
                 Close();
             }
             catch
             {
-                _ = MessageBox.Show("При создание заявки клиента возникла ошибка!");
+                MessageBox.Show("При создание заявки клиента возникла ошибка!");
             }
         }
 
@@ -115,16 +115,18 @@ namespace UPM
         {
             b = 3;
             TestEquip testEquip = new TestEquip();
-            _ = testEquip.ShowDialog();
+            testEquip.ShowDialog();
             if (b == 1)
             {
                 cmbStatus.SelectedIndex = 2;
                 dpEndDate.Text = DateTime.Today.ToString("D");
+                btnCheck.Visibility = Visibility.Collapsed;
             }
             else if (b == 2)
             {
                 cmbStatus.SelectedIndex = 1;
                 dpEndDate.Text = "";
+                btnCheck.Visibility = Visibility.Collapsed;
             }
         }
     }

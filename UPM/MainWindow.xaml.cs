@@ -22,7 +22,7 @@ namespace UPM
             InitializeComponent();
             DB = new Entities1();
             frame = mainFrame;
-            _ = frame.Navigate(new AbonentList());
+            frame.Navigate(new AbonentList());
             tbHeader.Text = "Абоненты ТНС";
             cbFIOStaff.ItemsSource = DB.Staff.ToList(); // Заполнение списка сотрудников
             cbFIOStaff.SelectedValuePath = "ID";
@@ -83,7 +83,7 @@ namespace UPM
                         break;
                 }
             }
-            _ = MainWindow.frame.Navigate(new AbonentList());
+            MainWindow.frame.Navigate(new AbonentList());
             tbHeader.Text = "Абоненты ТНС";
         }
 
@@ -139,13 +139,13 @@ namespace UPM
 
         private void lbSubscriber_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            _ = MainWindow.frame.Navigate(new AbonentList());
+            MainWindow.frame.Navigate(new AbonentList());
             tbHeader.Text = "Абоненты ТНС";
         }
 
         private void lbRequest_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            _ = MainWindow.frame.Navigate(new RequestPage());
+            MainWindow.frame.Navigate(new RequestPage());
             tbHeader.Text = "CRM";
         }
     }

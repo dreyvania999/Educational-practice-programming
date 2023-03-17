@@ -22,11 +22,11 @@ namespace UPM
             if (cmbSubscriber.SelectedItem != null)
             {
                 AddRequest addRequest = new AddRequest((int)cmbSubscriber.SelectedValue);
-                _ = addRequest.ShowDialog();
+                addRequest.ShowDialog();
             }
             else
             {
-                _ = MessageBox.Show("Пользователь не выбран!");
+                MessageBox.Show("Пользователь не выбран!");
             }
         }
 

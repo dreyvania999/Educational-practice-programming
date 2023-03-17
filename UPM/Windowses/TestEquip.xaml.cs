@@ -37,13 +37,13 @@ namespace UPM
             int a = rnd.Next(2);
             if (a == 1)
             {
-                _ = MessageBox.Show("Оборудование исправно");
+                MessageBox.Show("Оборудование исправно");
                 AddRequest.b = 1;
                 Close();
             }
             else
             {
-                _ = MessageBox.Show("Оборудование не исправно");
+                MessageBox.Show("Оборудование не исправно");
                 AddRequest.b = 2;
                 Close();
             }
