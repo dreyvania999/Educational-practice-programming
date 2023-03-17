@@ -22,6 +22,10 @@ namespace UPM
             tbCode.IsEnabled = false;
             ImageUPD.IsEnabled = false;
             btnLogin.IsEnabled = false;
+            tbPassword.Visibility = Visibility.Collapsed;
+            textCode.Visibility = Visibility.Collapsed;
+            pbPassword.Visibility = Visibility.Collapsed;
+            tbCode.Visibility = Visibility.Collapsed;
             disTimer.Interval = new TimeSpan(0, 0, 1);
             disTimer.Tick += new EventHandler(DisTimer_Tick);
         }
@@ -36,6 +40,11 @@ namespace UPM
             tbRemainingTime.Text = "";
             pbPassword.IsEnabled = false;
             tbCode.IsEnabled = false;
+            tbPassword.Visibility = Visibility.Collapsed;
+            textCode.Visibility = Visibility.Collapsed;
+            pbPassword.Visibility = Visibility.Collapsed;
+            tbCode.Visibility = Visibility.Collapsed;
+            ImageUPD.Visibility = Visibility.Collapsed;
             btnLogin.IsEnabled = false;
         }
 
@@ -46,14 +55,18 @@ namespace UPM
                 Staff employee = DB.Staff.FirstOrDefault(x => x.Code == tbNomer.Text);
                 if (employee != null)
                 {
+                    tbPassword.Visibility = Visibility.Visible;
+                    pbPassword.Visibility = Visibility.Visible;
                     pbPassword.IsEnabled = true;
-                    _ = pbPassword.Focus();
+                    pbPassword.Focus();
                 }
                 else
                 {
+                    tbPassword.Visibility = Visibility.Collapsed;
+                    pbPassword.Visibility = Visibility.Collapsed;
                     pbPassword.IsEnabled = false;
                     pbPassword.Password = "";
-                    _ = MessageBox.Show("Произошла ошибка! Сотрудник  с таким номером не найден!");
+                    MessageBox.Show("Произошла ошибка! Сотрудник  с таким номером не найден!");
                 }
             }
         }
@@ -73,6 +86,7 @@ namespace UPM
                 code = "";
                 tbRemainingTime.Text = "Код не действителен. Запросите повторную отправку кода";
                 ImageUPD.IsEnabled = true;
+                ImageUPD.Visibility = Visibility.Visible;
 
             }
             else
@@ -111,12 +125,12 @@ namespace UPM
                 }
                 else
                 {
-                    _ = MessageBox.Show("Код введён не верно!");
+                    MessageBox.Show("Код введён не верно!");
                 }
             }
             else
             {
-                _ = MessageBox.Show("Код утратил свою действительность!");
+                MessageBox.Show("Код утратил свою действительность!");
             }
         }
 
@@ -134,6 +148,7 @@ namespace UPM
                 Regex regex = new Regex($"^[0-9a-zA-Z`~!@#$%^&*()_\\-+={{}}\\[\\]\\|:;\"'<>,.?\\/]{{8}}$");
                 while (true)
                 {
+                   
                     code = "";
                     for (int i = 0; i < 8; i++)
                     {
@@ -175,28 +190,25 @@ namespace UPM
                             }
                         }
                     }
-
-                    if (regex.IsMatch(code))
-                    {
-                        ;
-                    }
-
+                    if (!regex.IsMatch(code))
                     {
                         break;
                     }
                 }
                 Clipboard.SetText(code);
-                _ = MessageBox.Show("Код для доступа " + code + "\nУ вас будет дано 10 секунд, чтобы ввести код(Код скопирован в буфер обмена)");
+                MessageBox.Show("Код для доступа " + code + "\nУ вас будет дано 10 секунд, чтобы ввести код(Код скопирован в буфер обмена)");
                 tbCode.IsEnabled = true;
                 tbCode.Text = "";
+                tbCode.Visibility = Visibility.Visible;
+                textCode.Visibility = Visibility.Visible;
                 btnLogin.IsEnabled = true;
-                _ = tbCode.Focus();
+                tbCode.Focus();
                 countTime = 10;
                 disTimer.Start();
             }
             else
             {
-                _ = MessageBox.Show("Сотрудник с таким номером и паролем не найден!");
+                MessageBox.Show("Сотрудник с таким номером и паролем не найден!");
                 disTimer.Stop();
                 code = "";
                 tbRemainingTime.Text = "";

@@ -27,15 +27,15 @@
             </Grid.ColumnDefinitions>
             <StackPanel HorizontalAlignment="Right" Grid.Column="0">
                 <TextBlock Text="Номер" Margin="10"/>
-                <TextBlock Text="Пароль" Margin="10"/>
-                <TextBlock Text="Код" Margin="10"/>
+                <TextBlock Visibility="Collapsed" x:Name="tbPassword" Text="Пароль" Margin="10"/>
+                <TextBlock Visibility="Collapsed" x:Name="textCode" Text="Код" Margin="10"/>
             </StackPanel>
             <StackPanel HorizontalAlignment="Left" Grid.Column="1">
                 <TextBox x:Name="tbNomer" Margin="10" KeyDown="tbNomer_KeyDown"/>
-                <PasswordBox x:Name="pbPassword" Margin="10" KeyDown="pbPassword_KeyDown"/>
+                <PasswordBox Visibility="Collapsed" x:Name="pbPassword" Margin="10" KeyDown="pbPassword_KeyDown"/>
                 <StackPanel Margin="10" MinWidth="200" Orientation="Horizontal">
-                    <TextBox x:Name="tbCode" MinWidth="190" Margin="0, 0, 10, 0" KeyDown="tbCode_KeyDown"/>
-                    <Image x:Name="ImageUPD" Source="/resources/update.png" Width="30" MouseDown="Image_MouseDown"/>
+                    <TextBox Visibility="Collapsed" x:Name="tbCode" MinWidth="190" Margin="0, 0, 10, 0" KeyDown="tbCode_KeyDown"/>
+                    <Image Visibility="Collapsed" x:Name="ImageUPD" Source="/resources/update.png" Width="30" MouseDown="Image_MouseDown"/>
                 </StackPanel>
                 <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10">
                     <Button x:Name="btnCancellation" Content="Отмена" Click="btnCancellation_Click" Style="{StaticResource BtnMain}"/>
