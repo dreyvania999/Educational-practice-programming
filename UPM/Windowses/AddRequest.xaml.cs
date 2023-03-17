@@ -12,6 +12,7 @@ namespace UPM
     public partial class AddRequest : Window
     {
         private readonly Request request;
+        public static int b;
         public AddRequest(int abonentID)
         {
             InitializeComponent();
@@ -68,22 +69,22 @@ namespace UPM
             {
                 if (cmbService.SelectedIndex < 0)
                 {
-                    MessageBox.Show("Поле \"услуга\" не заполнено!");
+                    _ = MessageBox.Show("Поле \"услуга\" не заполнено!");
                     return;
                 }
                 if (cmbTypeOfService.SelectedIndex < 0)
                 {
-                    MessageBox.Show("Поле \"вид услуги\" не заполнено!");
+                    _ = MessageBox.Show("Поле \"вид услуги\" не заполнено!");
                     return;
                 }
                 if (cmbServiceType.SelectedIndex < 0)
                 {
-                    MessageBox.Show("Поле \"тип услуги\" не заполнено!");
+                    _ = MessageBox.Show("Поле \"тип услуги\" не заполнено!");
                     return;
                 }
                 if (cmbProblemType.SelectedIndex < 0)
                 {
-                    MessageBox.Show("Поле \"тип проблемы\" не заполнено!");
+                    _ = MessageBox.Show("Поле \"тип проблемы\" не заполнено!");
                     return;
                 }
                 request.Servise = (int)cmbService.SelectedValue;
@@ -99,14 +100,31 @@ namespace UPM
                 {
                     request.EndDate = dpEndDate.SelectedDate;
                 }
-                MainWindow.DB.Request.Add(request);
-                MainWindow.DB.SaveChanges();
-                MessageBox.Show("Заявка успешно создана");
+                _ = MainWindow.DB.Request.Add(request);
+                _ = MainWindow.DB.SaveChanges();
+                _ = MessageBox.Show("Заявка успешно создана");
                 Close();
             }
             catch
             {
-                MessageBox.Show("При создание заявки клиента возникла ошибка!");
+                _ = MessageBox.Show("При создание заявки клиента возникла ошибка!");
+            }
+        }
+
+        private void btnCheck_Click(object sender, RoutedEventArgs e)
+        {
+            b = 3;
+            TestEquip testEquip = new TestEquip();
+            _ = testEquip.ShowDialog();
+            if (b == 1)
+            {
+                cmbStatus.SelectedIndex = 2;
+                dpEndDate.Text = DateTime.Today.ToString("D");
+            }
+            else if (b == 2)
+            {
+                cmbStatus.SelectedIndex = 1;
+                dpEndDate.Text = "";
             }
         }
     }

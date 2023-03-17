@@ -21,10 +21,10 @@ namespace UPM
             dgAbonent.ItemsSource = MainWindow.DB.Abonent.ToList();
             cbActive.IsChecked = true; // По умолчанию выводятся абоненты с активными договорами
             List<District> districts = MainWindow.DB.District.ToList(); // Заполнение списка районов
-            cbFilterDistrict.Items.Add("Все районы");
+            _ = cbFilterDistrict.Items.Add("Все районы");
             foreach (District district in districts)
             {
-                cbFilterDistrict.Items.Add(district.Title);
+                _ = cbFilterDistrict.Items.Add(district.Title);
             }
             cbFilterDistrict.SelectedIndex = 0;
             cbFilterStreet.IsEnabled = false;
@@ -44,7 +44,7 @@ namespace UPM
             }
             else
             {
-                MainWindow.frame.Navigate(new Abonent(abonent));
+                _ = MainWindow.frame.Navigate(new Abonent(abonent));
             }
         }
 
@@ -86,7 +86,7 @@ namespace UPM
             dgAbonent.ItemsSource = abonents;
             if (abonents.Count == 0 && b)
             {
-                MessageBox.Show("Данные отсутсвуют");
+                _ = MessageBox.Show("Данные отсутсвуют");
             }
         }
 
@@ -113,7 +113,7 @@ namespace UPM
                 cbFilterStreet.IsEnabled = true;
                 List<FactAdress> residentialAddresses = MainWindow.DB.FactAdress.Where(x => x.District == cbFilterDistrict.SelectedIndex).ToList();
                 List<string> streets = new List<string>();
-                cbFilterStreet.Items.Add("Все улицы");
+                _ = cbFilterStreet.Items.Add("Все улицы");
                 foreach (FactAdress res in residentialAddresses) // Создание списка улиц согласно району
                 {
                     if (res.Street != null)
@@ -124,7 +124,7 @@ namespace UPM
                 streets = streets.Distinct().ToList();
                 foreach (string street in streets)
                 {
-                    cbFilterStreet.Items.Add(street);
+                    _ = cbFilterStreet.Items.Add(street);
                 }
                 cbFilterStreet.SelectedIndex = 0;
             }
@@ -146,7 +146,7 @@ namespace UPM
                 cbFiltNomerHouse.IsEnabled = true;
                 List<FactAdress> residentialAddresses = MainWindow.DB.FactAdress.Where(x => x.District == cbFilterDistrict.SelectedIndex && x.Street == cbFilterStreet.SelectedIndex).ToList();
                 List<string> houses = new List<string>();
-                cbFiltNomerHouse.Items.Add("Все дома");
+                _ = cbFiltNomerHouse.Items.Add("Все дома");
                 foreach (FactAdress res in residentialAddresses) // Создание списка улиц согласно району
                 {
                     if (res.House != null)
@@ -157,7 +157,7 @@ namespace UPM
                 houses = houses.Distinct().ToList();
                 foreach (string house in houses)
                 {
-                    cbFiltNomerHouse.Items.Add(house);
+                    _ = cbFiltNomerHouse.Items.Add(house);
                 }
                 cbFiltNomerHouse.SelectedIndex = 0;
             }

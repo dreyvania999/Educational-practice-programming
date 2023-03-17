@@ -12,7 +12,7 @@
             <RowDefinition/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
-        <TextBlock Name="tbHeader" Text="Создание заявки для абонента " HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Name="tbHeader" Text="Создание заявки" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <StackPanel Grid.Row="1" Margin="10">
             <TextBlock x:Name="tbNomer" Text="Номер заявки: "/>
             <Grid Margin="0, 5, 0, 5">
@@ -60,7 +60,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Vertical" Grid.Column="0" HorizontalAlignment="Center">
-                    <TextBlock Text="Тип оборудования клиента" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Тип оборудования" HorizontalAlignment="Center"/>
                     <TextBlock x:Name="tbTypeEquipment" MinWidth="300"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Center">
@@ -81,7 +81,8 @@
         </StackPanel>
         <Grid Grid.Row="2">
             <Button x:Name="btnBack" Content="Назад" Height="50" Width="200" Margin="20, 0, 0, 0" Template="{StaticResource ResourceKey=CTButonMainPage}" Style="{StaticResource ResourceKey=BtnStyle}" HorizontalAlignment="Left" Click="btnBack_Click"/>
-            <Button x:Name="btnRequest" Content="Сформировать заявку" Height="50" Width="300" Template="{StaticResource ResourceKey=CTButonMainPage}" Style="{StaticResource ResourceKey=BtnStyle}" HorizontalAlignment="Center" Click="btnRequest_Click"/>
+            <Button x:Name="btnRequest" Content="Создать заявку" Height="50" Width="300" Template="{StaticResource ResourceKey=CTButonMainPage}" Style="{StaticResource ResourceKey=BtnStyle}" HorizontalAlignment="Center" Click="btnRequest_Click"/>
+            <Button x:Name="btnCheck" Content="Тест" Height="50" Width="250" Margin="0, 0, 20, 0" Template="{StaticResource ResourceKey=CTButonMainPage}" Style="{StaticResource ResourceKey=BtnStyle}" HorizontalAlignment="Right" Click="btnCheck_Click"/>
         </Grid>
     </Grid>
 </Window>

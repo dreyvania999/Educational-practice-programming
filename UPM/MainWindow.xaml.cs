@@ -22,7 +22,7 @@ namespace UPM
             InitializeComponent();
             DB = new Entities1();
             frame = mainFrame;
-            frame.Navigate(new AbonentList());
+            _ = frame.Navigate(new AbonentList());
             tbHeader.Text = "Абоненты ТНС";
             cbFIOStaff.ItemsSource = DB.Staff.ToList(); // Заполнение списка сотрудников
             cbFIOStaff.SelectedValuePath = "ID";
@@ -83,10 +83,10 @@ namespace UPM
                         break;
                 }
             }
-            MainWindow.frame.Navigate(new AbonentList());
+            _ = MainWindow.frame.Navigate(new AbonentList());
             tbHeader.Text = "Абоненты ТНС";
         }
-        
+
         public static DependencyObject GetScrollViewer(DependencyObject o)
         {
             if (o is ScrollViewer)
@@ -134,18 +134,18 @@ namespace UPM
             cd.Width = 100;
             spOpen.Visibility = Visibility.Collapsed;
             spClose.Visibility = Visibility.Visible;
-            ButtomPatel.Orientation=Orientation.Vertical;
+            ButtomPatel.Orientation = Orientation.Vertical;
         }
 
         private void lbSubscriber_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            MainWindow.frame.Navigate(new AbonentList());
+            _ = MainWindow.frame.Navigate(new AbonentList());
             tbHeader.Text = "Абоненты ТНС";
         }
 
         private void lbRequest_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            MainWindow.frame.Navigate(new RequestPage());
+            _ = MainWindow.frame.Navigate(new RequestPage());
             tbHeader.Text = "CRM";
         }
     }

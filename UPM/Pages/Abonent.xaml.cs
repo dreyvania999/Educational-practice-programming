@@ -117,7 +117,7 @@ namespace UPM
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.frame.Navigate(new AbonentList());
+            _ = MainWindow.frame.Navigate(new AbonentList());
         }
     }
 }

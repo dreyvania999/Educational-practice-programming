@@ -194,11 +194,14 @@
     <Compile Include="ViewTypeService.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Window\NewRequest.xaml.cs">
-      <DependentUpon>NewRequest.xaml</DependentUpon>
+    <Compile Include="Windowses\AddRequest.xaml.cs">
+      <DependentUpon>AddRequest.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windowses\TestEquip.xaml.cs">
+      <DependentUpon>TestEquip.xaml</DependentUpon>
     </Compile>
     <Page Include="Pages\RequestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -212,13 +215,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Window\NewRequest.xaml">
+    <Page Include="Windowses\AddRequest.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windowses\TestEquip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
