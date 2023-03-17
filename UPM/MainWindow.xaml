@@ -19,28 +19,56 @@
                 <Image Visibility="Collapsed" Name="imAssets" Source="/Resources/CRM/Активы.png" Width="80" Height="60" Margin="5"/>
                 <Image Visibility="Collapsed" Name="imBilling" Source="/Resources/CRM/Биллинг.png" Width="80" Height="60" Margin="5"/>
                 <Image Visibility="Collapsed" Name="imUserSupport" Source="/Resources/CRM/Поддержка пользователей.png" Width="80" Height="60" Margin="5"/>
-                <Image Visibility="Collapsed" Name="imRequest" Source="/Resources/CRM/Request.png" Width="80" Height="60" Margin="5"/>
+                <Image Visibility="Collapsed" Name="imRequest" Source="/Resources/CRM/CRM.png" Width="80" Height="60" Margin="5"/>
             </StackPanel>
             <StackPanel x:Name="spOpen" Grid.Column="0" Visibility="Collapsed">
                 <Image Source="/Resources/CRM/Лого ТНС.jpg" Width="150" Margin="10"/>
-                <Label  Name="lbSubscriber" Visibility="Collapsed" Content="Абоненты" Background="LightGray" Margin="5" Padding="5" Height="60" Width="160" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="lbSubscriber_MouseDown" Cursor="Hand"/>
-                <Label Visibility="Collapsed" Name="lbEquipmentManagement" Background="LightGray" Margin="5" Padding="5" Height="60" Width="160" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Hand">
+
+                <StackPanel Name="lbSubscriber" Visibility="Collapsed" Background="LightGray" Margin="5"  MouseDown="lbSubscriber_MouseDown" Cursor="Hand">
+                <Image  Source="/Resources/CRM/Абоненты.png" Width="80" Height="60" Margin="5"/>
+                    <Label   Content="Абоненты"  Padding="5" Height="60" Width="160" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    
+
+                </StackPanel>
+
+                <StackPanel Visibility="Collapsed" Name="lbEquipmentManagement" Background="LightGray" Margin="5" Cursor="Hand">
+                <Image Source="/Resources/CRM/Управление обрудованием.png" Width="80" Height="60" Margin="5"/>
+                    <Label  Padding="5" Height="60" Width="160" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                     <StackPanel>
                         <TextBlock Text="Управление" HorizontalAlignment="Center"/>
                         <TextBlock Text="оборудованием" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Label>
-                <Label Visibility="Collapsed" Name="lbAssets" Content="Активы" Background="LightGray" Margin="5" Padding="5" Height="60" Width="160" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Hand"/>
-                <Label Visibility="Collapsed" Name="lbBilling" Content="Биллинг" Background="LightGray" Margin="5" Padding="5" Height="60" Width="160" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Hand"/>
-                <Label Visibility="Collapsed" Name="lbUserSupport" Background="LightGray" Margin="5" Padding="5" Height="60" Width="160" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Hand">
+                    
+
+                </StackPanel>
+                
+                <StackPanel Visibility="Collapsed" Name="lbAssets"  Background="LightGray" Margin="5" Cursor="Hand">
+                <Image Source="/Resources/CRM/Активы.png" Width="80" Height="60" Margin="5"/>
+                    <Label Content="Активы" Padding="5" Height="60" Width="160" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                  
+                </StackPanel>
+                <StackPanel Visibility="Collapsed" Name="lbBilling" Background="LightGray" Margin="5" Cursor="Hand">
+                <Image  Source="/Resources/CRM/Биллинг.png" Width="80" Height="60" Margin="5"/>
+                    <Label Content="Биллинг"  Padding="5" Height="60" Width="160" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                 
+                </StackPanel>
+                <StackPanel Name="lbUserSupport" Visibility="Collapsed" Background="LightGray" Margin="5" Cursor="Hand">
+                    <Image  Source="/Resources/CRM/Поддержка пользователей.png" Width="80" Height="60" Margin="5"/>
+                    <Label   Padding="5" Height="60" Width="160" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                     <StackPanel>
                         <TextBlock Text="Поддержка" HorizontalAlignment="Center"/>
                         <TextBlock Text="пользователей" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Label>
-                <Label Visibility="Collapsed" Name="lbRequest" Content="Request" Background="LightGray" Margin="5" Padding="5" Height="60" Width="160" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="lbRequest_MouseDown" Cursor="Hand"/>
+                </StackPanel>
+
+                <StackPanel Name="lbRequest" Visibility="Collapsed" Background="LightGray" Margin="5" MouseDown="lbRequest_MouseDown" Cursor="Hand">
+                    <Image   Source="/Resources/CRM/CRM.png" Width="80" Height="60" Margin="5"/>
+                    <Label   Content="CRM" Background="LightGray" Padding="5" Height="60" Width="160" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                </StackPanel>
             </StackPanel>
-            <StackPanel VerticalAlignment="Bottom">
+            <StackPanel x:Name="ButtomPatel" VerticalAlignment="Bottom">
                 <Button Content="проф." FontSize="18" Margin="5" Template="{StaticResource CTButon}" HorizontalAlignment="Center" Width="60" Height="60"/>
                 <Button Content="?" Margin="5" FontWeight="Bold" Template="{StaticResource CTButon}" HorizontalAlignment="Center" Width="60" Height="60"/>
             </StackPanel>
