@@ -20,6 +20,7 @@ namespace UPM
             DB = new Entities();
             pbPassword.IsEnabled = false;
             tbCode.IsEnabled = false;
+            ImageUPD.IsEnabled = false;
             btnLogin.IsEnabled = false;
             disTimer.Interval = new TimeSpan(0, 0, 1);
             disTimer.Tick += new EventHandler(DisTimer_Tick);
@@ -71,6 +72,7 @@ namespace UPM
                 disTimer.Stop();
                 code = "";
                 tbRemainingTime.Text = "Код не действителен. Запросите повторную отправку кода";
+                ImageUPD.IsEnabled = true;
 
             }
             else

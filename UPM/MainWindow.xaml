@@ -35,7 +35,7 @@
                 <PasswordBox x:Name="pbPassword" Margin="10" KeyDown="pbPassword_KeyDown"/>
                 <StackPanel Margin="10" MinWidth="200" Orientation="Horizontal">
                     <TextBox x:Name="tbCode" MinWidth="190" Margin="0, 0, 10, 0" KeyDown="tbCode_KeyDown"/>
-                    <Image Source="/resources/update.png" Width="30" MouseDown="Image_MouseDown"/>
+                    <Image x:Name="ImageUPD" Source="/resources/update.png" Width="30" MouseDown="Image_MouseDown"/>
                 </StackPanel>
                 <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10">
                     <Button x:Name="btnCancellation" Content="Отмена" Click="btnCancellation_Click" Style="{StaticResource BtnMain}"/>
