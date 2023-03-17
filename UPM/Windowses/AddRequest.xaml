@@ -96,8 +96,8 @@
         </Grid>
         <Grid Grid.Row="2">
             <Button x:Name="btnBack" Content="Назад" Height="50" Width="200" Margin="20, 0, 0, 0" Template="{StaticResource ResourceKey=CTButonMainPage}" Style="{StaticResource ResourceKey=BtnStyle}" HorizontalAlignment="Left" Click="btnBack_Click"/>
-            <Button x:Name="btnCheck" Content="Тест" Height="50" Width="250" Margin="0, 0, 20, 0" Template="{StaticResource ResourceKey=CTButonMainPage}" Style="{StaticResource ResourceKey=BtnStyle}" HorizontalAlignment="Right" Click="btnCheck_Click"/>
-            <Button x:Name="btnRequest" Content="Создать заявку" Height="50" Width="300" Template="{StaticResource ResourceKey=CTButonMainPage}" Style="{StaticResource ResourceKey=BtnStyle}" HorizontalAlignment="Center" Click="btnRequest_Click"/>
+            <Button x:Name="btnCheck" Content="Тест" Height="50" Width="250" Margin="0, 0, 20, 0" Template="{StaticResource ResourceKey=CTButonMainPage}" Style="{StaticResource ResourceKey=BtnStyle}" HorizontalAlignment="Center" Click="btnCheck_Click" Cursor="Hand"/>
+            <Button x:Name="btnRequest" Content="Создать заявку" Height="50" Width="300" Template="{StaticResource ResourceKey=CTButonMainPage}" Style="{StaticResource ResourceKey=BtnStyle}" HorizontalAlignment="Right" Click="btnRequest_Click"/>
         </Grid>
 
     </Grid>
