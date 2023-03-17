@@ -18,8 +18,7 @@
             <TextBlock Text="{Binding ElementName=pbLoading, Path=Value, StringFormat={}{0:0}%}" FontSize="18" HorizontalAlignment="Center"/>
         </Grid>
         <Grid Grid.Row="2">
-            <Button x:Name="btnBack" Content="Отмена" Height="50" Width="200" Margin="20, 0, 0, 0" Template="{StaticResource ResourceKey=CTButonMainPage}" Style="{StaticResource ResourceKey=BtnStyle}" HorizontalAlignment="Left" Click="btnBack_Click"/>
-            <Button x:Name="btnPB" Content="Начать тестирование " Height="50" Width="300" Margin="20, 0, 0, 0" Template="{StaticResource ResourceKey=CTButonMainPage}" Style="{StaticResource ResourceKey=BtnStyle}" HorizontalAlignment="Right" Click="btnPB_Click" Cursor="Hand"/>
+            <Button HorizontalAlignment="Center" x:Name="btnPB" Content="Начать тестирование " Height="50" Width="300" Margin="20, 0, 0, 0" Template="{StaticResource ResourceKey=CTButonMainPage}" Style="{StaticResource ResourceKey=BtnStyle}" Click="btnPB_Click" Cursor="Hand"/>
         </Grid>
     </Grid>
 </Window>
