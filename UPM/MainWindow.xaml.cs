@@ -66,7 +66,7 @@ namespace UPM
                     pbPassword.Visibility = Visibility.Collapsed;
                     pbPassword.IsEnabled = false;
                     pbPassword.Password = "";
-                    MessageBox.Show("Произошла ошибка! Сотрудник  с таким номером не найден!");
+                    MessageBox.Show("Сотрудник  с таким номером не найден!");
                 }
             }
         }
@@ -84,14 +84,14 @@ namespace UPM
             {
                 disTimer.Stop();
                 code = "";
-                tbRemainingTime.Text = "Код не действителен. Запросите повторную отправку кода";
+                tbRemainingTime.Text = "Код не действителен. Повторите отправку кода";
                 ImageUPD.IsEnabled = true;
                 ImageUPD.Visibility = Visibility.Visible;
 
             }
             else
             {
-                tbRemainingTime.Text = "Код перестанет быть действительным через " + countTime;
+                tbRemainingTime.Text = "Код станет не действительным через " + countTime;
             }
             countTime--;
         }
@@ -130,7 +130,7 @@ namespace UPM
             }
             else
             {
-                MessageBox.Show("Код утратил свою действительность!");
+                MessageBox.Show("Код не действителен!");
             }
         }
 
@@ -196,7 +196,7 @@ namespace UPM
                     }
                 }
                 Clipboard.SetText(code);
-                MessageBox.Show("Код для доступа " + code + "\nУ вас будет дано 10 секунд, чтобы ввести код(Код скопирован в буфер обмена)");
+                MessageBox.Show("Код для доступа " + code + "\nУ вас будет 10 секунд, чтобы ввести код\nКод скопирован в буфер обмена");
                 tbCode.IsEnabled = true;
                 tbCode.Text = "";
                 tbCode.Visibility = Visibility.Visible;
