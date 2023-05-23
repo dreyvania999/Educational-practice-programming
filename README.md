@@ -40,6 +40,10 @@ C#
 Пароль: 1
 ```
 
+###
+диаграмма базы данных:
+![диаграмма базы данных](https://downloader.disk.yandex.ru/preview/28517d2caf4b455ed74fe9b3232fda3f91195209cd462ec33abca6c80d6e4c80/646ce4b2/DIuAmclHtu866hVWJacXTLVYNSPZUl2ElUvuzxY3xviCQz9W7iP652EtCA5WbCSyNs2IEbMoQhpXTPQBnFW2Vg%3D%3D?uid=0&filename=Screenshot_1.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=0&tknv=v2&size=2048x2048)
+
 ## Контактная ниформация
 
 Больше проектов [здесь](https://github.com/dreyvania999)
